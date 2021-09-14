@@ -20,7 +20,7 @@
 		<section class="d-flex justify-content-center align-items-center">
 			<div class="sign-section p-5">
 				<!-- 로그인 제목  -->
-				<h1 class="title-text text-center"><img width="70px" height="70px" src="/static/images/login.png">Log-in</h1>
+				<h1 class="title-text text-center"><i class="bi bi-box-arrow-in-right"></i><span class="ml-2">Log-in</span></h1>
 				<form id="loginForm" class="my-5">
 					<!-- 선생님/학부모 타입 선택 -->
 					<div class="d-flex justify-content-center">
@@ -29,16 +29,16 @@
 					</div>
 					<!-- 아이디 입력 -->
 					<div class="input-group d-flex">
-						<i class="bi bi-person input-group-text box mt-3 btn"></i>
+						<i class="bi bi-person input-group-text box mt-3 btn-green"></i>
 						<input type="text" class="form-control mt-3 box" placeholder="아이디" id="loginIdInput">
 					</div>
 					<!-- 비밀번호 입력 -->
 					<div class="input-group d-flex">
-						<i class="bi bi-check input-group-text box mt-2 btn"></i>
+						<i class="bi bi-check input-group-text box mt-2 btn-green"></i>
 						<input type="password" class="form-control mt-2 box" placeholder="비밀번호" id="passwordInput">
 					</div>
 					<!-- 로그인 버튼 -->
-					<button type="submit" class="btn btn-block text-white mt-3" id="loginBtn">로그인</button>
+					<button type="submit" class="btn btn-green btn-block text-white mt-3" id="loginBtn">로그인</button>
 				</form>
 				<hr>
 				<!-- 비밀번호 찾기 링크 -->

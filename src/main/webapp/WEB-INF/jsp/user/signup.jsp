@@ -20,7 +20,7 @@
 		<section class="d-flex justify-content-center align-items-center">
 			<div class="sign-section p-5">
 				<!-- 회원가입 제목  -->
-				<h1 class="title-text text-center"><img width="70px" height="70px" src="/static/images/signup.png">회원가입</h1>
+				<h1 class="title-text text-center"><i class="bi bi-stickies"></i><span class="ml-2">회원가입</span></h1>
 				<form method="post" action="/user/sign_up" id="signupForm" class="my-5">
 					<!-- 선생님/학부모 구분 -->
 					<div class="d-flex justify-content-center">
@@ -30,10 +30,10 @@
 					<!-- 아이디 -->
 					<div class="d-flex mt-3">
 						<div class="input-group d-flex">
-							<i class="bi bi-person input-group-text box mt-3 btn"></i>
+							<i class="bi bi-person input-group-text box mt-3 btn-green"></i>
 							<input type="text" class="form-control mt-3 box " placeholder="아이디" id="loginIdInput" name="loinId">
 						</div>
-						<button type="button" class="btn btn-sm mt-3 ml-2 text-white" id="idDuplicateBtn">중복확인</button>
+						<button type="button" class="btn btn-green btn-sm mt-3 ml-2 text-white" id="idDuplicateBtn">중복확인</button>
 					</div>
 					<!-- 아이디 중복여부 확인-->
 					<div class="text-success d-none" id="noneDuplicateDiv">
@@ -44,27 +44,27 @@
 					</div>
 					<!-- 비밀번호-->
 					<div class="input-group d-flex">
-						<i class="bi bi-check input-group-text box mt-2 btn"></i>
+						<i class="bi bi-check input-group-text box mt-2 btn-green"></i>
 						<input type="password" class="form-control mt-2 box" placeholder="비밀번호" id="passwordInput" name="password">
 					</div>
 					<div class="input-group d-flex">
-						<i class="bi bi-check-all input-group-text box mt-2 btn"></i>
+						<i class="bi bi-check-all input-group-text box mt-2 btn-green"></i>
 						<input type="password" class="form-control mt-2 box" placeholder="비밀번호 확인" id="passwordCheckInput">
 					</div>
 					<!-- 비밀번호 일치여부 확인 -->
 					<div id="errorPassword" class="text-danger d-none"><small>비밀번호가 일치하지 않습니다.</small></div>
 					<!-- 이름-->
 					<div class="input-group d-flex">
-						<i class="bi bi-brush input-group-text box mt-2 btn"></i>
+						<i class="bi bi-brush input-group-text box mt-2 btn-green"></i>
 						<input type="text" class="form-control mt-2 box"  placeholder="이름" id="nameInput" name="name">
 					</div>
-					<!-- 이메앨-->
+					<!-- 이메일-->
 					<div class="input-group d-flex">
-						<i class="bi bi-envelope-fill input-group-text box mt-2 btn"></i>
+						<i class="bi bi-envelope-fill input-group-text box mt-2 btn-green"></i>
 						<input type="text" class="form-control mt-2 box" placeholder="이메일 " id="emailInput" name="email">
 					</div>
 					<!-- 가입하기 버튼-->
-					<button type="submit" class="btn btn-block text-white mt-3" id="signupBtn">가입하기</button>
+					<button type="submit" class="btn btn-green btn-block text-white mt-3" id="signupBtn">가입하기</button>
 				</form>
 			</div>
 		</section>

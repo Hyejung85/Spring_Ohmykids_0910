@@ -5,7 +5,7 @@
 
 		<nav>
 			<ul class="mt-2 nav nav-tabs nav-fill" >
-				<li class="nav-item"><a class="nav-link title-text" href="">자녀정보관리</a></li>
+				<li class="nav-item"><a class="nav-link title-text" href="/user/accounts/kidsinfo_view">My Kids 관리</a></li>
 				<li class="nav-item"><a class="nav-link title-text" href="">알림장</a></li>
 				<li class="nav-item"><a class="nav-link title-text" href="">앨범</a></li>
 			</ul>

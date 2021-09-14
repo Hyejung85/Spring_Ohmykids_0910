@@ -10,9 +10,19 @@
 	color:#088A29;
 }
 
-.btn{
+.btn-green{
 	background-color:#088A29;
 	color:white;
+}
+
+.btn-white{
+	color:#088A29;
+	background-color:white;
+}
+
+.btn-yellow{
+	color: #088A29;
+	background-color:#F3F781;
 }
 
 .box{
@@ -60,6 +70,35 @@ section{
 	height : 600px;
 	border :1px solid #088A29;
 	border-radius: 10px;
+}
+.page-section{
+	width : 500px;
+	height : 600px;
+	border :1px solid #088A29;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.submenu-bar{
+	width : 500px;
+	height : 50px;
+	color:#F3F781;
+	background-color: #088A29;
+	border-radius: 10px 10px 0px 0px ;
+}
+
+.picture-box{
+	width: 200px;
+	height: 200px;
+}
+.picture{
+	width : 150px;
+	height : 150px;
+	border :1px solid #088A29;
+	border-radius: 80px 80px 80px 80px ;
+}
+.info-box{
+	width: 400px;
+	height: 300px;
 }
 
 footer{
