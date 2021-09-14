@@ -131,7 +131,9 @@
 			});
 			
 			//자녀정보 입력
-			$("#kidsinfoForm").on("submit",function(){
+			$("#kidsinfoForm").on("submit",function(e){
+				
+				e.preventDefault();
 				
 				var kidsName = $("#kidsNameInput").val();
 				var kidsBirth = $("#kidsBirthInput").datepicker().val(); // datepicker

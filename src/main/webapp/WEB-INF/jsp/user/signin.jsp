@@ -24,8 +24,8 @@
 				<form id="loginForm" class="my-5">
 					<!-- 선생님/학부모 타입 선택 -->
 					<div class="d-flex justify-content-center">
-						<div class="mr-5 title-text"><label><input type="radio" name="type" value="teacher"  class="mr-1"><b>선생님</b></label></div>
-						<div class="title-text"><label><input type="radio" name="type" value="parent" class="mr-1"><b>학부모</b></label></div>
+						<div class="mr-5 title-text"><label><input type="radio" name="type" value="선생님"  class="mr-1"><b>선생님</b></label></div>
+						<div class="title-text"><label><input type="radio" name="type" value="학부모" class="mr-1"><b>학부모</b></label></div>
 					</div>
 					<!-- 아이디 입력 -->
 					<div class="input-group d-flex">
