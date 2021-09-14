@@ -95,7 +95,16 @@ section{
 	height : 150px;
 	border :1px solid #088A29;
 	border-radius: 80px 80px 80px 80px ;
+	overflow:hidden;
+    margin:0 auto;
 }
+.imagePath{
+	width: 150%; 
+	height: auto;
+    object-fit:cover;
+    border :0px solid white;
+}
+
 .info-box{
 	width: 400px;
 	height: 300px;

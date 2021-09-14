@@ -40,18 +40,17 @@
 						<div class="picture-box d-flex justify-content-center">
 							<div>
 								<!-- 이미지 출력 -->
-								<c:choose>
+								<div class="picture title-text d-flex justify-content-center align-items-center" id="picture">
+								<img src="${imagePath }" id="imagePath" class="imagePath">
+								<!--<c:choose>
 									<c:when test="${empty imagePath }">
-										<div class="picture title-text d-flex justify-content-center align-items-center">
-												<i class="bi bi-person-fill display-1 mb-4"></i>
-										</div>
+										<i class="bi bi-person-fill display-1 mb-4"></i>
 									</c:when>
 									<c:otherwise>
-										<div class="picture title-text d-flex justify-content-center align-items-center">
-												<img src="${imagePath }">
-										</div>
+										<img src="${imagePath }" id="imagePath" class="imagePath">
 									</c:otherwise>
-								</c:choose>
+								</c:choose>-->
+								</div>
 								<!-- /이미지 출력 -->
 								<!-- 사진변경 버튼 -->
 								<!-- MIME -->
@@ -191,6 +190,21 @@
 				});
 				
 			});
+			
+			//사진 미리보여주기
+			$("#fileInput").on("change",function(){
+				setImageFromFile(this, "#imagePath");
+			});
+			
+			function setImageFromFile(input, expression){
+				if(input.files && input.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(e){
+						$(expression).attr("src",e.target.result);
+					}
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
 			
 		});
 	</script>
