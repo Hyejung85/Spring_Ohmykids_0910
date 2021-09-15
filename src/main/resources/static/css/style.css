@@ -29,7 +29,7 @@
 	border :1px solid #088A29;
 }
 
-.nav{
+.navbar{
 	border-bottom :1px solid #088A29;
 }
 
@@ -42,10 +42,16 @@ header{
 }
 
 nav{
-	height : 50px;
+	height : 70px;
 }
 
 .nav-link:hover{
+	background-color:#088A29;
+	color:white;
+	font-weight :bold;
+}
+
+.dropdown-item:hover{
 	background-color:#088A29;
 	color:white;
 	font-weight :bold;
