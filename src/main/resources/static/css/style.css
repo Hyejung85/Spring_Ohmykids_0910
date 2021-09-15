@@ -10,6 +10,10 @@
 	color:#088A29;
 }
 
+.yellow-text{
+	color: #F3F781;
+}
+
 .btn-green{
 	background-color:#088A29;
 	color:white;
@@ -23,6 +27,11 @@
 .btn-yellow{
 	color: #088A29;
 	background-color:#F3F781;
+}
+
+.btn-info{
+	color: white;
+	background-color:#58ACFA;
 }
 
 .box{
@@ -114,6 +123,10 @@ section{
 .info-box{
 	width: 400px;
 	height: 300px;
+}
+.kidsInfo{
+	border :1px solid #088A29;
+	border-radius: 10px 10px 10px 10px ;
 }
 
 footer{

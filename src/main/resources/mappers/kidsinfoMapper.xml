@@ -32,5 +32,59 @@
  			, now()
  		)
  	</insert>
+ 	<!-- 자녀정보수정 -->
+ 	<update id="updateKidsInfo" parameterType="map">
+ 		UPDATE
+ 			`kidsinfo`
+ 		SET
+ 			`kidsName` = #{kidsName}
+ 			, `kidsBirth` = #{kidsBirth}
+ 			, `kidsGender`= #{kidsGender}
+ 			, `kidsClass` = #{kidsClass}
+ 			, `relationship` = #{relationship}
+ 			, `imagePath` = #{imagePath}
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
+ 	<!-- 자녀목록 -->
+ 	<select id="selectKidsInfoList" parameterType="int" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo" >
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `kidsName`
+ 			, `kidsBirth`
+ 			, `kidsGender`
+ 			, `kidsClass`
+ 			, `relationship`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`kidsinfo`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY `id` 
+ 	</select>
+ 	<!-- 자녀정보 상세 -->
+ 	<select id="selectKidsInfo" parameterType="map" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `kidsName`
+ 			, `kidsBirth`
+ 			, `kidsGender`
+ 			, `kidsClass`
+ 			, `relationship`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`kidsinfo`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `id` = #{id}
+ 	</select>
  
  </mapper>
