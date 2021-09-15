@@ -29,7 +29,7 @@
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5>My Kids 등록</h5></div> 
 					<!-- 저장 버튼 -->
-					<div class="mx-3"><button type="submit" class="btn btn-yellow" id="kidsinfoSaveBtn"><b>저장</b></button></div>
+					<div class="mx-3"><button type="submit" class="btn btn-yellow btn-sm" id="kidsinfoSaveBtn"><b>저장</b></button></div>
 				</div>
 			</div>
 			<!-- page section -->

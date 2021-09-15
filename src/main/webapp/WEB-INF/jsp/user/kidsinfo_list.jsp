@@ -54,7 +54,7 @@
 								</div>
 								<!-- /이미지 출력 -->
 								<!-- 상세보기 이동 버튼 -->	
-								<div class="d-flex justify-content-center"><a href="/user/accounts/kidsinfo/detail_view"class="btn btn-green mt-2" id="listBtn" data-kidsinfo-id="${kids.id }">상세보기</a></div>
+								<div class="d-flex justify-content-center"><a href="/user/accounts/kidsinfo/detail_view?id=${kids.id }"class="btn btn-green mt-2" id="listBtn" data-kidsinfo-id="${kids.id }">상세보기</a></div>
 								<!-- /상세보기 이동 버튼 -->
 							</div>
 						</div>
