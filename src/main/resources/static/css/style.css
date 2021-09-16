@@ -113,7 +113,7 @@ section{
 	overflow:hidden;
     margin:0 auto;
 }
-.imagePath{
+.imagethumbnail{
 	width: 150%; 
 	height: auto;
     object-fit:cover;

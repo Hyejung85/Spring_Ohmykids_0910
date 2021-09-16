@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,14 @@
 							<div>
 								<!-- 이미지 출력 -->
 								<div class="picture title-text d-flex justify-content-center align-items-center" id="picture">
-								<img src="${kidsInfo.imagePath }" id="imagePath" class="imagePath">
+								<c:choose>
+									<c:when test="${not empty kidsInfo.imagePath }">
+										<img src="${kidsInfo.imagePath }" id="imagePath" class="imagethumbnail">
+									</c:when>
+									<c:otherwise>
+										<img src="/static/images/person.png" id="imagePath" class="imagethumbnail">
+									</c:otherwise>
+								</c:choose>
 								</div>
 								<!-- /이미지 출력 -->
 								<!-- 사진변경 버튼 -->
@@ -67,7 +75,7 @@
 						<!-- 자녀생일 -->
 						<div class="input-group d-flex">
 							<i class="bi bi-calendar-check input-group-text box mt-2 btn-green"></i>
-							<input type="text" class="form-control box mt-2" placeholder="자녀 생일" id="kidsBirthInput" value="${kidsInfo.kidsBirth }">
+							<input type="text" class="form-control box mt-2" placeholder="자녀 생일" id="kidsBirthInput" value='<fmt:formatDate value="${kidsInfo.kidsBirth }" pattern="yyyy-M-d" />'>
 						</div>
 						<!-- 자녀성별 -->
 						<div class="input-group d-flex">
@@ -111,7 +119,7 @@
 		$(document).ready(function(){
 			//datepicker
 			$("#kidsBirthInput").datepicker({
-				dateFormat:"yy-m-d"
+				dateFormat:"yy-mm-dd"
 				, showMonthAfterYear:true
 				, yearRange: '1950:2030'
 				, changeYear: true

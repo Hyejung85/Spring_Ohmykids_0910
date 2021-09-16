@@ -42,15 +42,15 @@
 							<div>
 								<!-- 이미지 출력 -->
 								<div class="picture title-text d-flex justify-content-center align-items-center" id="picture">
-								<img src="${kids.imagePath }" id="imagePath" class="imagePath">
-								<!--<c:choose>
-									<c:when test="${empty imagePath }">
-										<i class="bi bi-person-fill display-1 mb-4"></i>
+								<!--<img src="${kids.imagePath }" id="imagePath" class="imagePath">-->
+								<c:choose>
+									<c:when test="${not empty kids.imagePath }">
+										<img src="${kids.imagePath }" id="imagePath" class="imagethumbnail" >
 									</c:when>
 									<c:otherwise>
-										<img src="${kids.imagePath }" id="imagePath" class="imagePath">
+										<img src="/static/images/person.png" id="imagePath" class="imagethumbnail w-75">
 									</c:otherwise>
-								</c:choose>-->
+								</c:choose>
 								</div>
 								<!-- /이미지 출력 -->
 								<!-- 상세보기 이동 버튼 -->	
@@ -70,7 +70,6 @@
 						<div class="my-3"><h5><i class="bi bi-calendar2-check mr-2"></i><fmt:formatDate value="${kids.kidsBirth }" pattern="yyyy년 M월 d일" /></h5></div>						
 					</div>
 					<!-- /정보출력  -->
-					
 				</div>
 				</c:forEach>
 				</div>

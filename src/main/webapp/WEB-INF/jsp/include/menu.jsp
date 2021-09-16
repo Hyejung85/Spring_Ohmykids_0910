@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-		<nav class="navbar navbar-expand-lg nav-tabs nav-fill">
+		<nav class="navbar navbar-expand-lg nav-tabs">
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mr-auto">
+		    <ul class="nav nav-fill">
 		      <!-- 자녀관리 -->
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle title-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

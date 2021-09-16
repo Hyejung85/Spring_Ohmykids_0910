@@ -12,7 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/static/css/style.css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <!--  datepicker -->
+  <!--  datepicker --> 
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -41,15 +41,14 @@
 							<div>
 								<!-- 이미지 출력 -->
 								<div class="picture title-text d-flex justify-content-center align-items-center" id="picture">
-								<img src="${imagePath }" id="imagePath" class="imagePath">
-								<!--<c:choose>
-									<c:when test="${empty imagePath }">
-										<i class="bi bi-person-fill display-1 mb-4"></i>
+								<c:choose>
+									<c:when test="${not empty imagePath }">
+										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
 									</c:when>
 									<c:otherwise>
-										<img src="${imagePath }" id="imagePath" class="imagePath">
+										<img src="/static/images/person.png" id="imagePath" class="imagethumbnail">
 									</c:otherwise>
-								</c:choose>-->
+								</c:choose>
 								</div>
 								<!-- /이미지 출력 -->
 								<!-- 사진변경 버튼 -->
@@ -115,7 +114,7 @@
 		$(document).ready(function(){
 			//datepicker
 			$("#kidsBirthInput").datepicker({
-				dateFormat:"yy-m-d"
+				dateFormat:"yy-mm-dd"
 				, showMonthAfterYear:true
 				, yearRange: '1950:2030'
 				, changeYear: true
