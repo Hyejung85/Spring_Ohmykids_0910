@@ -53,7 +53,12 @@
 						   	<h5><b>${year }-${month }-${date }</b></h5>
 						</div>
 						<div class="w-25 d-flex justify-content-center mr-3 align-items-center" id="weatherInput">
-							<h5><b>맑음</b></h5>
+								<select id="weatherInput" class="form-control ml-2">
+									<option value="맑음"><i class="bi bi-brightness-high title-text"></i>맑음</option>
+									<option value="비"><i class="bi bi-umbrella"></i>비</option>
+									<option value="흐림"><i class="bi bi-cloud-rain"></i>흐림</option>
+									<option value="눈"><i class="bi bi-snow"></i>눈</option>
+								</select>
 						</div>
 				    </div>
 				    <!-- /작성자 section -->
