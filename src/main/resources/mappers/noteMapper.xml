@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.yeye.ohmykids.note.dao.NoteDAO">
+ 	<insert id="insertNote" parameterType="map">
+ 		INSERT INTO
+ 			`note`
+ 		(
+ 			`userId`
+ 			, `userName`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{userName}
+ 			, #{kidsClass}
+ 			, #{kidsName}
+ 			, #{weather}
+ 			, #{content}
+ 			, #{imagePath}
+ 			, now()
+ 			, now()
+ 		)
+ 	</insert>
+ 
+ </mapper>

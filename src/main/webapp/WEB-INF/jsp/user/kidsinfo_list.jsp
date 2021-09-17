@@ -42,13 +42,12 @@
 							<div>
 								<!-- 이미지 출력 -->
 								<div class="picture title-text d-flex justify-content-center align-items-center" id="picture">
-								<!--<img src="${kids.imagePath }" id="imagePath" class="imagePath">-->
 								<c:choose>
 									<c:when test="${not empty kids.imagePath }">
 										<img src="${kids.imagePath }" id="imagePath" class="imagethumbnail" >
 									</c:when>
 									<c:otherwise>
-										<img src="/static/images/person.png" id="imagePath" class="imagethumbnail w-75">
+										<img src="/static/images/person.png" id="imagePath" class="imagethumbnail">
 									</c:otherwise>
 								</c:choose>
 								</div>
