@@ -23,89 +23,89 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
 		<section class="d-flex justify-content-center align-items-center">
-			<!-- submenu-bar -->
-			<div class="submenu-bar d-flex justify-content-center w-100">
-				<div class="d-flex justify-content-between align-items-center w-100">
-					<!--  title -->
-					<div class="mx-3 mt-2"><h5>My Kids 등록</h5></div> 
-					<!-- 저장 버튼 -->
-					<div class="mx-3"><button type="submit" class="btn btn-yellow btn-sm" id="kidsinfoSaveBtn"><b>저장</b></button></div>
+			<div>
+				<!-- submenu-bar -->
+				<div class="submenu-bar d-flex justify-content-center w-100">
+					<div class="d-flex justify-content-between align-items-center w-100">
+						<!--  title -->
+						<div class="mx-3 mt-2"><h5><b>알림장 목록</b></h5></div> 
+						<div class="d-flex">
+							<!-- 해당 월 모아보기 -->
+							<select class="form-control">	
+								<option>2021-9</option>
+								<option>2021-8</option>
+							</select>
+							<!-- 저장 버튼 -->
+							<div class="mx-3"><a href="#" class="btn btn-yellow btn-sm mt-1" id="kidsSelectBtn"><b>자녀 선택</b></a></div>
+						</div>
+					</div>
 				</div>
-			</div>
-			<!-- page section -->
-			<div class="page-section py-5 px-2 d-flex justify-content-center">
-				<div>
-					<!-- 사진 box-->
-					<div class="d-flex justify-content-center">
-						<div class="picture-box d-flex justify-content-center">
-							<div>
-								<!-- 이미지 출력 -->
-								<div class="picture title-text d-flex justify-content-center align-items-center" id="picture">
-								<c:choose>
-									<c:when test="${not empty imagePath }">
-										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
-									</c:when>
-									<c:otherwise>
-										<img src="/static/images/person.png" id="imagePath" class="imagethumbnail">
-									</c:otherwise>
-								</c:choose>
-								</div>
-								<!-- /이미지 출력 -->
-								<!-- 사진변경 버튼 -->
-								<!-- MIME -->
-								<input type="file" accept="image/*" id="fileInput" class="d-none">
-								<div class="d-flex justify-content-center"><button type="button" class="btn btn-green mt-2" id="imageUploadBtn">사진변경</button></div>
-								<!-- /사진변경 버튼 -->
+				<!-- /submenu-bar -->
+				<!-- page section -->
+				<div class="page-section px-2 d-flex justify-content-center">
+					<!-- 알림장 요약 section -->
+					<div>
+						<div class="note-contraction d-flex">
+							<!-- 일자, 날씨 -->
+							<div class="w-25 text-center mt-2" id="">
+								<div><h1><b>17</b></h1></div>
+								<div><h5><small>금요일</small></h5></div>
+								<div><h4><b>맑음</b></h4></div>
 							</div>
-						</div>
+							<!-- /일자, 날씨 -->
+							<!-- 알림장 내용 -->
+							<div class="w-50 d-flex align-items-center">
+								<div>
+									<h5><b>원에서 가정으로</b></h5>
+									<div>content....</div>
+								</div>
+							</div>
+							<!-- /알림장 내용 -->
+							<!-- 사진 -->
+							<div class="d-flex justify-content-center align-items-center w-25 mr-3">
+								<div>
+									<!-- 이미지 출력 -->
+									<div class="picture-square-sm title-text d-flex justify-content-center align-items-center" id="picture">
+									<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+									</div>
+								</div>
+							</div>
+							<!-- /사진 -->
 					</div>
-					<!-- /사진 -->
-					<!-- 정보입력 -->
-					<div class="info-box mx-3 mt-3">
-						<!-- 자녀이름 -->
-						<div class="input-group d-flex">
-							<i class="bi bi-brush input-group-text box mt-2 btn-green"></i>
-							<input type="text" class="form-control box mt-2" placeholder="자녀 이름" id="kidsNameInput">
-						</div>
-						<!-- 자녀생일 -->
-						<div class="input-group d-flex">
-							<i class="bi bi-calendar-check input-group-text box mt-2 btn-green"></i>
-							<input type="text" class="form-control box mt-2" placeholder="자녀 생일" id="kidsBirthInput">
-						</div>
-						<!-- 자녀성별 -->
-						<div class="input-group d-flex">
-							<i class="bi bi-bookmark-heart-fill input-group-text box mt-2 btn-green"></i>
-							<select class="form-control box mt-2" id="kidsGenderInput" name="kidsGender">
-								<option value="">--자녀 성별--</option>
-								<option value="여자">여자</option>
-								<option value="남자">남자</option>
-							</select>
-						</div>
-						<!-- 자녀소속 -->
-						<div class="input-group d-flex">
-							<i class="bi bi-building input-group-text box mt-2 btn-green"></i>
-							<select class="form-control box mt-2" id="kidsClassInput" name="kidsClass">
-								<option value="">--자녀 소속--</option>
-								<option value="기쁨반">기쁨반</option>
-								<option value="사랑반">사랑반</option>
-								<option value="평화반">평화반</option>
-							</select>
-						</div>
-						<!-- 자녀와의 관계 -->
-						<div class="input-group d-flex">
-							<i class="bi bi-paperclip input-group-text box mt-2 btn-green"></i>
-							<select class="form-control box mt-2" id="relationshipInput" name="relationship">
-								<option value="">--자녀와의 관계--</option>
-								<option value="엄마">엄마</option>
-								<option value="아빠">아빠</option>
-								<option value="기타가족">기타가족</option>
-							</select> 
-						</div>
+					<!-- /알림장 요약 -->
+					<!-- 알림장 요약 section -->
+					<div>
+						<div class="note-contraction d-flex">
+							<!-- 일자, 날씨 -->
+							<div class="w-25 text-center mt-2" id="">
+								<div><h1><b>17</b></h1></div>
+								<div><h5><small>금요일</small></h5></div>
+								<div><h4><b>맑음</b></h4></div>
+							</div>
+							<!-- /일자, 날씨 -->
+							<!-- 알림장 내용 -->
+							<div class="w-50 d-flex align-items-center">
+								<div>
+									<h5><b>원에서 가정으로</b></h5>
+									<div>content....</div>
+								</div>
+							</div>
+							<!-- /알림장 내용 -->
+							<!-- 사진 -->
+							<div class="d-flex justify-content-center align-items-center w-25 mr-3">
+								<div>
+									<!-- 이미지 출력 -->
+									<div class="picture-square-sm title-text d-flex justify-content-center align-items-center" id="picture">
+									<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+									</div>
+								</div>
+							</div>
+							<!-- /사진 -->
 					</div>
-					<!-- /정보입력 -->
+					<!-- /알림장 요약 -->
 				</div>
+				<!-- /page section -->
 			</div>
-			<!-- /page section -->
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
