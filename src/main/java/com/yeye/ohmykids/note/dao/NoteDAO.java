@@ -1,7 +1,11 @@
 package com.yeye.ohmykids.note.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.yeye.ohmykids.note.model.Note;
 
 @Repository
 public interface NoteDAO {
@@ -15,4 +19,7 @@ public interface NoteDAO {
 			, @Param("weather") String weather
 			, @Param("content") String content
 			, @Param("imagePath") String imagePath);
-}
+	
+	//알림장목록
+	public List<Note> selectNoteList();
+} 

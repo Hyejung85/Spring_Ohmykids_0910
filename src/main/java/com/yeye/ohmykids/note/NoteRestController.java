@@ -35,10 +35,11 @@ public class NoteRestController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		String userName = (String) session.getAttribute("userName");
+	
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.noteCreate(userId, userName, kidsClass, kidsName, weather, content, file);
+		int count = noteBO.noteCreate(userId, userName,  kidsClass, kidsName, weather, content, file);
 		
 		if(count == 1) {
 			result.put("result", "success");

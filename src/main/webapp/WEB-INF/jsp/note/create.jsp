@@ -54,10 +54,10 @@
 						</div>
 						<div class="w-25 d-flex justify-content-center mr-3 align-items-center" id="weatherInput">
 								<select id="weatherInput" class="form-control ml-2">
-									<option value="맑음"><i class="bi bi-brightness-high title-text"></i>맑음</option>
-									<option value="비"><i class="bi bi-umbrella"></i>비</option>
-									<option value="흐림"><i class="bi bi-cloud-rain"></i>흐림</option>
-									<option value="눈"><i class="bi bi-snow"></i>눈</option>
+									<option value="맑음">맑음</option>
+									<option value="비">비</option>
+									<option value="흐림">흐림</option>
+									<option value="눈">눈</option>
 								</select>
 						</div>
 				    </div>
@@ -129,12 +129,14 @@
 				
 				var kidsClass = $("#kidsClassInput option:selected").val(); //select box
 				var kidsName = $("#kidsNameInput option:selected").val();  //select box
+				var weather = $("#weatherInput option:selected").val();  //select box
 				var content = $("#contentInput").val();
 				
 				
 				var formData = new FormData();
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
+				formData.append("weather", weather);
 				formData.append("content", content);
 				formData.append("file", $("#fileInput")[0].files[0]);
 				

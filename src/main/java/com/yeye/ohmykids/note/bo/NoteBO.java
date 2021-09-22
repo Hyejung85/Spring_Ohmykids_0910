@@ -10,6 +10,7 @@ import com.yeye.ohmykids.common.FileManagerService;
 import com.yeye.ohmykids.note.dao.NoteDAO;
 import com.yeye.ohmykids.note.model.Note;
 import com.yeye.ohmykids.note.model.NoteWithKidsInfo;
+import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
 
 @Service
 public class NoteBO {
@@ -17,8 +18,11 @@ public class NoteBO {
 	@Autowired
 	private NoteDAO noteDAO;
 	
+	@Autowired
+	private KidsInfoBO kidsInfoBO;
+	
 	//알림장 작성
-	public int noteCreate(int userId, String userName, String kidsClass, String kidsName
+	public int noteCreate(int userId, String userName,  String kidsClass, String kidsName
 			, String weather, String content, MultipartFile file) {
 
 		
@@ -35,5 +39,11 @@ public class NoteBO {
 		}
 		
 		return noteDAO.insertNote(userId, userName, kidsClass, kidsName, weather, content, filePath);
+	}
+	
+	// 알림장 목록
+	public List<Note> getNoteList(){
+		List<Note> noteList = noteDAO.selectNoteList();
+		return noteList;
 	}
 }

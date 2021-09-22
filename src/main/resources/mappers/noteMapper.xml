@@ -31,5 +31,22 @@
  			, now()
  		)
  	</insert>
+ 	<select id="selectNoteList" resultType="com.yeye.ohmykids.note.model.Note">
+ 		SELECT
+ 			`id`
+ 			,`userId`
+ 			, `userName`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`note`
+ 		ORDER BY `id` DESC
+ 	</select>
+ 	
  
  </mapper>
