@@ -8,8 +8,6 @@ public class NoteWithKidsInfo {
 	private Note note;
 	private List<KidsInfo> kidsInfoList;
 	
-	
-	
 	public Note getNote() {
 		return note;
 	}
@@ -22,6 +20,7 @@ public class NoteWithKidsInfo {
 	public void setKidsInfoList(List<KidsInfo> kidsInfoList) {
 		this.kidsInfoList = kidsInfoList;
 	}
+	
 	
 	
 	

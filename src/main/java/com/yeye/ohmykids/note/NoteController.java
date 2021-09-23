@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yeye.ohmykids.note.bo.NoteBO;
-import com.yeye.ohmykids.note.model.Note;
+import com.yeye.ohmykids.note.model.NoteWithKidsInfo;
 
 @Controller
 @RequestMapping("/note")
@@ -22,7 +22,10 @@ public class NoteController {
 
 	//알림장 작성 + kidsInfoList
 	@RequestMapping("/create_view")
-	public String noteCreateView() {
+	public String noteCreateView(Model model) {
+		
+		List<NoteWithKidsInfo> noteList = noteBO.getNoteList();
+		model.addAttribute("noteList", noteList);
 		return "note/create";
 	}
 	
@@ -34,13 +37,9 @@ public class NoteController {
 	
 	//알림장 목록 + kidsInfoList
 	@RequestMapping("/list_view")
-	public String noteListView(Model model
-			, HttpServletRequest request) {
+	public String noteListView(Model model) {
 		
-		HttpSession session = request.getSession();
-		Integer userId = (Integer) session.getAttribute("userId");
-		
-		List<Note> noteList = noteBO.getNoteList();
+		List<NoteWithKidsInfo> noteList = noteBO.getNoteList();
 		model.addAttribute("noteList", noteList);
 		
 		return "note/list";

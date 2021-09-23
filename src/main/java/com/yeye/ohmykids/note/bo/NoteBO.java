@@ -1,5 +1,6 @@
 package com.yeye.ohmykids.note.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.yeye.ohmykids.note.dao.NoteDAO;
 import com.yeye.ohmykids.note.model.Note;
 import com.yeye.ohmykids.note.model.NoteWithKidsInfo;
 import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
+import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
 
 @Service
 public class NoteBO {
@@ -41,9 +43,20 @@ public class NoteBO {
 		return noteDAO.insertNote(userId, userName, kidsClass, kidsName, weather, content, filePath);
 	}
 	
-	// 알림장 목록
-	public List<Note> getNoteList(){
+	// 알림장 목록 (+kidsInfo)
+	public List<NoteWithKidsInfo> getNoteList(){
 		List<Note> noteList = noteDAO.selectNoteList();
-		return noteList;
+		List<NoteWithKidsInfo> noteWithKidsInfoList = new ArrayList<>();
+		
+		for(Note note : noteList) {
+			List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(note.getId());
+			
+			NoteWithKidsInfo noteWithKidsInfo = new NoteWithKidsInfo();
+			noteWithKidsInfo.setNote(note);
+			noteWithKidsInfo.setKidsInfoList(kidsInfoList);
+			
+			noteWithKidsInfoList.add(noteWithKidsInfo);
+		}
+		return noteWithKidsInfoList;
 	}
 }

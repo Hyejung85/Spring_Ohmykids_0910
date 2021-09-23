@@ -74,8 +74,8 @@
 				    		<option value="">--반--</option>
 				    		<option value="사랑반">사랑반</option>
 				    		<!-- 수정필요 -->
-				    		<c:forEach var="kids" items="${kidsInfoList }" varStatus="state">
-				    		<option value="${kids.kidsClass }">${kids.kidsClass }</option>
+				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
+				    		<option value="${kid.kidsClass }">${kid.kidsClass }</option>
 				    		</c:forEach>
 				    	</select>
 				    	<!-- 학생이름 -->
@@ -83,8 +83,8 @@
 				    		<option value="">--이름--</option>
 				    		<option value="이찬혁">이찬혁</option>
 				    		<!-- 수정필요 -->
-				    		<c:forEach var="kids" items="${kidsInfoList }" varStatus="state">
-				    		<option value="${kids.kidsName }">${kids.kidsName }</option>
+				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
+				    		<option value="${kid.kidsName }">${kid.kidsName }</option>
 				    		</c:forEach>
 				    	</select>
 				    	</div>
