@@ -66,6 +66,49 @@
  			`userId` = #{userId}
  		ORDER BY `id` 
  	</select>
+ 	<!-- 자녀목록(반정보 중복없이 보기) -->
+ 	<select id="selectKidsInfoListByClass" parameterType="int" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo" >
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `kidsName`
+ 			, `kidsBirth`
+ 			, `kidsGender`
+ 			, `kidsClass`
+ 			, `relationship`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`kidsinfo`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		GROUP BY `kidsClass`
+ 	</select>
+ 	
+ 	<!-- 자녀정보리스트(반 선택에 따른 이름정보 보기)-->
+ 	<select id="selectKidsInfoName" parameterType="int" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo" >
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `kidsName`
+ 			, `kidsBirth`
+ 			, `kidsGender`
+ 			, `kidsClass`
+ 			, `relationship`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`kidsinfo`
+ 		WHERE
+ 			`kidsClass` = #{kidsClass}
+ 		ORDER BY `kidsName` 
+ 	</select>
+ 	
+ 	
  	<!-- 자녀정보 상세 -->
  	<select id="selectKidsInfo" parameterType="map" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo">
  		SELECT

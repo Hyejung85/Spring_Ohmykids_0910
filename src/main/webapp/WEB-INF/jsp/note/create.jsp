@@ -66,23 +66,14 @@
 				    <div class="studentInfo-secton d-flex align-items-center py-4">
 				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
 				    	<b>학생선택</b>
-				    	<button type="button" class="btn btn-green ml-5"><b>전체원아보기</b></button>
+				    	<button type="button" class="btn btn-green ml-4"><b>전체원아보기</b></button>
 				    	</div>
 				    	<!-- 반정보 -->
-				    	<div class="w-50 d-flex justify-content-center align-items-center title-text h-75">
-				    	<select class="form-control mr-2" id="kidsClassInput">
-				    		<option value="">--반--</option>
-				    		<!-- 수정필요 -->
-				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
-				    		<option value="${kid.kidsClass }">${kid.kidsClass }</option>
-				    		</c:forEach>
-				    	</select>
-				    	<!-- 학생이름 -->
-				    	<select class="form-control mr-3" id="kidsNameInput">
-				    		<option value="">--이름--</option>
-				    		<!-- 수정필요 -->
-				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
-				    		<option value="${kid.kidsName }">${kid.kidsName }</option>
+				    	<div class="w-50 d-flex justify-content-center align-items-center title-text h-75 mx-3">
+				    	<select class="form-control text-center" id="kidsClassAndNameInput">
+				    		<option value="">--반 & 이름--</option>
+				    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
+				    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
 				    		</c:forEach>
 				    	</select>
 				    	</div>
@@ -125,13 +116,18 @@
 			//알림장 저장
 			$("#noteSaveBtn").on("click", function(){
 				
-				var kidsClass = $("#kidsClassInput option:selected").val(); //select box
-				var kidsName = $("#kidsNameInput option:selected").val();  //select box
+				var kidsId = $(this).data("kids-id");
+				//kidsClass와 kidsClass 쪼개기
+				var options = $("#kidsClassAndNameInput option:selected").val(); //select box
+				var value = options.split("-");
+				var kidsClass = value[0];
+				var kidsName = value[1].trim();
 				var weather = $("#weatherInput option:selected").val();  //select box
 				var content = $("#contentInput").val();
 				
 				
 				var formData = new FormData();
+				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
 				formData.append("weather", weather);
@@ -148,7 +144,7 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("알림장 작성완료");
-							//location.href="/note/detail_view";
+							location.href="/note/detail_view";
 						}else{
 							alert("알림장 작성을 실패했습니다.");
 						}
@@ -182,6 +178,7 @@
 					reader.readAsDataURL(input.files[0]);
 				}
 			}	
+			
 			
 		});
 	

@@ -10,6 +10,7 @@
  		(
  			`userId`
  			, `userName`
+ 			, `kidsId`
  			, `kidsClass`
  			, `kidsName`
  			, `weather`
@@ -22,6 +23,7 @@
  		(
  			#{userId}
  			, #{userName}
+ 			, #{kidsId}
  			, #{kidsClass}
  			, #{kidsName}
  			, #{weather}

@@ -6,6 +6,7 @@ public class Note {
 	private int id;
 	private int userId;
 	private String userName;
+	private int kidsId;
 	private String kidsClass;
 	private String kidsName;
 	private String weather;
@@ -30,6 +31,12 @@ public class Note {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public int getKidsId() {
+		return kidsId;
+	}
+	public void setKidsId(int kidsId) {
+		this.kidsId = kidsId;
 	}
 	public String getKidsClass() {
 		return kidsClass;

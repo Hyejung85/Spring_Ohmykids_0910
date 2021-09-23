@@ -20,11 +20,9 @@ public class NoteBO {
 	@Autowired
 	private NoteDAO noteDAO;
 	
-	@Autowired
-	private KidsInfoBO kidsInfoBO;
 	
 	//알림장 작성
-	public int noteCreate(int userId, String userName,  String kidsClass, String kidsName
+	public int noteCreate(int userId, String userName,  int kidsId, String kidsClass, String kidsName
 			, String weather, String content, MultipartFile file) {
 
 		
@@ -40,23 +38,12 @@ public class NoteBO {
 			}
 		}
 		
-		return noteDAO.insertNote(userId, userName, kidsClass, kidsName, weather, content, filePath);
+		return noteDAO.insertNote(userId, userName, kidsId, kidsClass, kidsName, weather, content, filePath);
 	}
 	
 	// 알림장 목록 (+kidsInfo)
-	public List<NoteWithKidsInfo> getNoteList(){
+	public List<Note> getNoteList(){
 		List<Note> noteList = noteDAO.selectNoteList();
-		List<NoteWithKidsInfo> noteWithKidsInfoList = new ArrayList<>();
-		
-		for(Note note : noteList) {
-			List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(note.getId());
-			
-			NoteWithKidsInfo noteWithKidsInfo = new NoteWithKidsInfo();
-			noteWithKidsInfo.setNote(note);
-			noteWithKidsInfo.setKidsInfoList(kidsInfoList);
-			
-			noteWithKidsInfoList.add(noteWithKidsInfo);
-		}
-		return noteWithKidsInfoList;
+		return noteList;
 	}
 }

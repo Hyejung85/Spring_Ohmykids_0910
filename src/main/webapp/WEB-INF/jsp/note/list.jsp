@@ -32,8 +32,15 @@
 						<!--  title -->
 						<div class="mx-3 mt-2"><h5><b>알림장 목록</b></h5></div> 
 						<div class="d-flex">
-							<!-- 저장 버튼 -->
-							<div class="mx-3"><a href="#" class="btn btn-yellow btn-sm mt-1" id="kidsSelectBtn"><b>자녀 선택</b></a></div>
+							<!-- 자녀선택 -->
+							<div class="mx-3">
+								<select id="kidsNameInput" class="form-control btn-yellow">
+									<option value="">--자녀 선택--</option>
+									<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
+				    				<option value="${kid.kidsName }">${kid.kidsName }</option>
+				    				</c:forEach>
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>

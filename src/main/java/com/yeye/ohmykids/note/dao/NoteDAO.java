@@ -14,6 +14,7 @@ public interface NoteDAO {
 	public int insertNote(
 			@Param("userId") int userId
 			, @Param("userName") String userName
+			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
 			, @Param("weather") String weather
