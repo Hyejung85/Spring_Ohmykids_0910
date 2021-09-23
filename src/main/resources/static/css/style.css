@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 #wrap{
-	height : 800px;
 	width:1200px;
 	margin:auto;
 }
@@ -81,7 +80,7 @@ nav{
 }
 
 section{
-	height : 700px;
+	height: 800px;
 }
 
 .sign-section{
@@ -126,6 +125,12 @@ section{
 	border-radius: 0px 0px 10px 10px ;
 }
 
+.note-detail-section{
+	width : 500px;
+	border :1px solid #088A29;
+	border-radius: 0px 0px 5px 5px ;
+}
+
 .note-contraction{
 	width : 500px;
 	height : 150px;
@@ -160,6 +165,14 @@ section{
 	height : 100px;
 	border :1px dashed #088A29;
 	border-radius: 10px 10px 10px 10px ;
+	overflow:hidden;
+    margin:0 auto;
+}
+
+.picture-full{
+	width : 500px;
+	height : 300px;
+	border :1px solid #088A29;
 	overflow:hidden;
     margin:0 auto;
 }

@@ -58,7 +58,7 @@
 								<div><h3>
 									<c:choose>
 									<c:when test="${note.weather eq '맑음' }">
-									<i class="bi bi-brightness-high"></i>
+									<img src="/static/images/sunny.png" width="35" height="35">
 									</c:when>
 									<c:when test="${note.weather eq '흐림' }">
 									<img src="/static/images/cloud.png" width="35" height="35">
@@ -75,7 +75,7 @@
 							<!-- /일자, 날씨 -->
 							<!-- 알림장 내용 -->
 							<div class="w-50 d-flex align-items-center mx-3">
-								<a href="/note/detail_view" class="title-text">
+								<a href="/note/detail_view?id=${note.id }" class="title-text">
 								<div>
 									<h5><b>원에서 가정으로</b></h5>
 									<c:set var="content" value="${note.content }" />

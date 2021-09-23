@@ -36,11 +36,11 @@ public interface KidsInfoDAO {
 	 //자녀정보목록
 	 public List<KidsInfo> selectKidsInfoList(@Param("userId") int userId);
 	 
-	 //자녀정보리스트(반정보 중복없이 보기)
-	 public List<KidsInfo> selectKidsInfoListByClass(@Param("userId") int userId);
-	 
-	 //자녀정보리스트(반 선택에 따른 이름정보 보기)
-	 public List<KidsInfo> selectKidsInfoName(@Param("kidsClass") String kidsClass);
+//	 //자녀정보리스트(반정보 중복없이 보기)
+//	 public List<KidsInfo> selectKidsInfoListByClass(@Param("userId") int userId);
+//	 
+//	 //자녀정보리스트(반 선택에 따른 이름정보 보기)
+//	 public List<KidsInfo> selectKidsInfoName(@Param("kidsClass") String kidsClass);
 	 
 	 //자녀정보상세
 	 public KidsInfo selectKidsInfo(

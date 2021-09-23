@@ -41,9 +41,38 @@ public class NoteBO {
 		return noteDAO.insertNote(userId, userName, kidsId, kidsClass, kidsName, weather, content, filePath);
 	}
 	
-	// 알림장 목록 (+kidsInfo)
+	//알림장 목록
 	public List<Note> getNoteList(){
 		List<Note> noteList = noteDAO.selectNoteList();
 		return noteList;
+	}
+	
+	//알림장 상세
+	public Note getNote(int id, int userId) {
+		return noteDAO.selectNoteById(id, userId);
+	}
+	
+	//알림장 수정
+	public int updateNote(int userId, int noteId, int kidsId, String kidsClass, String KidsName, String weather, String content, MultipartFile file) {
+		
+		//사진이 없는 경우 예외처리
+		String filePath = null;
+		
+		if(file != null) {
+			FileManagerService fileManager = new FileManagerService();
+			filePath = fileManager.saveFile(userId, file);
+			
+			if(filePath == null) {
+				return -1;
+			}
+		}
+		
+		return noteDAO.updateNote(userId, noteId, kidsId, kidsClass, KidsName, weather, content, filePath);
+		
+	}
+	
+	//알림장 삭제
+	public int deleteNote(int id, int userId) {
+		return noteDAO.deleteNote(id, userId);
 	}
 }

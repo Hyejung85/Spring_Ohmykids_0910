@@ -29,8 +29,8 @@
 				<div class="d-flex justify-content-between align-items-center w-100">
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5><b>알림장 작성</b></h5></div> 
-					<!-- 저장 버튼 -->
-					<div class="mx-3"><button type="submit" class="btn btn-yellow btn-sm" id="noteSaveBtn"><b>저장</b></button></div>
+					<!-- 저장 버튼 (학생이 셀렉트되면 id정보를 저장버튼에 주입한다.)-->
+					<div class="mx-3"><a href="#" class="btn btn-yellow btn-sm" id="noteSaveBtn" data-kids-id=${kid.id }><b>저장</b></a></div>
 				</div>
 			</div>
 			<!-- /submenu-bar -->
@@ -113,6 +113,14 @@
 	</div>
 	<script>
 		$(document).ready(function(){
+			
+			//저장버튼에 kidsId를 주입한다.
+			$("#kidsClassAndNameInput option:selected").on("change",function(){
+				var kidsId = $(this).data("kids-id");
+				alert(kidsId);
+				$("#noteSaveBtn").data("kids-id", kidsId);
+			});
+			
 			//알림장 저장
 			$("#noteSaveBtn").on("click", function(){
 				
@@ -121,7 +129,7 @@
 				var options = $("#kidsClassAndNameInput option:selected").val(); //select box
 				var value = options.split("-");
 				var kidsClass = value[0];
-				var kidsName = value[1].trim();
+				var kidsName = value[1];
 				var weather = $("#weatherInput option:selected").val();  //select box
 				var content = $("#contentInput").val();
 				
@@ -178,6 +186,8 @@
 					reader.readAsDataURL(input.files[0]);
 				}
 			}	
+			
+			
 			
 			
 		});

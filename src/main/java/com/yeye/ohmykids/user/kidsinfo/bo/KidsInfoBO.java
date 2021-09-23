@@ -57,15 +57,15 @@ public class KidsInfoBO {
 		return kidsInfoDAO.selectKidsInfoList(userId);
 	}
 	
-	//자녀정보리스트(반정보 중복없이 보기)
-	public List<KidsInfo> getKidsInfoListGroupByClass(int userId){
-		return kidsInfoDAO.selectKidsInfoListByClass(userId);
-	}
-	
-	//자녀정보리스트(반 선택에 따른 이름정보 보기)
-	public List<KidsInfo> getKidsInfoName(String kidsClass){
-		return kidsInfoDAO.selectKidsInfoName(kidsClass);
-	}
+//	//자녀정보리스트(반정보 중복없이 보기)
+//	public List<KidsInfo> getKidsInfoListGroupByClass(int userId){
+//		return kidsInfoDAO.selectKidsInfoListByClass(userId);
+//	}
+//	
+//	//자녀정보리스트(반 선택에 따른 이름정보 보기)
+//	public List<KidsInfo> getKidsInfoName(String kidsClass){
+//		return kidsInfoDAO.selectKidsInfoName(kidsClass);
+//	}
 	//자녀정보상세
 	public KidsInfo getKidsInfo(int id, int userId) {
 		return kidsInfoDAO.selectKidsInfo(id, userId);

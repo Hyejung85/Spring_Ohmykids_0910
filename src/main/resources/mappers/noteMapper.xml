@@ -33,11 +33,13 @@
  			, now()
  		)
  	</insert>
+ 	<!-- 알림장 리스트 -->
  	<select id="selectNoteList" resultType="com.yeye.ohmykids.note.model.Note">
  		SELECT
  			`id`
  			,`userId`
  			, `userName`
+ 			, `kidsId`
  			, `kidsClass`
  			, `kidsName`
  			, `weather`
@@ -49,6 +51,43 @@
  			`note`
  		ORDER BY `id` DESC
  	</select>
+ 	<!-- 알림장 상세 -->
+ 	<select id="selectNoteById" parameterType = "map" resultType="com.yeye.ohmykids.note.model.Note">
+ 		SELECT
+ 			`id`
+ 			,`userId`
+ 			, `userName`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`note`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `id` = #{id} 	
+ 	</select>
+ 	<update id="updateNote" parameterType="map">
+ 		UPDATE
+ 			`note`
+ 		SET
+ 			`weather` = #{weather}
+ 			`content` = #{content}
+ 			`imagePath` = #{imagePath}
+ 		WHERE
+ 			`id` = #{id}
+ 	
+ 	</update>
+ 	<delete id="deleteNote" parameterType="map">
+ 		DELETE FROM `note`
+ 		WHERE
+ 			`id` = #{id}
+ 			AND `userId` = #{userId} 	
+ 	</delete>
  	
  
  </mapper>

@@ -22,86 +22,70 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
-		<section class="d-flex justify-content-center align-items-center">
+		<section class="d-flex justify-content-center align-items-center mt-3">
 			<div>
 			<!-- submenu-bar -->
 			<div class="submenu-bar d-flex justify-content-center w-100">
 				<div class="d-flex justify-content-between align-items-center w-100">
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5><b>알림장 상세</b></h5></div> 
-					<!-- 목록 버튼 -->
-					<div class="mx-3"><a href="/note/list_view" class="btn btn-yellow btn-sm"><b>목록으로</b></a></div>
+					<div class="d-flex justify-content-center align-items-center">
+						<!-- 목록 버튼 -->
+						<div class="mr-2"><a href="/note/list_view" class="btn btn-yellow btn-sm"><b>목록으로</b></a></div>
+						<!-- 수정 버튼 -->
+						<div class="mr-2"><button type="button" class="btn btn-info text-white btn-sm" id="updateNoteBtn" data-note-id="${note.id }"><b>수정</b></button></div>
+						<!-- 삭제 버튼 -->
+						<div class="mr-3"><button type="button" class="btn btn-danger text-white btn-sm" id="deleteNoteBtn" data-note-id="${note.id }"><b>삭제</b></button></div>
+					</div>
 				</div>
 			</div>
 			<!-- /submenu-bar -->
 			<!-- page section -->
 			<div class="page-section px-2 d-flex justify-content-center border-0">
 				<div>
-					<c:forEach var="note" items="${noteList }" >
-					<!-- 작성자 section -->
+					<!-- 작성자, 날씨 section -->
 					<div class="writerInfo-secton d-flex my-1">
-						<div class="w-50 d-flex justify-content-start ml-3 align-items-center" id="userNameInput">
-							<h4><b><i class="bi bi-person-square"></i> ${userName }</b></h4>
+						<div class="w-25 d-flex justify-content-start ml-3 align-items-center" id="userNameInput">
+							<h4><b><i class="bi bi-person-square"></i> ${note.userName }</b></h4>
 						</div>
-						<div class="w-25 d-flex justify-content-end align-items-center" id="createdAtInput">
-							<c:set var="today" value="<%=new java.util.Date()%>" />
-							<!-- 현재날짜 -->
-							<c:set var="date"><fmt:formatDate value="${today}" pattern="dd" /></c:set> 
-							<!-- 현재년도 -->
-							<c:set var="year"><fmt:formatDate value="${today}" pattern="yyyy" /></c:set> 
-							<!-- 현재월 -->
-							<c:set var="month"><fmt:formatDate value="${today}" pattern="M" /></c:set> 
-						   	<h5><b>${year }-${month }-${date }</b></h5>
+						<div class="w-50 d-flex justify-content-end align-items-center" id="createdAtInput">
+						   	<h5><b><fmt:formatDate value="${note.createdAt }" pattern="yyyy-M-d(E)" /></b></h5>
 						</div>
 						<div class="w-25 d-flex justify-content-center mr-3 align-items-center" id="weatherInput">
-								<select id="weatherInput" class="form-control ml-2">
-									<option value="맑음">맑음</option>
-									<option value="비">비</option>
-									<option value="흐림">흐림</option>
-									<option value="눈">눈</option>
-								</select>
+								<c:choose>
+									<c:when test="${note.weather eq '맑음' }">
+									<img src="/static/images/sunny.png" width="35" height="35">
+									</c:when>
+									<c:when test="${note.weather eq '흐림' }">
+									<img src="/static/images/cloud.png" width="35" height="35">
+									</c:when>
+									<c:when test="${note.weather eq '비' }">
+									<img src="/static/images/rain.png" width="35" height="35">
+									</c:when>
+									<c:when test="${note.weather eq '눈' }">
+									<img src="/static/images/snow.png" width="35" height="35">
+									</c:when>
+									</c:choose>
 						</div>
 				    </div>
-				    <!-- /작성자 section -->
-				    <!-- 학생선택 section -->
+				    <!-- /작성자, 날씨 section -->
+				    <!-- 학생 section -->
 				    <div class="studentInfo-secton d-flex align-items-center py-4">
-				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
-				    	<b>학생선택</b>
-				    	<button type="button" class="btn btn-green ml-5"><b>전체원아보기</b></button>
+				    	<div class="d-flex ml-3 align-items-center h-75" id="kidsClassInput">
+				    	<b>♡${note.kidsClass }♡</b>
 				    	</div>
-				    	<!-- 반정보 -->
-				    	<div class="w-50 d-flex justify-content-center align-items-center title-text h-75">
-				    	<select class="form-control mr-2" id="kidsClassInput">
-				    		<option value="">--반--</option>
-				    		<!-- 수정필요 -->
-				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
-				    		<option value="${kid.kidsClass }">${kid.kidsClass }</option>
-				    		</c:forEach>
-				    	</select>
-				    	<!-- 학생이름 -->
-				    	<select class="form-control mr-3" id="kidsNameInput">
-				    		<option value="">--이름--</option>
-				    		<!-- 수정필요 -->
-				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
-				    		<option value="${kid.kidsName }">${kid.kidsName }</option>
-				    		</c:forEach>
-				    	</select>
+				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput">
+				    	<b>${note.kidsName }의 알림장</b>
 				    	</div>
-				    	
 				    </div>
-				    <!-- 학생선택 section -->
-				    <!-- 알림장 section -->
-				    <div class="note-section my-1">
-					<!-- 알림장 내용  -->
-					<textarea id="contentInput" class="pt-4 px-4 w-100 border-0 non-resize" rows=8 placeholder="원에서 이렇게 지냈어요."></textarea>
-					<!-- /알림장 내용-->
-					<!-- 사진 box-->
-					<div class="d-flex mx-3">
+				    <!-- 학생 section -->
+				    <!-- 사진 box-->
+					<div class="d-flex justify-content-center mt-2">
 						<div class="d-flex justify-content-center">
 							<div>
 								<!-- 이미지 출력 -->
-								<div class="picture-square title-text d-flex justify-content-center align-items-center" id="picture">
-								<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+								<div class="picture-full title-text d-flex justify-content-center align-items-center" id="picture">
+								<img src="${note.imagePath }" id="imagePath" class="imagethumbnail">
 								</div>
 								<!-- /이미지 출력 -->
 								<!-- MIME -->
@@ -112,15 +96,119 @@
 						</div>
 					</div>
 					<!-- /사진 -->
+				    <!-- 알림장 section -->
+				    <div class="note-detail-section my-1">
+					<!-- 알림장 내용  -->
+					<textarea id="contentInput" class="pt-4 px-3 w-100 border-0 non-resize title-text">${note.content }</textarea>
+					<!-- /알림장 내용-->
+					<!-- 댓글 -->
+					<div class="m-3 title-text">박예은 엄마 안녕하세요.</div>
+					<!-- /댓글 -->
+					<!-- 댓글 입력창 -->
+					<div class="d-flex input-group">
+					<input type="text" class="form-control" placeholder="댓글을 입력하세요.">
+					<button type="button" class="btn-green input-group-text">전송</button>
+					</div>
+					<!-- /댓글 입력창 -->
 					</div>
 					<!-- 알림장 section -->
 				</div>
 			</div>
 			<!-- /page section -->
-			</c:forEach>
 			</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	<script>
+		$(document).ready(function(){
+			//알림장 수정
+				$("#updateNoteBtn").on("click", function(){
+				
+				var noteId = $(this).data("note-id");
+				var kidsId = $(this).data("kids-id");
+				var kidsClass = $("#kidsClassInput").val();
+				var kidsName = $("#kidsNameInput").val();
+				var weather = $("#weatherInput").val();
+				var content = $("#contentInput").val();
+				
+				
+				var formData = new FormData();
+				formData.append("noteId", noteId);
+				formData.append("kidsId", kidsId);
+				formData.append("kidsClass", kidsClass);
+				formData.append("kidsName", kidsName);
+				formData.append("weather", weather);
+				formData.append("content", content);
+				formData.append("file", $("#fileInput")[0].files[0]);
+				
+				$.ajax({
+					enctype:"multipart/form-data", //파일업로드 필수
+					type:"POST",
+					url:"/note/update",
+					processData:false, //파일업로드 필수
+					contentType: false, //파일업로드 필수
+					data:formData, 
+					success:function(data){
+						if(data.result == "success"){
+							alert("알림장 수정완료");
+							location.href="/note/detail_view";
+						}else{
+							alert("알림장 수정을 실패했습니다.");
+						}
+						
+					},
+					error:function(e){
+						alert("error");
+					}
+				});
+				
+				
+			});
+			
+			//알림장 삭제
+			$("#deleteNoteBtn").on("click", function(){
+				var noteId = $(this).data("note-id");
+				$.ajax({
+					type:"get",
+					url:"/note/delete",
+					data:{"id": noteId},
+					success:function(data){
+						if(data.result == "success"){
+							alert("알림장 삭제 성공");
+							location.href="/note/list_view";
+						}else{
+							alert("알림장 삭제 실패");
+						}
+					},
+					error:function(e){
+						alert("error");
+					}
+				});
+				
+			});
+			
+			//사진변경 버튼 클릭시 파일인풋 클릭 이벤트
+			$("#imageUploadBtn").on("click", function(e){
+				e.preventDefault();
+				$("#fileInput").click();
+			});
+			
+			//사진 미리보여주기
+			$("#fileInput").on("change",function(){
+				setImageFromFile(this, "#imagePath");
+			});
+			
+			function setImageFromFile(input, expression){
+				if(input.files && input.files[0]){
+					var reader = new FileReader();
+					reader.onload = function(e){
+						$(expression).attr("src",e.target.result);
+					}
+					reader.readAsDataURL(input.files[0]);
+				}
+			}	
+			
+		});
+	</script>
 </body>
 </html>

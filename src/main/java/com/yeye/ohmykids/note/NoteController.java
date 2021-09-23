@@ -42,9 +42,18 @@ public class NoteController {
 		return "note/create";
 	}
 	
-	//알림장 상세
+	//알림장 상세, 수정화면
 	@RequestMapping("/detail_view")
-	public String noteDetailView() {		
+	public String noteDetailView(
+			@RequestParam("id") int id
+			, Model model
+			, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		Note note = noteBO.getNote(id, userId);
+		model.addAttribute("note", note);
 		return "note/detail";
 	}
 	
