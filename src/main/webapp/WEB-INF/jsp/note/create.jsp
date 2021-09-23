@@ -72,7 +72,6 @@
 				    	<div class="w-50 d-flex justify-content-center align-items-center title-text h-75">
 				    	<select class="form-control mr-2" id="kidsClassInput">
 				    		<option value="">--반--</option>
-				    		<option value="사랑반">사랑반</option>
 				    		<!-- 수정필요 -->
 				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
 				    		<option value="${kid.kidsClass }">${kid.kidsClass }</option>
@@ -81,7 +80,6 @@
 				    	<!-- 학생이름 -->
 				    	<select class="form-control mr-3" id="kidsNameInput">
 				    		<option value="">--이름--</option>
-				    		<option value="이찬혁">이찬혁</option>
 				    		<!-- 수정필요 -->
 				    		<c:forEach var="kid" items="${noteWithKidsInfo.kidsInfoList }" varStatus="state">
 				    		<option value="${kid.kidsName }">${kid.kidsName }</option>
