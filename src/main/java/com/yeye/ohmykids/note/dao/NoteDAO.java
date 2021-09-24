@@ -21,6 +21,9 @@ public interface NoteDAO {
 			, @Param("content") String content
 			, @Param("imagePath") String imagePath);
 	
+	//useGeneratedKey 사용 (알림장 insert후 id 파라미터 사용하기)
+	public Note selectNote(@Param("id") int id);
+	
 	//알림장 목록
 	public List<Note> selectNoteList();
 	

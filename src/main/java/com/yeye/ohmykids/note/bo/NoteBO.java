@@ -41,6 +41,11 @@ public class NoteBO {
 		return noteDAO.insertNote(userId, userName, kidsId, kidsClass, kidsName, weather, content, filePath);
 	}
 	
+	//useGeneratedKey 사용 (알림장 insert후 id 파라미터 사용하기)
+	public Note getNoteById(int id) {
+		return noteDAO.selectNote(id);
+	}
+	
 	//알림장 목록
 	public List<Note> getNoteList(){
 		List<Note> noteList = noteDAO.selectNoteList();

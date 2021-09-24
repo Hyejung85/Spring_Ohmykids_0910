@@ -33,6 +33,25 @@
  			, now()
  		)
  	</insert>
+ 	<!-- 알림장 insert 후 id select하기 -->
+ 	<select id="selectNote" parameterType="int" resultType="com.yeye.ohmykids.note.model.Note">
+ 		SELECT
+ 			`id`
+ 			,`userId`
+ 			, `userName`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`note`
+ 		WHERE
+ 			`id`= #{id}
+ 	</select>
  	<!-- 알림장 리스트 -->
  	<select id="selectNoteList" resultType="com.yeye.ohmykids.note.model.Note">
  		SELECT

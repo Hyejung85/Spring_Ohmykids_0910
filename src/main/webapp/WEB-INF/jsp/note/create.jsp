@@ -152,7 +152,7 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("알림장 작성완료");
-							location.href="/note/detail_view";
+							location.href="/note/detail_view?id=${result.id}";
 						}else{
 							alert("알림장 작성을 실패했습니다.");
 						}

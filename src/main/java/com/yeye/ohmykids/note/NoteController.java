@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,11 +29,17 @@ public class NoteController {
 
 	//알림장 작성
 	@RequestMapping("/create_view")
-	public String noteCreateView(Model model
+	public String noteCreateView(
+			@ModelAttribute Note note
+			,Model model
 			,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
+		
+		//useGeneratedKey 사용 (알림장 insert후 id 파라미터 사용하기)
+		Note result = noteBO.getNoteById(note.getId());
+		model.addAttribute("result", result);
 		
 		//kidsInfoList보여주기
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);

@@ -151,7 +151,7 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("알림장 수정완료");
-							location.href="/note/detail_view?id=noteId";
+							location.reload();
 						}else{
 							alert("알림장 수정실패");
 						}
