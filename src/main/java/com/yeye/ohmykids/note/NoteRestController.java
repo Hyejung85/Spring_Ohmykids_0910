@@ -30,7 +30,8 @@ public class NoteRestController {
 	//알림장 입력
 	@RequestMapping("/create")
 	public Map<String, String> noteCreate(
-			@RequestParam("kidsId") int kidsId
+			@RequestParam("type") String type
+			, @RequestParam("kidsId") int kidsId
 			, @RequestParam("kidsClass") String kidsClass
 			, @RequestParam("kidsName") String kidsName
 			, @RequestParam(value="weather", required=false) String weather
@@ -45,7 +46,7 @@ public class NoteRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.noteCreate(userId, userName, kidsId, kidsClass, kidsName, weather, content, file);
+		int count = noteBO.noteCreate(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, file);
 		
 		if(count == 1) {
 			result.put("result", "success");
@@ -59,7 +60,8 @@ public class NoteRestController {
 	//알림장 상세, 수정
 	@RequestMapping("/update")
 	public Map<String, String> updateNote(
-			@RequestParam("noteId") int noteId
+			@RequestParam("type") String type
+			, @RequestParam("noteId") int noteId
 			, @RequestParam("kidsId") int kidsId
 			, @RequestParam("kidsClass") String kidsClass
 			, @RequestParam("kidsName") String kidsName
@@ -73,7 +75,7 @@ public class NoteRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.updateNote(userId, noteId, kidsId, kidsClass, kidsName, weather, content, file);
+		int count = noteBO.updateNote(userId, type, noteId, kidsId, kidsClass, kidsName, weather, content, file);
 		
 		if(count == 1) {
 			result.put("result", "success");
@@ -87,7 +89,8 @@ public class NoteRestController {
 	//알림장 삭제
 	@GetMapping("/delete")
 	public Map<String, String> delete(
-			@RequestParam("id") int id
+			@RequestParam("targetId") int targetId
+			,@RequestParam("type") String type
 			,HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -95,9 +98,7 @@ public class NoteRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.deleteNote(id, userId);
-		
-		if(count == 1) {
+		if(noteBO.deleteNote(targetId, userId, type)) {
 			result.put("result", "success");
 		}else {
 			result.put("result", "fail");

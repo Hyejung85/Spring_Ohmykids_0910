@@ -4,12 +4,14 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.yeye.ohmykids.note.dao.NoteDAO">
+ 	<!-- useGeneratedKeys 사용 -->
  	<insert id="insertNote" parameterType="map">
  		INSERT INTO
  			`note`
  		(
  			`userId`
  			, `userName`
+ 			, `type`
  			, `kidsId`
  			, `kidsClass`
  			, `kidsName`
@@ -23,6 +25,7 @@
  		(
  			#{userId}
  			, #{userName}
+ 			, #{type}
  			, #{kidsId}
  			, #{kidsClass}
  			, #{kidsName}
@@ -33,31 +36,13 @@
  			, now()
  		)
  	</insert>
- 	<!-- 알림장 insert 후 id select하기 -->
- 	<select id="selectNote" parameterType="int" resultType="com.yeye.ohmykids.note.model.Note">
- 		SELECT
- 			`id`
- 			,`userId`
- 			, `userName`
- 			, `kidsId`
- 			, `kidsClass`
- 			, `kidsName`
- 			, `weather`
- 			, `content`
- 			, `imagePath`
- 			, `createdAt`
- 			, `updatedAt`
- 		FROM
- 			`note`
- 		WHERE
- 			`id`= #{id}
- 	</select>
  	<!-- 알림장 리스트 -->
  	<select id="selectNoteList" resultType="com.yeye.ohmykids.note.model.Note">
  		SELECT
  			`id`
  			,`userId`
  			, `userName`
+ 			, `type`
  			, `kidsId`
  			, `kidsClass`
  			, `kidsName`
@@ -76,6 +61,7 @@
  			`id`
  			,`userId`
  			, `userName`
+ 			, `type`
  			, `kidsId`
  			, `kidsClass`
  			, `kidsName`
@@ -95,8 +81,8 @@
  			`note`
  		SET
  			`weather` = #{weather}
- 			`content` = #{content}
- 			`imagePath` = #{imagePath}
+ 			, `content` = #{content}
+ 			, `imagePath` = #{imagePath}
  		WHERE
  			`id` = #{id}
  	
@@ -107,6 +93,23 @@
  			`id` = #{id}
  			AND `userId` = #{userId} 	
  	</delete>
- 	
- 
+ 	<!-- 파일삭제 -->
+ 	<select id="selectNote" parameterType="int" resultType="com.yeye.ohmykids.note.model.Note">
+ 		SELECT 
+ 			`id`
+ 			,`userId`
+ 			, `userName`
+ 			, `type`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`note`
+ 		WHERE `id` = #{id}
+ 	</select>
  </mapper>

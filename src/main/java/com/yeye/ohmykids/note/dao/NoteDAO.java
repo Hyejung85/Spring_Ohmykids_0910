@@ -14,6 +14,7 @@ public interface NoteDAO {
 	public int insertNote(
 			@Param("userId") int userId
 			, @Param("userName") String userName
+			, @Param("type") String type
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
@@ -21,8 +22,6 @@ public interface NoteDAO {
 			, @Param("content") String content
 			, @Param("imagePath") String imagePath);
 	
-	//useGeneratedKey 사용 (알림장 insert후 id 파라미터 사용하기)
-	public Note selectNote(@Param("id") int id);
 	
 	//알림장 목록
 	public List<Note> selectNoteList();
@@ -36,6 +35,7 @@ public interface NoteDAO {
 	public int updateNote(
 			@Param("userId") int userId
 			, @Param("id") int id //noteId
+			, @Param("type") String type
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
@@ -47,4 +47,7 @@ public interface NoteDAO {
 	public int deleteNote(
 			@Param("id") int id
 			, @Param("userId") int userId);
+	
+	//파일삭제
+	public Note selectNote(@Param("id") int id);
 } 

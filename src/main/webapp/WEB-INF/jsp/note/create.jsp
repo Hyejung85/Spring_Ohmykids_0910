@@ -23,7 +23,7 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
 		<section class="d-flex justify-content-center align-items-top mt-3">
-			<div>
+			<div id="typeInput">
 			<!-- submenu-bar -->
 			<div class="submenu-bar d-flex justify-content-top mt-3 w-100">
 				<div class="d-flex justify-content-between align-items-center w-100">
@@ -124,6 +124,8 @@
 				
 				e.preventDefault();
 				
+				var type = $("#typeInput").val();
+				type = "note";
 				var kidsId = $("#kidsClassAndNameInput option:selected").data("kids-id");
 				//kidsClass와 kidsClass 쪼개기
 				var options = $("#kidsClassAndNameInput option:selected").val(); //select box
@@ -132,9 +134,10 @@
 				var kidsName = value[1];
 				var weather = $("#weatherInput option:selected").val();  //select box
 				var content = $("#contentInput").val();
-				
+		
 				
 				var formData = new FormData();
+				formData.append("type", type);
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
@@ -152,7 +155,8 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("알림장 작성완료");
-							location.href="/note/detail_view?id=${result.id}";
+							location.href="/note/list_view";
+							//location.href="/note/detail_view?id=${result.id}"; --> 보류
 						}else{
 							alert("알림장 작성을 실패했습니다.");
 						}

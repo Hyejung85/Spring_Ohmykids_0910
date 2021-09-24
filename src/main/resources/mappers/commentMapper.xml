@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.yeye.ohmykids.comment.dao.CommentDAO">
+ 	<insert id="insertComment" parameterType="map">
+ 		INSERT INTO 
+ 			`comment`
+ 		(	
+ 			`userId`
+ 			, `userName`
+ 			, `type`
+ 			, `targetId`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{userName}
+ 			, #{type}
+ 			, #{targetId}
+ 			, #{content}
+ 			, now()
+ 			, now()
+ 		)
+ 	</insert>
+ 	<select id="selectCommentByTargetId" parameterType="map" resultType="com.yeye.ohmykids.comment.model.Comment">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `type`
+ 			, `targetId`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`targetId` = #{targetId}
+ 			AND
+ 			`type` = #{type}
+ 	</select>
+ 	<!-- 코멘트만 삭제 -->
+ 	<delete id="deleteCommentById" parameterType="map">
+ 		DELETE FROM
+ 			`comment`
+ 		WHERE
+ 			`id` = #{id}
+ 	</delete>
+ 	
+ 	<!-- 알림장삭제 -->
+ 	<delete id="deleteCommentWithNote" parameterType="map">
+ 		DELETE FROM
+ 			`comment`
+ 		WHERE
+ 			`targetId` = #{targetId}
+ 			AND
+ 			`type` = #{type}
+ 	</delete>
+ 
+ </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yeye.ohmykids.note.bo.NoteBO;
 import com.yeye.ohmykids.note.model.Note;
+import com.yeye.ohmykids.note.model.NoteWithComment;
 import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
 import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
 
@@ -37,10 +38,6 @@ public class NoteController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		
-		//useGeneratedKey 사용 (알림장 insert후 id 파라미터 사용하기)
-		Note result = noteBO.getNoteById(note.getId());
-		model.addAttribute("result", result);
-		
 		//kidsInfoList보여주기
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
@@ -59,9 +56,11 @@ public class NoteController {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		
-		Note note = noteBO.getNote(id, userId);
-		model.addAttribute("note", note);
+		//note + comment
+		List<NoteWithComment> noteDetailList = noteBO.getNote(id, userId);
+		model.addAttribute("noteDetailList", noteDetailList);
 		
+		//학생정보
 		KidsInfo kidsInfo = kidsInfoBO.getKidsInfo(id, userId);
 		model.addAttribute("kidsInfo",kidsInfo);
 		

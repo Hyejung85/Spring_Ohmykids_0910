@@ -25,7 +25,7 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
 		<section class="d-flex justify-content-center align-items-top mt-3">
-			<div>
+			<div id="type" value="note" >
 				<!-- submenu-bar -->
 				<div class="submenu-bar d-flex justify-content-center w-100">
 					<div class="d-flex justify-content-between align-items-center w-100">
@@ -75,7 +75,7 @@
 							<!-- /일자, 날씨 -->
 							<!-- 알림장 내용 -->
 							<div class="w-50 d-flex align-items-center mx-3">
-								<a href="/note/detail_view?id=${note.id }" class="title-text">
+								<a href="/note/detail_view?id=${note.id }&targetId=${note.id}&type=note" class="title-text">
 								<div>
 									<h5><b>원에서 가정으로</b></h5>
 									<c:set var="content" value="${note.content }" />

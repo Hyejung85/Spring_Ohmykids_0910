@@ -23,7 +23,8 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
 		<section class="d-flex justify-content-center align-items-top mt-3">
-			<div>
+			<div id="typeInput">
+			<c:forEach var="noteWithComment" items="${noteDetailList }" varStatus="status">
 			<!-- submenu-bar -->
 			<div class="submenu-bar d-flex justify-content-center w-100">
 				<div class="d-flex justify-content-between align-items-center w-100">
@@ -33,9 +34,9 @@
 						<!-- 목록 버튼 -->
 						<div class="mr-2"><a href="/note/list_view" class="btn btn-yellow btn-sm"><b>목록으로</b></a></div>
 						<!-- 수정 버튼 -->
-						<div class="mr-2"><button type="button" class="btn btn-info text-white btn-sm" id="updateNoteBtn" data-note-id="${note.id }"><b>수정</b></button></div>
+						<div class="mr-2"><button type="button" class="btn btn-info text-white btn-sm" id="updateNoteBtn" data-note-id="${noteWithComment.note.id }"><b>수정</b></button></div>
 						<!-- 삭제 버튼 -->
-						<div class="mr-3"><button type="button" class="btn btn-danger text-white btn-sm" id="deleteNoteBtn" data-note-id="${note.id }"><b>삭제</b></button></div>
+						<div class="mr-3"><button type="button" class="btn btn-danger text-white btn-sm" id="deleteNoteBtn" data-note-id="${noteWithComment.note.id }"><b>삭제</b></button></div>
 					</div>
 				</div>
 			</div>
@@ -46,23 +47,23 @@
 					<!-- 작성자, 날씨 section -->
 					<div class="writerInfo-secton d-flex my-1">
 						<div class="w-25 d-flex justify-content-start ml-3 align-items-center" id="userNameInput">
-							<h4><b><i class="bi bi-person-square"></i> ${note.userName }</b></h4>
+							<h4><b><i class="bi bi-person-square"></i> ${noteWithComment.note.userName }</b></h4>
 						</div>
 						<div class="w-50 d-flex justify-content-end align-items-center" id="createdAtInput">
-						   	<h5><b><fmt:formatDate value="${note.createdAt }" pattern="yyyy-M-d(E)" /></b></h5>
+						   	<h5><b><fmt:formatDate value="${noteWithComment.note.createdAt }" pattern="yyyy-M-d(E)" /></b></h5>
 						</div>
 						<div class="w-25 d-flex justify-content-center mr-3 align-items-center" id="weatherInput">
 								<c:choose>
-									<c:when test="${note.weather eq '맑음' }">
+									<c:when test="${noteWithComment.note.weather eq '맑음' }">
 									<img src="/static/images/sunny.png" width="35" height="35">
 									</c:when>
-									<c:when test="${note.weather eq '흐림' }">
+									<c:when test="${noteWithComment.note.weather eq '흐림' }">
 									<img src="/static/images/cloud.png" width="35" height="35">
 									</c:when>
-									<c:when test="${note.weather eq '비' }">
+									<c:when test="${noteWithComment.note.weather eq '비' }">
 									<img src="/static/images/rain.png" width="35" height="35">
 									</c:when>
-									<c:when test="${note.weather eq '눈' }">
+									<c:when test="${noteWithComment.note.weather eq '눈' }">
 									<img src="/static/images/snow.png" width="35" height="35">
 									</c:when>
 									</c:choose>
@@ -72,20 +73,20 @@
 				    <!-- 학생 section -->
 				    <div class="studentInfo-secton d-flex align-items-center py-4">
 				    	<div class="d-flex ml-3 align-items-center h-75" id="kidsClassInput">
-				    	<b>♡${note.kidsClass }♡</b>
+				    		<b>♡${noteWithComment.note.kidsClass }♡</b>
 				    	</div>
-				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${note.kidsId }>
-				    	<b>${note.kidsName }의 알림장</b>
+				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${noteWithComment.note.kidsId }>
+				    		<b>${noteWithComment.note.kidsName }의 알림장</b>
 				    	</div>
 				    </div>
 				    <!-- 학생 section -->
 				    <!-- 사진 box-->
-					<div class="d-flex justify-content-center mt-2">
+					<div class="d-flex justify-content-center mt-1">
 						<div class="d-flex justify-content-center">
 							<div>
 								<!-- 이미지 출력 -->
 								<div class="picture-full title-text d-flex justify-content-center align-items-center" id="picture">
-								<img src="${note.imagePath }" id="imagePath" class="imagethumbnail">
+									<img src="${noteWithComment.note.imagePath }" id="imagePath" class="imagethumbnail">
 								</div>
 								<!-- /이미지 출력 -->
 								<!-- MIME -->
@@ -99,20 +100,37 @@
 				    <!-- 알림장 section -->
 				    <div class="note-detail-section my-1">
 					<!-- 알림장 내용  -->
-					<textarea id="contentInput" class="pt-4 px-3 w-100 border-0 non-resize title-text">${note.content }</textarea>
+					<textarea id="contentInput" class="note-textarea py-4 px-3 mb-2 w-100 border-0 non-resize title-text">${noteWithComment.note.content }</textarea>
 					<!-- /알림장 내용-->
+					
 					<!-- 댓글 -->
-					<div class="m-3 title-text">박예은 엄마 안녕하세요.</div>
+					<c:forEach var="comment" items="${noteWithComment.commentList }">
+						<div class="d-flex">
+							<!-- 댓글 작성자, 내용 -->
+							<div class="mx-3 title-text"><b class="mr-2">${comment.userName }</b> ${comment.content }</div>
+							<!-- 댓글 삭제 -->
+								<!-- 글의 userId와 세션의 userId가 일치하면 삭제 버튼 노출 -->
+								<c:if test="${comment.userId eq userId }">
+									<div class="d-flex align-items-center">
+										<!-- 댓글삭제 버튼 -->
+										<i class="deleteCommentBtn bi bi-x-square title-text ml-3 mb-2" data-comment-id="${comment.id }"></i>
+									</div>
+								</c:if>
+							<!-- /댓글 삭제 -->
+						</div>
+					</c:forEach>
 					<!-- /댓글 -->
 					<!-- 댓글 입력창 -->
-					<div class="d-flex input-group">
-					<input type="text" class="form-control" placeholder="댓글을 입력하세요.">
-					<button type="button" class="btn-green input-group-text">전송</button>
+					<div class="d-flex input-group" id="TypeIsNote">
+						<input type="text" class="form-control" placeholder="댓글을 입력하세요." id="commentInput-${noteWithComment.note.id }">
+						<button type="button" class="btn-green input-group-text" data-note-id="${noteWithComment.note.id }" id="commentSaveBtn">전송</button>
 					</div>
+					
 					<!-- /댓글 입력창 -->
 					</div>
 					<!-- 알림장 section -->
 				</div>
+			</c:forEach>
 			</div>
 			<!-- /page section -->
 			</div>
@@ -124,15 +142,17 @@
 			//알림장 수정
 				$("#updateNoteBtn").on("click", function(){
 				
+				var type = $("#typeInput").val();
+				type = "note";
 				var noteId = $("#updateNoteBtn").data("note-id");
 				var kidsId = $("#kidsNameInput").data("kids-id");
 				var kidsClass = $("#kidsClassInput").val();
 				var kidsName = $("#kidsNameInput").val();
 				var weather = $("#weatherInput").val();
 				var content = $("#contentInput").val();
-				alert(noteId);
 				
 				var formData = new FormData();
+				formData.append("type", type);
 				formData.append("noteId", noteId);
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
@@ -167,11 +187,17 @@
 			
 			//알림장 삭제
 			$("#deleteNoteBtn").on("click", function(){
-				var noteId = $("#deleteNoteBtn").data("note-id");
+				//var noteId = $("#deleteNoteBtn").data("note-id");
+				var targetId = $("#deleteNoteBtn").data("note-id");
+				var type = $("#typeInput").val();
+				type = "note";
+				
+				alert(targetId);
+				
 				$.ajax({
 					type:"get",
 					url:"/note/delete",
-					data:{"id": noteId},
+					data:{"targetId": targetId, "type":type},
 					success:function(data){
 						if(data.result == "success"){
 							alert("알림장 삭제 성공");
@@ -207,6 +233,66 @@
 					reader.readAsDataURL(input.files[0]);
 				}
 			}	
+			
+			
+			//코멘트 입력
+			$("#commentSaveBtn").on("click", function(){
+
+				var targetId = $(this).data("note-id"); //noteId
+				var type = $("#TypeIsNote").val();
+				type = "note";
+				var content = $("#commentInput-" + targetId).val().trim();
+				
+				
+				//댓글 입력여부 밸리데이션
+				if(content == null || content ==""){
+					alert("댓글을 입력해주세요");
+					return;
+				}
+				
+				$.ajax({
+					type:"post",
+					url:"/comment/create",
+					data:{"type":type, "targetId": targetId, "content":content},
+					success:function(data){
+						if(data.result == "success"){
+							alert("댓글입력 성공");
+							location.reload();
+						}else{
+							alert("댓글입력 실패");
+						}
+					},
+					error:function(e){
+						alert("error");
+					}
+				});
+					
+			});
+			
+			//댓글삭제
+			$(".deleteCommentBtn").on("click",function(){
+				
+				var id = $(this).data("comment-id");
+				
+				
+				$.ajax({
+					type:"get",
+					url:"/comment/delete",
+					data:{"id":id},
+					success:function(data){
+						if(data.result == "success"){
+							alert("댓글 삭제 성공");
+							location.reload();
+						}else{
+							alert("댓글 삭제 실패");
+						}
+					},
+					error:function(e){
+						alert("error");
+					}
+					
+				});
+			});
 			
 		});
 	</script>

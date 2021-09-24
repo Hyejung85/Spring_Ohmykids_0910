@@ -1,18 +1,14 @@
-package com.yeye.ohmykids.note.model;
+package com.yeye.ohmykids.comment.model;
 
 import java.util.Date;
 
-public class Note {
+public class Comment {
 	private int id;
 	private int userId;
 	private String userName;
 	private String type;
-	private int kidsId;
-	private String kidsClass;
-	private String kidsName;
-	private String weather;
+	private int targetId;
 	private String content;
-	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -39,41 +35,17 @@ public class Note {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getKidsId() {
-		return kidsId;
+	public int getTargetId() {
+		return targetId;
 	}
-	public void setKidsId(int kidsId) {
-		this.kidsId = kidsId;
-	}
-	public String getKidsClass() {
-		return kidsClass;
-	}
-	public void setKidsClass(String kidsClass) {
-		this.kidsClass = kidsClass;
-	}
-	public String getKidsName() {
-		return kidsName;
-	}
-	public void setKidsName(String kidsName) {
-		this.kidsName = kidsName;
-	}
-	public String getWeather() {
-		return weather;
-	}
-	public void setWeather(String weather) {
-		this.weather = weather;
+	public void setTargetId(int targetId) {
+		this.targetId = targetId;
 	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -87,9 +59,6 @@ public class Note {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	
-	
 	
 	
 	
