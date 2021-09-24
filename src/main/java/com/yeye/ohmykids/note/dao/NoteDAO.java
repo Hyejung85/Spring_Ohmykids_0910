@@ -32,7 +32,7 @@ public interface NoteDAO {
 	//알림장 수정
 	public int updateNote(
 			@Param("userId") int userId
-			, @Param("id") int id
+			, @Param("id") int id //noteId
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName

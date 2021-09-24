@@ -22,15 +22,15 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
-		<section class="d-flex justify-content-center align-items-center">
+		<section class="d-flex justify-content-center align-items-top mt-3">
 			<div>
 			<!-- submenu-bar -->
-			<div class="submenu-bar d-flex justify-content-center w-100">
+			<div class="submenu-bar d-flex justify-content-top mt-3 w-100">
 				<div class="d-flex justify-content-between align-items-center w-100">
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5><b>알림장 작성</b></h5></div> 
 					<!-- 저장 버튼 (학생이 셀렉트되면 id정보를 저장버튼에 주입한다.)-->
-					<div class="mx-3"><a href="#" class="btn btn-yellow btn-sm" id="noteSaveBtn" data-kids-id=${kid.id }><b>저장</b></a></div>
+					<div class="mx-3"><a href="#" class="btn btn-yellow btn-sm" id="noteSaveBtn"><b>저장</b></a></div>
 				</div>
 			</div>
 			<!-- /submenu-bar -->
@@ -113,18 +113,18 @@
 	</div>
 	<script>
 		$(document).ready(function(){
-			
 			//저장버튼에 kidsId를 주입한다.
-			$("#kidsClassAndNameInput option:selected").on("change",function(){
-				var kidsId = $(this).data("kids-id");
-				alert(kidsId);
+			$("#kidsClassAndNameInput").on("change",function(){
+				var kidsId = $("#kidsClassAndNameInput option:selected").data("kids-id");
 				$("#noteSaveBtn").data("kids-id", kidsId);
 			});
 			
 			//알림장 저장
-			$("#noteSaveBtn").on("click", function(){
+			$("#noteSaveBtn").on("click", function(e){
 				
-				var kidsId = $(this).data("kids-id");
+				e.preventDefault();
+				
+				var kidsId = $("#kidsClassAndNameInput option:selected").data("kids-id");
 				//kidsClass와 kidsClass 쪼개기
 				var options = $("#kidsClassAndNameInput option:selected").val(); //select box
 				var value = options.split("-");
@@ -146,7 +146,7 @@
 					enctype:"multipart/form-data", //파일업로드 필수
 					type:"POST",
 					url:"/note/create",
-					processData:false, //파일업로드 필수
+					processData: false, //파일업로드 필수
 					contentType: false, //파일업로드 필수
 					data:formData, 
 					success:function(data){

@@ -60,23 +60,8 @@ public class NoteRestController {
 		
 	}
 	
-//	//학생정보 셀렉터 
-//	@GetMapping("/select_kidsInfo")
-//	public Map<String, String> selectKidsInfo(@RequestParam("kidsClass") String kidsClass){
-//		
-//		Map<String, String> result = new HashMap<>();
-//		List<KidsInfo> kidsNameList = kidsInfoBO.getKidsInfoName(kidsClass);
-//		
-//		if(kidsNameList != null) {
-//			result.put("result", "success");
-//		}else {
-//			result.put("result", "fail");
-//		}
-//		return result;
-//	}
-	
 	//알림장 상세, 수정
-	@PostMapping("/update")
+	@RequestMapping("/update")
 	public Map<String, String> updateNote(
 			@RequestParam("noteId") int noteId
 			, @RequestParam("kidsId") int kidsId

@@ -34,7 +34,7 @@ public class NoteController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		
-		// kidsInfoList보여주기
+		//kidsInfoList보여주기
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
 	
@@ -54,6 +54,10 @@ public class NoteController {
 		
 		Note note = noteBO.getNote(id, userId);
 		model.addAttribute("note", note);
+		
+		KidsInfo kidsInfo = kidsInfoBO.getKidsInfo(id, userId);
+		model.addAttribute("kidsInfo",kidsInfo);
+		
 		return "note/detail";
 	}
 	

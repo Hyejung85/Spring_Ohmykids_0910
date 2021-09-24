@@ -66,6 +66,7 @@ public class KidsInfoBO {
 //	public List<KidsInfo> getKidsInfoName(String kidsClass){
 //		return kidsInfoDAO.selectKidsInfoName(kidsClass);
 //	}
+	
 	//자녀정보상세
 	public KidsInfo getKidsInfo(int id, int userId) {
 		return kidsInfoDAO.selectKidsInfo(id, userId);

@@ -24,7 +24,7 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
-		<section class="d-flex justify-content-center align-items-center">
+		<section class="d-flex justify-content-center align-items-top mt-3">
 			<div>
 				<!-- submenu-bar -->
 				<div class="submenu-bar d-flex justify-content-center w-100">

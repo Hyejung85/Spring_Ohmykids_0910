@@ -22,7 +22,7 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
-		<section class="d-flex justify-content-center align-items-center mt-3">
+		<section class="d-flex justify-content-center align-items-top mt-3">
 			<div>
 			<!-- submenu-bar -->
 			<div class="submenu-bar d-flex justify-content-center w-100">
@@ -74,7 +74,7 @@
 				    	<div class="d-flex ml-3 align-items-center h-75" id="kidsClassInput">
 				    	<b>♡${note.kidsClass }♡</b>
 				    	</div>
-				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput">
+				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${note.kidsId }>
 				    	<b>${note.kidsName }의 알림장</b>
 				    	</div>
 				    </div>
@@ -124,13 +124,13 @@
 			//알림장 수정
 				$("#updateNoteBtn").on("click", function(){
 				
-				var noteId = $(this).data("note-id");
-				var kidsId = $(this).data("kids-id");
+				var noteId = $("#updateNoteBtn").data("note-id");
+				var kidsId = $("#kidsNameInput").data("kids-id");
 				var kidsClass = $("#kidsClassInput").val();
 				var kidsName = $("#kidsNameInput").val();
 				var weather = $("#weatherInput").val();
 				var content = $("#contentInput").val();
-				
+				alert(noteId);
 				
 				var formData = new FormData();
 				formData.append("noteId", noteId);
@@ -151,9 +151,9 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("알림장 수정완료");
-							location.href="/note/detail_view";
+							location.href="/note/detail_view?id=noteId";
 						}else{
-							alert("알림장 수정을 실패했습니다.");
+							alert("알림장 수정실패");
 						}
 						
 					},
@@ -167,7 +167,7 @@
 			
 			//알림장 삭제
 			$("#deleteNoteBtn").on("click", function(){
-				var noteId = $(this).data("note-id");
+				var noteId = $("#deleteNoteBtn").data("note-id");
 				$.ajax({
 					type:"get",
 					url:"/note/delete",
