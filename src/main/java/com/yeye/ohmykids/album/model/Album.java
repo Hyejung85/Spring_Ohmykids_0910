@@ -5,6 +5,7 @@ import java.util.Date;
 public class Album {
 	private int id;
 	private int userId;
+	private String userName;
 	private String type;
 	private int kidsId;
 	private String kidsClass;
@@ -19,6 +20,12 @@ public class Album {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public int getUserId() {
 		return userId;

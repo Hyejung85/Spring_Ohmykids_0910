@@ -48,4 +48,34 @@ public class AlbumRestController {
 		}
 		return result;
 	}
+	
+	//앨범수정
+	@PostMapping("/update")
+	public Map<String, String> update(
+			@RequestParam("type") String type
+			, @RequestParam("albumId") int albumId
+			, @RequestParam("kidsId") int kidsId
+			, @RequestParam("kidsClass") String kidsClass
+			, @RequestParam("kidsName") String kidsName
+			, @RequestParam(value="weather" , required=false) String weather
+			, @RequestParam(value="content", required=false) String content
+			, @RequestParam("file") MultipartFile file
+			, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		Map<String, String> result = new HashMap<>();
+		
+		int count = albumBO.updateAlbum(userId, type, albumId, kidsId, kidsClass, kidsName, weather, content, file);
+	
+		if(count == 1) {
+			result.put("result", "success");
+		}else {
+			result.put("result", "fail");
+		}
+		return result;
+	
+	
+	}
 }

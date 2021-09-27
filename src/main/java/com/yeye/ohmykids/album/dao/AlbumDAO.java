@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.yeye.ohmykids.album.model.Album;
+import com.yeye.ohmykids.album.model.AlbumWithComment;
 
 @Repository
 public interface AlbumDAO {
@@ -24,4 +25,22 @@ public interface AlbumDAO {
 	
 	//앨범 리스트
 	public List<Album> selectAlbumList();
+	
+	//앨범 상세(+코멘트)
+	public Album selectAlbumById(
+			@Param("id") int id
+			, @Param("userId") int userId);
+	
+	//앨범 수정
+	public int updateAlbum(
+			@Param("userId") int userId
+			, @Param("id") int id //albumId
+			, @Param("type") String type
+			, @Param("kidsId") int kidsId
+			, @Param("kidsClass") String kidsClass
+			, @Param("kidsName") String kidsName
+			, @Param("weather") String weather
+			, @Param("content") String content
+			, @Param("imagePath") String imagePath);
+	
 }

@@ -54,7 +54,37 @@
  			`album`
  		ORDER BY `id` DESC
  	</select>
- 
+ 	<!-- 앨범상세 -->
+ 	<select id="selectAlbumById" parameterType="map" resultType="com.yeye.ohmykids.album.model.Album">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `type`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`album`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `id` = #{id} 
+ 	</select>
+ 	<update id = "updateAlbum" parameterType="map">
+ 		UPDATE 
+ 			`album`
+ 		SET
+ 			`weather` = #{weather}
+ 			, `content` = #{content}
+ 			, `imagePath` = #{imagePath}
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  
  </mapper>
  

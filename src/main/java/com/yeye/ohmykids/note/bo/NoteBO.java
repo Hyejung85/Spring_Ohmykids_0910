@@ -55,6 +55,7 @@ public class NoteBO {
 //		return noteDAO.selectNoteById(id, userId);
 //	}
 	public List<NoteWithComment> getNote(int id, Integer userId){
+		
 		Note note = noteDAO.selectNoteById(id, userId);
 		
 		List<NoteWithComment> noteWithCommentList = new ArrayList<>();

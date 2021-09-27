@@ -1,19 +1,18 @@
-package com.yeye.ohmykids.note.model;
+package com.yeye.ohmykids.album.model;
 
 import java.util.List;
 
 import com.yeye.ohmykids.comment.model.Comment;
-import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
 
-public class NoteWithComment {
-	private Note note;
+public class AlbumWithComment {
+	private Album album;
 	private List<Comment> commentList;
 	
-	public Note getNote() {
-		return note;
+	public Album getAlbum() {
+		return album;
 	}
-	public void setNote(Note note) {
-		this.note = note;
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 	public List<Comment> getCommentList() {
 		return commentList;
@@ -23,9 +22,4 @@ public class NoteWithComment {
 	}
 	
 	
-	
-	
-	
-	
-
 }

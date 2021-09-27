@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yeye.ohmykids.album.bo.AlbumBO;
 import com.yeye.ohmykids.album.model.Album;
+import com.yeye.ohmykids.album.model.AlbumWithComment;
 import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
 import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
 
@@ -62,9 +63,24 @@ public class AlbumConroller {
 		return "album/list";
 	}
 	
-	//앨범 상세 화면
+	//앨범 상세, 수정 화면
 		@RequestMapping("/detail_view")
-		public String detailView() {
+		public String detailView(
+				@RequestParam("id") int id
+				, Model model
+				, HttpServletRequest request) {
+			
+			HttpSession session = request.getSession();
+			int userId = (Integer)session.getAttribute("userId");
+			
+			//kidsInfoList 보여주기
+			List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+			model.addAttribute("kidsInfoList", kidsInfoList);
+			
+			//album + comment
+			List<AlbumWithComment> albumDetailList = albumBO.getAlbum(id, userId);
+			model.addAttribute("albumDetailList", albumDetailList);
+			
 			return "album/detail";
 		}
 		
