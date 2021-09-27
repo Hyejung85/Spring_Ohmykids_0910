@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Ohmykids - 알림장작성</title>
+<title>Ohmykids - 앨범작성</title>
 <!-- bootstrap CDN link -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -28,9 +28,9 @@
 			<div class="submenu-bar d-flex justify-content-top mt-3 w-100">
 				<div class="d-flex justify-content-between align-items-center w-100">
 					<!--  title -->
-					<div class="mx-3 mt-2"><h5><b>알림장 작성</b></h5></div> 
+					<div class="mx-3 mt-2"><h5><b>앨범 작성</b></h5></div> 
 					<!-- 저장 버튼 (학생이 셀렉트되면 id정보를 저장버튼에 주입한다.)-->
-					<div class="mx-3"><a href="#" class="btn btn-yellow btn-sm" id="noteSaveBtn"><b>저장</b></a></div>
+					<div class="mx-3"><a href="#" class="btn btn-yellow btn-sm" id="albumSaveBtn"><b>저장</b></a></div>
 				</div>
 			</div>
 			<!-- /submenu-bar -->
@@ -80,30 +80,38 @@
 				    	
 				    </div>
 				    <!-- 학생선택 section -->
-				    <!-- 알림장 section -->
+				    <!-- 앨범 section -->
 				    <div class="note-section my-1">
-					<!-- 알림장 내용  -->
-					<textarea id="contentInput" class="pt-4 px-4 w-100 border-0 non-resize" rows=8 placeholder="원에서 이렇게 지냈어요."></textarea>
-					<!-- /알림장 내용-->
-					<!-- 사진 box-->
-					<div class="d-flex mx-3">
-						<div class="d-flex justify-content-center">
-							<div>
-								<!-- 이미지 출력 -->
-								<div class="picture-square title-text d-flex justify-content-center align-items-center" id="picture">
-								<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+					    <!-- 사진 box-->
+						<div class="d-flex mx-3">
+							<div class="d-flex justify-content-center mt-5">
+								<div>
+									<!-- 이미지 출력 -->
+									<div class="d-flex">
+										<div class="picture-square title-text d-flex justify-content-center align-items-center" id="picture">
+										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+										</div>
+										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2" id="picture">
+										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+										</div>
+										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2" id="picture">
+										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+										</div>
+									</div>
+									<!-- /이미지 출력 -->
+									<!-- MIME // 파일 다중선택-->
+									<input type="file" multiple accept="image/*" id="fileInput" class="d-none">
+									<div class="d-flex justify-content-left ml-3"><a href="#" class="mt-2" id="imageUploadBtn"><i class="bi bi-plus-square-fill title-text w-100 h-100"></i></a></div>
+									<!-- /사진변경 버튼 -->
 								</div>
-								<!-- /이미지 출력 -->
-								<!-- MIME -->
-								<input type="file" accept="image/*" id="fileInput" class="d-none">
-								<div class="d-flex justify-content-left ml-3"><a href="#" class="mt-2" id="imageUploadBtn"><i class="bi bi-plus-square-fill title-text w-100 h-100"></i></a></div>
-								<!-- /사진변경 버튼 -->
 							</div>
 						</div>
+						<!-- /사진 -->
+					<!-- 앨범 내용  -->
+					<textarea id="contentInput" class="pt-4 px-4 w-100 border-0 non-resize" rows=7 placeholder="원에서 이렇게 지냈어요."></textarea>
+					<!-- /앨범 내용-->
 					</div>
-					<!-- /사진 -->
-					</div>
-					<!-- 알림장 section -->
+					<!-- 앨범 section -->
 				</div>
 			</div>
 			<!-- /page section -->
@@ -116,16 +124,14 @@
 			//저장버튼에 kidsId를 주입한다.
 			$("#kidsClassAndNameInput").on("change",function(){
 				var kidsId = $("#kidsClassAndNameInput option:selected").data("kids-id");
-				$("#noteSaveBtn").data("kids-id", kidsId);
+				$("#albumSaveBtn").data("kids-id", kidsId);
 			});
 			
-			//알림장 저장
-			$("#noteSaveBtn").on("click", function(e){
-				
-				e.preventDefault();
+			//앨범 저장
+			$("#albumSaveBtn").on("click",function(){
 				
 				var type = $("#typeInput").val();
-				type = "note";
+				type = "album";
 				var kidsId = $("#kidsClassAndNameInput option:selected").data("kids-id");
 				//kidsClass와 kidsClass 쪼개기
 				var options = $("#kidsClassAndNameInput option:selected").val(); //select box
@@ -134,9 +140,17 @@
 				var kidsName = value[1];
 				var weather = $("#weatherInput option:selected").val();  //select box
 				var content = $("#contentInput").val();
-			
+				
+				
+				//학생선택 필수 벨리데이션
 				if(options == null || options == "" || options == "--반 & 이름--"){
 					alert("학생을 선택해주세요");
+					return;
+				}
+				
+				//파일 필수 벨리데이션				
+				if($("#fileInput")[0].files.length == 0){
+					alert("사진 파일을 선택해 주세요.");
 					return;
 				}
 				
@@ -150,27 +164,25 @@
 				formData.append("file", $("#fileInput")[0].files[0]);
 				
 				$.ajax({
-					enctype:"multipart/form-data", //파일업로드 필수
-					type:"POST",
-					url:"/note/create",
+					enctype: "multipart/form-data", //파일업로드 필수
+					type:"post",
+					url:"/album/create",
 					processData: false, //파일업로드 필수
 					contentType: false, //파일업로드 필수
-					data:formData, 
+					data:formData,
 					success:function(data){
-						if(data.result == "success"){
-							alert("알림장 작성완료");
-							location.href="/note/list_view";
-							//location.href="/note/detail_view?id=${result.id}"; --> 보류
+						if(data.result =="success"){
+							alert("앨범 작성 성공");
+							location.href="/album/list_view";
 						}else{
-							alert("알림장 작성을 실패했습니다.");
+							alert("앨범 작성 실패");
 						}
-						
 					},
 					error:function(e){
 						alert("error");
 					}
+					
 				});
-				
 				
 			});
 			
@@ -196,9 +208,8 @@
 			}	
 			
 			
-			
-			
 		});
+	
 	
 	</script>
 </body>

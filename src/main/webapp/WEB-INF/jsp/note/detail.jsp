@@ -192,8 +192,6 @@
 				var type = $("#typeInput").val();
 				type = "note";
 				
-				alert(targetId);
-				
 				$.ajax({
 					type:"get",
 					url:"/note/delete",

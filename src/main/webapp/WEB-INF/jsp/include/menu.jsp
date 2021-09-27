@@ -41,9 +41,9 @@
 		        </a>
 		        <!-- 앨범 submenu dropdown-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item title-text" href="/note/create_view">앨범작성</a>
+		          <a class="dropdown-item title-text" href="/album/create_view">앨범작성</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item title-text" href="/note/list_view">앨범목록</a>
+		          <a class="dropdown-item title-text" href="/album/list_view">앨범목록</a>
 		        </div>
 		        <!-- /앨범 submenu dropdown-->
 		      </li>

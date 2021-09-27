@@ -31,8 +31,7 @@ public class NoteController {
 	//알림장 작성
 	@RequestMapping("/create_view")
 	public String noteCreateView(
-			@ModelAttribute Note note
-			,Model model
+			Model model
 			,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
