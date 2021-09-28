@@ -63,12 +63,18 @@ public class AlbumBO {
 	//앨범 수정
 	public int updateAlbum(int userId, String type, int noteId, int kidsId, String kidsClass, String KidsName, String weather, String content, MultipartFile file) {
 		
-		FileManagerService fileManager = new FileManagerService();
-		String filePath = fileManager.saveFile(userId, file);
+		//사진 업데이트가 없는 경우 예외 처리
+		String filePath = null;
 		
-		if(filePath == null) {
-			return -1;
+		if(file != null) {
+			FileManagerService fileManager = new FileManagerService();
+			filePath = fileManager.saveFile(userId, file);
+			
+			if(filePath == null) {
+				return -1;
+			}
 		}
+		
 		return albumDAO.updateAlbum(userId, noteId, type, kidsId, kidsClass, KidsName, weather, content, filePath);
 	}
 	

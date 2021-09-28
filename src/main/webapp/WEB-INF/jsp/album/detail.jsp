@@ -144,16 +144,17 @@
 				
 				var type = $("#typeInput").val();
 				type = "album";
-				var noteId = $("#updateAlbumBtn").data("album-id");
+				var albumId = $("#updateAlbumBtn").data("album-id");
 				var kidsId = $("#kidsNameInput").data("kids-id");
 				var kidsClass = $("#kidsClassInput").val();
 				var kidsName = $("#kidsNameInput").val();
 				var weather = $("#weatherInput").val();
 				var content = $("#contentInput").val();
 				
+				
 				var formData = new FormData();
 				formData.append("type", type);
-				formData.append("albumId", noteId);
+				formData.append("albumId", albumId);
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
@@ -185,7 +186,7 @@
 				
 			});
 			
-			//알림장 삭제
+			//앨범 삭제
 			$("#deleteAlbumBtn").on("click", function(){
 				
 				var targetId = $("#deleteAlbumBtn").data("album-id");

@@ -81,7 +81,9 @@
  		SET
  			`weather` = #{weather}
  			, `content` = #{content}
- 			, `imagePath` = #{imagePath}
+ 				<if test = "imagePath != null">
+ 			, `imagePath` = '%'||#{imagePath}||'%'
+ 				</if>
  		WHERE
  			`id` = #{id}
  	</update>

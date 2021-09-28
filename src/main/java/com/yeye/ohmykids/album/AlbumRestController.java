@@ -51,7 +51,7 @@ public class AlbumRestController {
 	}
 	
 	//앨범수정
-	@PostMapping("/update")
+	@RequestMapping("/update")
 	public Map<String, String> update(
 			@RequestParam("type") String type
 			, @RequestParam("albumId") int albumId
@@ -60,7 +60,7 @@ public class AlbumRestController {
 			, @RequestParam("kidsName") String kidsName
 			, @RequestParam(value="weather" , required=false) String weather
 			, @RequestParam(value="content", required=false) String content
-			, @RequestParam("file") MultipartFile file
+			, @RequestParam(value="file", required=false) MultipartFile file
 			, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
