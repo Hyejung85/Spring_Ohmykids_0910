@@ -85,6 +85,32 @@
  		WHERE
  			`id` = #{id}
  	</update>
+ 	<delete id="deleteAlbum" parameterType="map">
+ 		DELETE FROM	`album`
+ 		WHERE 
+ 			`id` = #{id}
+ 			AND `userId` = #{userId}
+ 	</delete>
+ 	<!-- 파일삭제 -->
+ 	<select id="selectAlbum" parameterType="int" resultType="com.yeye.ohmykids.album.model.Album">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `type`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`album`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
  
  </mapper>
  

@@ -43,4 +43,12 @@ public interface AlbumDAO {
 			, @Param("content") String content
 			, @Param("imagePath") String imagePath);
 	
+	//앨범 삭제
+	public int deleteAlbum(
+			@Param("id") int id
+			, @Param("userId") int userId);
+	
+	//파일 삭제
+	public Album selectAlbum(@Param("id") int id);
+	
 }

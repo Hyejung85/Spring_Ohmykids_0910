@@ -71,4 +71,23 @@ public class AlbumBO {
 		}
 		return albumDAO.updateAlbum(userId, noteId, type, kidsId, kidsClass, KidsName, weather, content, filePath);
 	}
+	
+	//앨범 삭제
+	public boolean deleteAlbum(int targetId, String type, int userId) {
+		//삭제 대상 select
+		Album album = albumDAO.selectAlbum(targetId);
+		//앨범 삭제
+		int count = albumDAO.deleteAlbum(targetId, userId);
+		//코멘트부터 삭제 실패하는지 확인
+		if(count != 1) {
+			return false;
+		}
+		//파일 삭제
+		FileManagerService fileManagerService = new FileManagerService();
+		fileManagerService.removeFile(album.getImagePath());	
+		//코멘트 삭제
+		int commentCount = commentBO.deleteCommentWithNote(targetId, type);
+		
+		return true;
+	}
 }

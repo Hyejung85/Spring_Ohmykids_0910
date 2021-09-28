@@ -92,8 +92,7 @@ public class NoteBO {
 	
 	//알림장 삭제 (+코멘트도 삭제)
 	public boolean deleteNote(int targetId, Integer userId, String type) {
-		
-		//파일삭제
+		//삭제 대상 select
 		Note note = noteDAO.selectNote(targetId);
 		//알림장 삭제
 		int count = noteDAO.deleteNote(targetId, userId);
