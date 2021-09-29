@@ -87,10 +87,10 @@
 							<div class="d-flex justify-content-center mt-5">
 								<div>
 									<!-- 이미지 출력 -->
-									<div class="d-flex mulitiple-image">
-										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2 d-none" id="imagePreview">
+									<div class="d-flex mulitiple-image d-none flex-wrap">
+										<!--<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2" id="imagePreview">
 										<img id="imagePath" class="imagethumbnail">
-										</div>
+										</div>  -->
 									</div>
 									<!-- /이미지 출력 -->
 									<!-- MIME // 파일 다중선택-->
@@ -102,7 +102,7 @@
 						</div>
 						<!-- /사진 -->
 					<!-- 앨범 내용  -->
-					<textarea id="contentInput" class="pt-4 px-4 w-100 border-0 non-resize" rows=7 placeholder="원에서 이렇게 지냈어요."></textarea>
+					<textarea id="contentInput" class="pt-4 px-4 w-100 border-0 non-resize" rows=7 placeholder="사진에 대한 내용을 입력해주세요."></textarea>
 					<!-- /앨범 내용-->
 					</div>
 					<!-- 앨범 section -->
@@ -191,12 +191,15 @@
 			
 				 
 		    function handleImgFileSelect(e) {
-		    
+		    	//첨부파일 배열
 	    	 	var sel_files = [];
 		        var files = e.target.files;
+		     	// 파일 고유넘버
+		        var fileNum = -1;
+		        //파일 배열 담기
 		        var filesArr = Array.prototype.slice.call(files);
 		        var index = 0;
-		     
+		        var html = "";
 		 
 		        filesArr.forEach(function(f) {
 		 
@@ -204,14 +207,20 @@
 		 
 		            var reader = new FileReader();
 		            reader.onload = function(e) {
-		            	var html ="<div class='picture-square title-text d-flex justify-content-center align-items-center ml-2' id='imagePreview'><img src=${e.target.result}  id='imagePath' class='imagethumbnail'></div>";
+		            	html += "<div class='picture-square-lg title-text d-flex justify-content-center align-items-center ml-2 mt-2' id='imagePreview'>";
+		            	html +=	"<img id='imagePath' class='imagethumbnail' src=";
+		            	html += e.target.result
+		            	html += "></div>";
 		            	$(".mulitiple-image").append(html);
 		                index++;
 		            }
 		            reader.readAsDataURL(f);
 		        });
+		     
 		    }
 		    
+
+	
 	
 			
 		});
