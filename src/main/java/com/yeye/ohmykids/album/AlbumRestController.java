@@ -60,7 +60,7 @@ public class AlbumRestController {
 			, @RequestParam("kidsName") String kidsName
 			, @RequestParam(value="weather" , required=false) String weather
 			, @RequestParam(value="content", required=false) String content
-			, @RequestParam(value="file", required=false) MultipartFile file
+			, @RequestParam(value="file", required=false) MultipartFile file // 사진은 업데이트하지 않을수 있으므로
 			, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();

@@ -88,14 +88,8 @@
 								<div>
 									<!-- 이미지 출력 -->
 									<div class="d-flex">
-										<div class="picture-square title-text d-flex justify-content-center align-items-center" id="picture">
-										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
-										</div>
-										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2" id="picture">
-										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
-										</div>
-										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2" id="picture">
-										<img src="${imagePath }" id="imagePath" class="imagethumbnail">
+										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2" id="imagePreview">
+										<img  src="${imagePath }" id="imagePath" class="imagethumbnail">
 										</div>
 									</div>
 									<!-- /이미지 출력 -->
@@ -192,20 +186,30 @@
 				$("#fileInput").click();
 			});
 			
-			//사진 미리보여주기
-			$("#fileInput").on("change",function(){
-				setImageFromFile(this, "#imagePath");
-			});
+			//다중 이미지 미리보기
+		    $("#fileInput").on("change", handleImgFileSelect);
+				 
+		    function handleImgFileSelect(e) {
+		    
+	    	 	var sel_files = [];
+		        var files = e.target.files;
+		        var filesArr = Array.prototype.slice.call(files);
+		        var index = 0;
+		 
+		        filesArr.forEach(function(f) {
+		 
+		        	sel_files.push(f);
+		 
+		            var reader = new FileReader();
+		            reader.onload = function(e) {
+		                $("#imagePath").attr("src", e.target.result);
+		                index++;
+		            }
+		            reader.readAsDataURL(f);
+		        });
+		    }
 			
-			function setImageFromFile(input, expression){
-				if(input.files && input.files[0]){
-					var reader = new FileReader();
-					reader.onload = function(e){
-						$(expression).attr("src",e.target.result);
-					}
-					reader.readAsDataURL(input.files[0]);
-				}
-			}	
+			
 			
 			
 		});
