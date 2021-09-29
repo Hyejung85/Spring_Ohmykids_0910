@@ -195,31 +195,39 @@
 	    	 	var sel_files = [];
 		        var files = e.target.files;
 		     	// 파일 고유넘버
-		        var fileNum = -1;
+		        var fileNum = 0;
 		        //파일 배열 담기
 		        var filesArr = Array.prototype.slice.call(files);
 		        var index = 0;
 		        var html = "";
+		        
 		 
 		        filesArr.forEach(function(f) {
-		 
+	            	
 		        	sel_files.push(f);
+		        	//이미지 다시 선택했을때 이미지 정보 초기화
+		        	$(".mulitiple-image").empty();
 		 
 		            var reader = new FileReader();
 		            reader.onload = function(e) {
-		            	html += "<div class='picture-square-lg title-text d-flex justify-content-center align-items-center ml-2 mt-2' id='imagePreview'>";
-		            	html +=	"<img id='imagePath' class='imagethumbnail' src=";
-		            	html += e.target.result
-		            	html += "></div>";
-		            	$(".mulitiple-image").append(html);
-		                index++;
+
+			            html = "<div class='picture-square-lg title-text d-flex justify-content-center align-items-center ml-2 mt-2' onclick=deleteImageAction("+index+")\ id='imagePreview_id_"+index+"\")'><img id=imgPath class='imagethumbnail' src=\""+ e.target.result+ "\"></div>";
+			            $(".mulitiple-image").append(html);
+			            	
+			            index++;
 		            }
 		            reader.readAsDataURL(f);
 		        });
 		     
 		    }
 		    
-
+			//다중 이미지중 특정 이미지만 삭제하기
+			function deleteImageAction(index){
+				sel_files.splice(index,1);
+				
+				var imagePreview_id = "#imagePreview_id_"+index;
+				$("#imagePreview_id").remove();
+			}
 	
 	
 			
