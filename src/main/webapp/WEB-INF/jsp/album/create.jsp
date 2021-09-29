@@ -87,9 +87,9 @@
 							<div class="d-flex justify-content-center mt-5">
 								<div>
 									<!-- 이미지 출력 -->
-									<div class="d-flex">
-										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2" id="imagePreview">
-										<img  src="${imagePath }" id="imagePath" class="imagethumbnail">
+									<div class="d-flex mulitiple-image">
+										<div class="picture-square title-text d-flex justify-content-center align-items-center ml-2 d-none" id="imagePreview">
+										<img id="imagePath" class="imagethumbnail">
 										</div>
 									</div>
 									<!-- /이미지 출력 -->
@@ -188,6 +188,7 @@
 			
 			//다중 이미지 미리보기
 		    $("#fileInput").on("change", handleImgFileSelect);
+			
 				 
 		    function handleImgFileSelect(e) {
 		    
@@ -195,6 +196,7 @@
 		        var files = e.target.files;
 		        var filesArr = Array.prototype.slice.call(files);
 		        var index = 0;
+		     
 		 
 		        filesArr.forEach(function(f) {
 		 
@@ -202,15 +204,15 @@
 		 
 		            var reader = new FileReader();
 		            reader.onload = function(e) {
-		                $("#imagePath").attr("src", e.target.result);
+		            	var html ="<div class='picture-square title-text d-flex justify-content-center align-items-center ml-2' id='imagePreview'><img src=${e.target.result}  id='imagePath' class='imagethumbnail'></div>";
+		            	$(".mulitiple-image").append(html);
 		                index++;
 		            }
 		            reader.readAsDataURL(f);
 		        });
 		    }
-			
-			
-			
+		    
+	
 			
 		});
 	
