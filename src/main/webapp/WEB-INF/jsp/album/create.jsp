@@ -209,7 +209,7 @@
 		            var reader = new FileReader();
 		            reader.onload = function(e) {
 
-				        var html = "";
+				       /*  var html = "";
 			            
 			            html += "<div class='picture-square-lg title-text d-flex justify-content-center align-items-center ml-2 mt-2' id='imagePreview-";
 			            html += index
@@ -218,27 +218,48 @@
 			            html += "><img id=imgPath class='imagethumbnail' src='";
 			            html += e.target.result
 			            html += "'></div>";
-			            $(".mulitiple-image").append(html); 
-			            	
+			            $(".mulitiple-image").append(html);  */
+			            var divTag = $('<div>',{
+			            				class:'picture-square-lg title-text d-flex justify-content-center align-items-center ml-2 mt-2',
+			            				id:'imagePreview-index', 
+			            				click:function(deleteThumbnail);
+			            				}
+			            				
+		            	)
+		            	
+		            	divTag.data("index", index);
+
+			            var imgTag = $('<img>',{
+			            				id:'imgPath',
+			            				class:'imagethumbnail',
+			            				src:'e.target.result'
+			            				}
+			            })
+			            divTag.append(imgTag);
+			            
 			            index++;
-			      
-			            //기존 등록된 이벤트 지우기
-			           	$("#fileInput").on("click",function(){
-			           		$(".picture-square-lg").off("click");
-			           	});
-						//다중 이미지중 특정 이미지만 삭제하기
-						$(".picture-square-lg").on("click",function(){
-							var index = $(this).data("index");
-							var imagePreview = $("#imagePreview-"+index).val();
-							
-							$("#imagePreview").remove();
-						});
-		            
 		            }
+		            
+		            //기존 등록된 이벤트 지우기
+		           	$("#fileInput").on("click",function(){
+		           		$(".picture-square-lg").off("click");
+		           	});
+		            
+					//다중 이미지중 특정 이미지만 삭제하기
+					//$(".picture-square-lg").on("click",function(){
+					function deleteThumbnail(index){
+						var index = $(this).data("index");
+						var imagePreview = $("#imagePreview-"+index).val();
+					
+						$("#imagePreview").remove();
+						
+					}
+					//});
+					
 		            reader.readAsDataURL(f);
 		            
 		        });
-		     
+						
 		    }
 		    
 		

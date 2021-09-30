@@ -81,27 +81,43 @@
 				    </div>
 				    <!-- 학생 section -->
 				    <!-- 사진 box-->
-					<div class="d-flex justify-content-center mt-1">
+					<div class="d-flex justify-content-center mt-1 mb-1">
 						<div class="d-flex justify-content-center">
 							<div>
 								<!-- 이미지 출력 -->
 								<div class="picture-full title-text d-flex justify-content-center align-items-center" id="picture">
-									<img src="${albumWithComment.album.imagePath }" id="imagePath" class="imagethumbnail">
+									<img src="${albumWithComment.album.imagePath }" id="imagePath" class="imagethumbnail" data-album-id="${albumWithComment.album.id }">
 								</div>
 								<!-- /이미지 출력 -->
+								<div class="d-flex justify-content-between">
+								<!-- 좋아요 -->
+								<div class="d-flex align-items-center title-text justify-content-end mr-3">
+									<a href="#" id="likeBtn" data-album-id="${albumWithComment.album.id }" class="ml-2">
+										<c:choose>
+											<c:when test="${albumWithComment.like }">
+												<!-- 풀하트 -->
+												<i class="bi bi-suit-heart-fill text-danger" id="heartIcon"></i> 
+											</c:when>
+												<c:otherwise>
+												<!-- 빈하트 -->
+													<i class="bi bi-suit-heart title-text" id="heartIcon"></i>
+												</c:otherwise>
+										</c:choose>
+									</a>
+									<!-- 좋아요 갯수-->
+									<b><span id="likeCount" class="ml-1">${albumWithComment.likeCount }</span> Like</b>
+								</div>
+								<!-- /좋아요 -->
 								<!-- MIME -->
 								<input type="file" accept="image/*" id="fileInput" class="d-none">
-								<div class="d-flex justify-content-left ml-3"><a href="#" class="mt-2" id="imageUploadBtn"><i class="bi bi-plus-square-fill title-text w-100 h-100"></i></a></div>
+								<div class="d-flex justify-content-left ml-3"><a href="#" class="mx-2" id="imageUploadBtn"><i class="bi bi-plus-square-fill title-text w-100 h-100"></i></a></div>
 								<!-- /사진변경 버튼 -->
+								</div>
 							</div>
 						</div>
 					</div>
 					<!-- /사진 -->
-					<!-- 좋아요 -->
-					<div class="like-section px-3 d-flex align-items-center title-text">
-					<small><b>좋아요 1개</b></small>
-					</div>
-					<!-- /좋아요 -->
+					
 				    <!-- 알림장 section -->
 				    <div class="note-detail-section">
 					<!-- 알림장 내용  -->
@@ -143,6 +159,7 @@
 	</div>
 	<script>
 		$(document).ready(function(){
+			
 			//앨범 수정
 				$("#updateAlbumBtn").on("click", function(){
 				
@@ -297,6 +314,88 @@
 				});
 			});
 			
+			// 라이크 함수 생성
+			function processLike(targetId, type){
+				 <!--빈하트 클릭했을때-->
+				 if($("#heartIcon").hasClass("bi-suit-heart")){
+					
+				 $.ajax({
+					type:"get",
+					url:"/like/create",
+					data:{"targetId":targetId, "type":type},
+					success:function(data){
+							// 좋아요
+							if(data.likeList == "success"){
+								if($("#heartIcon").hasClass("bi-suit-heart")){
+									$("#heartIcon").removeClass("bi-suit-heart");
+									$("#heartIcon").addClass("bi-suit-heart-fill");
+									
+									$("#heartIcon").removeClass("title-text");
+									$("#heartIcon").addClass("text-danger");
+					
+							}else{
+								alert("좋아요 입력 실패");
+								}
+							}	
+							$("#likeCount").text(data.likeCount);
+					},
+					error:function(e){
+						alert("error");
+					}
+				 });
+				 
+				 <!-- 꽉찬 하트 클릭했을때 -->
+				 }else if($("#heartIcon").hasClass("bi-suit-heart-fill")){
+					 $.ajax({
+						 type:"get",
+						 url:"/like/delete",
+						 data:{"targetId": targetId, "type":type},
+						 success:function(data){
+							 if(data.dislikeList == "success"){
+								 if($("#heartIcon").hasClass("bi-suit-heart-fill")){
+										$("#heartIcon").removeClass("bi-suit-heart-fill");
+										$("#heartIcon").addClass("bi-suit-heart");
+										
+										$("#heartIcon").removeClass("text-danger");
+										$("#heartIcon").addClass("title-text");
+							
+								}else{
+									alert("좋아요 취소 실패");
+								}
+							 }
+							 $("#likeCount").text(data.likeCount);
+						 },
+						 error:function(e){
+							 alert("error");
+						 }
+					 });
+					
+				 }
+				 
+			}
+			
+			// 좋아요 클릭
+			 $("#likeBtn").on("click",function(e){	
+				 e.preventDefault();
+				
+				 var targetId = $(this).data("album-id"); //albumId
+				 var type = $("#TypeIsAlbum").val();
+				 type = "album";
+			
+				 processLike(targetId, type);
+				 
+			 });
+			 
+			 // 이미지 더블클릭했을때도 라이크 온&오프
+			 $(".imagethumbnail").on("dblclick", function(){
+				 
+				 var targetId = $(this).data("album-id"); //albumId
+				 var type = $("#TypeIsAlbum").val();
+				 type = "album";
+				 
+				 processLike(targetId, type);
+			 });
+			 
 		});
 	</script>
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.yeye.ohmykids.like.dao.LikeDAO">
+ 	<insert id="insertLike" parameterType="map">
+ 		INSERT INTO `like`
+ 		(
+ 			`userId`
+ 			, `type`
+ 			, `targetId`
+ 			, `createdAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{type}
+ 			, #{targetId}
+ 			, now()
+ 		)
+ 	</insert>
+ 	<!-- 좋아요 했는지 -->
+ 	<select id="selectCountLike" parameterType="map" resultType="int">
+ 		SELECT	
+ 			count(*)
+ 		FROM 
+ 			`like`
+ 		WHERE
+ 			`type`=#{type}
+ 			AND
+ 			`targetId` = #{targetId}
+ 			AND
+ 			`userId` = #{userId}
+ 	</select>
+ 	<!-- 좋아요 갯수 -->
+ 	<select id="selectCountByAlbumId" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`type`=#{type}
+ 			AND
+ 			`targetId` = #{targetId}
+ 	</select>
+ 	<!-- 좋아요 취소 -->
+ 	<delete id="deleteLike" parameterType ="map">
+ 		DELETE FROM `like`
+ 		WHERE
+ 			`type` = #{type}
+ 			AND
+ 			`targetId` = #{targetId}
+ 			AND
+ 			`userId` = #{userId}
+ 	</delete>
+ 	<!-- 앨범 삭제 +  좋아요 삭제 -->
+ 	<delete id="deleteLikeByAlbumId" parameterType ="map">
+ 		DELETE FROM `like`
+ 		WHERE
+ 			`type` = #{type}
+ 			AND
+ 			`targetId` = #{targetId}
+ 	</delete>
+ </mapper>

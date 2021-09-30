@@ -7,6 +7,8 @@ import com.yeye.ohmykids.comment.model.Comment;
 public class AlbumWithComment {
 	private Album album;
 	private List<Comment> commentList;
+	private boolean isLike;
+	private int likeCount;
 	
 	public Album getAlbum() {
 		return album;
@@ -20,6 +22,19 @@ public class AlbumWithComment {
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
+	public boolean isLike() {
+		return isLike;
+	}
+	public void setLike(boolean isLike) {
+		this.isLike = isLike;
+	}
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+	
 	
 	
 }

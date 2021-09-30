@@ -182,7 +182,7 @@ section{
 .picture-full{
 	width : 500px;
 	height : 300px;
-	border :5px solid #088A29;
+	border :1px solid #088A29;
 	overflow:hidden;
     margin:0 auto;
 }

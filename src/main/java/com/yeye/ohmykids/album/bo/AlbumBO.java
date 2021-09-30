@@ -13,6 +13,7 @@ import com.yeye.ohmykids.album.model.AlbumWithComment;
 import com.yeye.ohmykids.comment.bo.CommentBO;
 import com.yeye.ohmykids.comment.model.Comment;
 import com.yeye.ohmykids.common.FileManagerService;
+import com.yeye.ohmykids.like.bo.LikeBO;
 
 @Service
 public class AlbumBO {
@@ -22,6 +23,9 @@ public class AlbumBO {
 	
 	@Autowired
 	private CommentBO commentBO;
+	
+	@Autowired
+	private LikeBO likeBO;
 	
 	//앨범 작성
 	public int createAlbum(int userId, String userName, String type, int kidsId, String kidsClass, String kidsName
@@ -48,15 +52,25 @@ public class AlbumBO {
 		Album album = albumDAO.selectAlbumById(id, userId);
 		
 		List<AlbumWithComment> albumWithCommentList = new ArrayList<>();
+		//코멘트 리스트
 		List<Comment> commentList = commentBO.getCommentList(album.getType(), album.getId());
+		//좋아요 했는지
+		boolean isLike = likeBO.existLike(userId, album.getType(), album.getId());
+		//좋아요 갯수
+		int likeCount = likeBO.countLike(album.getType(), album.getId());
 		
 		AlbumWithComment albumWithComment = new AlbumWithComment();
-		
-		albumWithComment.setAlbum(album);
-		albumWithComment.setCommentList(commentList);
-		
-		albumWithCommentList.add(albumWithComment);
-		
+			//앨범
+			albumWithComment.setAlbum(album);
+			//코멘트
+			albumWithComment.setCommentList(commentList);
+			//좋아요가 된 상태인지
+			albumWithComment.setLike(isLike);
+			//좋아요 갯수
+			albumWithComment.setLikeCount(likeCount);
+			
+			albumWithCommentList.add(albumWithComment);
+			
 		return albumWithCommentList;
 	}
 	
@@ -93,6 +107,8 @@ public class AlbumBO {
 		fileManagerService.removeFile(album.getImagePath());	
 		//코멘트 삭제
 		int commentCount = commentBO.deleteCommentWithNote(targetId, type);
+		//좋아요 삭제
+		int likeCount = likeBO.deleteLike(type, targetId);
 		
 		return true;
 	}
