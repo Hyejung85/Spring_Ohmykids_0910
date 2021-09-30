@@ -224,13 +224,12 @@
 			      
 			            //기존 등록된 이벤트 지우기
 			           	$(".picture-square-lg").on("click",function(){
-			           		$("#fileInput").off();
+			           		$("#fileInput").off("change");
 			           	});
 						//다중 이미지중 특정 이미지만 삭제하기
 						$(".picture-square-lg").on("click",function(){
 							var index = $(this).data("index");
 							var imagePreview = $("#imagePreview-"+index).val();
-							alert(index);
 							$("#imagePreview").remove();
 						});
 		            
@@ -241,16 +240,7 @@
 		     
 		    }
 		    
-			
-			/* function deleteImageAction(index){
-				sel_files.splice(index,1);
-				
-				var imagePreview_id = "#imagePreview_id_"+index;
-				$("#imagePreview_id").remove();
-			} */
-	
-	
-			
+		
 		});
 	
 	
