@@ -194,6 +194,12 @@ section{
     border :0px solid white;
 }
 
+.like-section{
+	width: 500px;
+	height: 35px;
+	border:1px solid #088A29;
+}
+
 .info-box{
 	width: 400px;
 	height: 300px;

@@ -84,7 +84,7 @@
 				    <div class="note-section my-1">
 					    <!-- 사진 box-->
 						<div class="d-flex mx-3">
-							<div class="d-flex justify-content-center mt-5">
+							<div class="d-flex justify-content-center mt-3">
 								<div>
 									<!-- 이미지 출력 -->
 									<div class="d-flex mulitiple-image d-none flex-wrap">
@@ -199,9 +199,7 @@
 		        //파일 배열 담기
 		        var filesArr = Array.prototype.slice.call(files);
 		        var index = 0;
-		        var html = "";
 		        
-		 
 		        filesArr.forEach(function(f) {
 	            	
 		        	sel_files.push(f);
@@ -211,23 +209,45 @@
 		            var reader = new FileReader();
 		            reader.onload = function(e) {
 
-			            html = "<div class='picture-square-lg title-text d-flex justify-content-center align-items-center ml-2 mt-2' onclick=deleteImageAction("+index+")\ id='imagePreview_id_"+index+"\")'><img id=imgPath class='imagethumbnail' src=\""+ e.target.result+ "\"></div>";
-			            $(".mulitiple-image").append(html);
+				        var html = "";
+			            
+			            html += "<div class='picture-square-lg title-text d-flex justify-content-center align-items-center ml-2 mt-2' id='imagePreview-";
+			            html += index
+			            html += "' data-index= ";
+			            html += index
+			            html += "><img id=imgPath class='imagethumbnail' src='";
+			            html += e.target.result
+			            html += "'></div>";
+			            $(".mulitiple-image").append(html); 
 			            	
 			            index++;
+			      
+			            //기존 등록된 이벤트 지우기
+			           	$(".picture-square-lg").on("click",function(){
+			           		$("#fileInput").off();
+			           	});
+						//다중 이미지중 특정 이미지만 삭제하기
+						$(".picture-square-lg").on("click",function(){
+							var index = $(this).data("index");
+							var imagePreview = $("#imagePreview-"+index).val();
+							alert(index);
+							$("#imagePreview").remove();
+						});
+		            
 		            }
 		            reader.readAsDataURL(f);
+		            
 		        });
 		     
 		    }
 		    
-			//다중 이미지중 특정 이미지만 삭제하기
-			function deleteImageAction(index){
+			
+			/* function deleteImageAction(index){
 				sel_files.splice(index,1);
 				
 				var imagePreview_id = "#imagePreview_id_"+index;
 				$("#imagePreview_id").remove();
-			}
+			} */
 	
 	
 			

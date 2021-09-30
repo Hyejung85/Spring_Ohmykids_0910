@@ -97,12 +97,16 @@
 						</div>
 					</div>
 					<!-- /사진 -->
+					<!-- 좋아요 -->
+					<div class="like-section px-3 d-flex align-items-center title-text">
+					<small><b>좋아요 1개</b></small>
+					</div>
+					<!-- /좋아요 -->
 				    <!-- 알림장 section -->
-				    <div class="note-detail-section my-1">
+				    <div class="note-detail-section">
 					<!-- 알림장 내용  -->
 					<textarea id="contentInput" class="note-textarea py-4 px-3 mb-2 w-100 border-0 non-resize title-text">${albumWithComment.album.content }</textarea>
 					<!-- /알림장 내용-->
-					
 					<!-- 댓글 -->
 					<c:forEach var="comment" items="${albumWithComment.commentList }">
 						<div class="d-flex">
