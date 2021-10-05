@@ -16,9 +16,12 @@ public interface AlbumDAO {
 			Album album
 			/*, @Param("userId") int userId 
 			 , @Param("userName") String userName
-			 , @Param("type") String type , @Param("kidsId") int kidsId
-			 , @Param("kidsClass") String kidsClass , @Param("kidsName") String kidsName
-			 , @Param("weather") String weather , @Param("content") String content
+			 , @Param("type") String type 
+			 , @Param("kidsId") int kidsId
+			 , @Param("kidsClass") String kidsClass 
+			 , @Param("kidsName") String kidsName
+			 , @Param("weather") String weather 
+			 , @Param("content") String content
 			 , @Param("imagePath") String imagePath*/
 			 );
 	

@@ -56,9 +56,6 @@ public class ImageFile {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
-	
-	
 
+	
 }

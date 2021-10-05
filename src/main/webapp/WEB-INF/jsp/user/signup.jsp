@@ -18,7 +18,7 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
 		<section class="d-flex justify-content-center align-items-center">
-			<div class="sign-section p-5">
+			<div class="sign-section p-5 mt-3">
 				<!-- 회원가입 제목  -->
 				<h1 class="title-text text-center"><i class="bi bi-stickies"></i><span class="ml-2">회원가입</span></h1>
 				<form method="post" action="/user/sign_up" id="signupForm" class="my-5">

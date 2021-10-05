@@ -30,10 +30,12 @@ public class AlbumRestController {
 	public Map<String, String> create(
 			@ModelAttribute Album album
 			/*
-			 * @RequestParam("type") String type , @RequestParam("kidsId") int kidsId
-			 * , @RequestParam("kidsClass") String kidsClass , @RequestParam("kidsName")
-			 * String kidsName , @RequestParam(value="weather" , required=false) String
-			 * weather , @RequestParam(value="content", required=false) String content
+			 * @RequestParam("type") String type 
+			 * , @RequestParam("kidsId") int kidsId
+			 * , @RequestParam("kidsClass") String kidsClass 
+			 * , @RequestParam("kidsName") String kidsName 
+			 * , @RequestParam(value="weather" , required=false) String weather 
+			 * , @RequestParam(value="content", required=false) String content
 			 */
 			, @RequestParam("files") MultipartFile[] files //멀티파일
 			, HttpServletRequest request ){
@@ -43,6 +45,10 @@ public class AlbumRestController {
 		int userId = (Integer)session.getAttribute("userId");
 		String userName = (String)session.getAttribute("userName");
 		
+		//album 객체에 userId, userName 주입
+		album.setUserId(userId);
+		album.setUserName(userName);
+	
 		Map<String, String> result = new HashMap<>();
 		
 			if(albumBO.createAlbum(album, files)) {
