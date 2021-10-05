@@ -33,19 +33,25 @@ public class AlbumBO {
 	private ImageFileBO imageFileBO;
 	
 	//앨범 작성
-	public int createAlbum(int userId, String userName, String type, int kidsId, String kidsClass, String kidsName
+	public boolean createAlbum(int userId, String userName, String type, int kidsId, String kidsClass, String kidsName
 			, String weather, String content, MultipartFile[] files) {
 		
+		//앨범 정보, 내용 입력
+		int albumCount = albumDAO.insertAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content);
+		
+		//앨범 파일 입력
+		int targetId = Album.getId(); //insert하면서 생성된 targetId 가져오기
+		int fileCount = imageFileBO.addImageFiles(userId, type, targetId, files);
 		
 		// 반복문을 통해서 파일을 하나씩 인서트
 		for(String filePath : filePathList) {
 			
 			if(filePath == null) {
-				return -1;
+				return false;
 			}
 		}
 			
-		return albumDAO.insertAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content);
+		return true;
 	
 	}
 	

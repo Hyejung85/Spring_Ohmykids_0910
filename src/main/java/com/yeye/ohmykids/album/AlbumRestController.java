@@ -42,7 +42,7 @@ public class AlbumRestController {
 		Map<String, String> result = new HashMap<>();
 		
 		
-			int count = albumBO.createAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, files);
+			int count = albumBO.createAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content);
 			if(count == 1) {
 				result.put("result", "success");
 			}else {

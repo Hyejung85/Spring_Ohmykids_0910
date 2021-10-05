@@ -21,8 +21,6 @@ public class ImageFileBO {
 	//이미지 파일 저장
 	public int addImageFiles(int userId, String type, int targetId, MultipartFile[] files) {
 		
-		
-			targetId = Album.getId(); //insert하면서 생성된 targetId 가져오기
 			
 			MultiFileManagerService multiFileManager = new MultiFileManagerService();
 			List<String> filePathList = multiFileManager.saveFile(userId, type, targetId, files);
