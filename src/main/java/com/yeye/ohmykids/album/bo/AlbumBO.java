@@ -33,23 +33,15 @@ public class AlbumBO {
 	private ImageFileBO imageFileBO;
 	
 	//앨범 작성
-	public boolean createAlbum(int userId, String userName, String type, int kidsId, String kidsClass, String kidsName
-			, String weather, String content, MultipartFile[] files) {
+	public boolean createAlbum(Album album, MultipartFile[] files) {
 		
 		//앨범 정보, 내용 입력
-		int albumCount = albumDAO.insertAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content);
+		int albumCount = albumDAO.insertAlbum(album);
+		
 		
 		//앨범 파일 입력
-		int targetId = Album.getId(); //insert하면서 생성된 targetId 가져오기
-		int fileCount = imageFileBO.addImageFiles(userId, type, targetId, files);
+		int fileCount = imageFileBO.addImageFiles(album.getUserId(), album.getType(), album.getId(), files);
 		
-		// 반복문을 통해서 파일을 하나씩 인서트
-		for(String filePath : filePathList) {
-			
-			if(filePath == null) {
-				return false;
-			}
-		}
 			
 		return true;
 	
@@ -107,23 +99,15 @@ public class AlbumBO {
 	}
 	
 	//앨범 삭제
-	public boolean deleteAlbum(int targetId, String type, int userId) {
-		//삭제 대상 select
-		Album album = albumDAO.selectAlbum(targetId);
-		//앨범 삭제
-		int count = albumDAO.deleteAlbum(targetId, userId);
-		//코멘트부터 삭제 실패하는지 확인
-		if(count != 1) {
-			return false;
-		}
-		//파일 삭제
-		FileManagerService fileManagerService = new FileManagerService();
-		fileManagerService.removeFile(album.getImagePath());	
-		//코멘트 삭제
-		int commentCount = commentBO.deleteCommentWithNote(targetId, type);
-		//좋아요 삭제
-		int likeCount = likeBO.deleteLike(type, targetId);
-		
-		return true;
-	}
+	/*
+	 * public boolean deleteAlbum(int targetId, String type, int userId) { //삭제 대상
+	 * select Album album = albumDAO.selectAlbum(targetId); //앨범 삭제 int count =
+	 * albumDAO.deleteAlbum(targetId, userId); //코멘트부터 삭제 실패하는지 확인 if(count != 1) {
+	 * return false; } //파일 삭제 FileManagerService fileManagerService = new
+	 * FileManagerService(); fileManagerService.removeFile(album.getImagePath());
+	 * //코멘트 삭제 int commentCount = commentBO.deleteCommentWithNote(targetId, type);
+	 * //좋아요 삭제 int likeCount = likeBO.deleteLike(type, targetId);
+	 * 
+	 * return true; }
+	 */
 }

@@ -29,6 +29,8 @@
 				<div class="d-flex justify-content-between align-items-center w-100">
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5>My Kids List</h5></div> 
+					<!-- 자녀정보 등록 -->
+					<div class="mx-3"><a href="/user/accounts/kidsinfo/create_view" class="btn btn-yellow btn-sm" id="kidsinfoCreateBtn"><b>자녀등록</b></a></div>
 				</div>
 			</div>
 			<!-- page section -->

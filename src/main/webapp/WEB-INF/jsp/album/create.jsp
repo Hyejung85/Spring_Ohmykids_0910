@@ -135,6 +135,7 @@
 				var kidsName = value[1];
 				var weather = $("#weatherInput option:selected").val();  //select box
 				var content = $("#contentInput").val();
+				var files = $("#fileInput")[0].files;
 				
 				
 				//학생선택 필수 벨리데이션
@@ -157,10 +158,8 @@
 				formData.append("weather", weather);
 				formData.append("content", content);
 				//formData.append("file", $("#fileInput")[0].files[0]); //파일 1개만 업로드시
-				fileList = $(this)[0].files;  //파일 대상이 리스트 형태로 넘어온다.
-				for(var i=0;i < fileList.length;i++){
-					var file = fileList[i];
-					formData.append("file" , file);
+				for(var i = 0; i < files.length; i++){
+					formData.append("files" , files[i]);
 				}
 				
 				$.ajax({

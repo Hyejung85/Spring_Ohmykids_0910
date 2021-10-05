@@ -24,7 +24,7 @@
 		<section class="d-flex justify-content-center align-items-center">
 		<form id="kidsinfoForm" method="post" action="/user/accounts/kidsinfo/create">	
 			<!-- submenu-bar -->
-			<div class="submenu-bar d-flex justify-content-center w-100">
+			<div class="submenu-bar d-flex justify-content-center w-100 mt-3">
 				<div class="d-flex justify-content-between align-items-center w-100">
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5>My Kids 등록</h5></div> 

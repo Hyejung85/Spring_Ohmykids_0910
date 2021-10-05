@@ -36,6 +36,12 @@ public class AlbumWithComment {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
+	public List<ImageFile> getImageFileList() {
+		return imageFileList;
+	}
+	public void setImageFileList(List<ImageFile> imageFileList) {
+		this.imageFileList = imageFileList;
+	}
 	
 	
 	

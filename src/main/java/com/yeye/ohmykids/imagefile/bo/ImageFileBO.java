@@ -18,16 +18,16 @@ public class ImageFileBO {
 	private ImageFileDAO imageFileDAO;
 	
 
-	//이미지 파일 저장
+	//이미지 파일 저장 (리스트로 저장)
 	public int addImageFiles(int userId, String type, int targetId, MultipartFile[] files) {
 		
 			
 			MultiFileManagerService multiFileManager = new MultiFileManagerService();
 			List<String> filePathList = multiFileManager.saveFile(userId, type, targetId, files);
 			
-			if(filePathList == null) {
-				return -1;
-			}
+				if(files == null) {
+					return -1;
+				}
 		
 		return imageFileDAO.insertImgeFiles(userId, type, targetId, filePathList);
 	}

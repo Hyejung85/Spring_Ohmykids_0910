@@ -43,11 +43,21 @@ public class MultiFileManagerService {
 		//파일저장(byte 단위로 저장)
 			byte[] bytes;
 			try {
+				//파일접근이 가능한 path를 스트링에 저장 > 리스트경로로 만든다 > 리스트에 애드한다.
+				List<String> filePathList = new ArrayList<>();
 				
 				for(MultipartFile file : files) {
+					
 					bytes = file.getBytes();
 					Path path = Paths.get(filePath + file.getOriginalFilename());// static 메소드 :  객체생성없이 사용
 					Files.write(path, bytes);
+					
+					String accessiblePath=  "/images/" + directoryName + file.getOriginalFilename(); 
+					
+					
+					filePathList.add(accessiblePath);
+					
+					return filePathList; //리스트 리턴
 				}
 				
 			} catch (IOException e) {
@@ -55,18 +65,8 @@ public class MultiFileManagerService {
 				e.printStackTrace();
 				return null;
 			}
-	
-		
-		//파일접근이 가능한 path를 스트링에 저장 > 리스트경로로 만든다 > 리스트에 애드한다.
-		List<String> filePathList = new ArrayList<>();
-		
-		for(MultipartFile file:files) {
-			//파일접근이 가능한 path
-			String path=  "/images/" + directoryName + file.getOriginalFilename(); 
-			filePathList.add(path);
-		}
-		
-		return filePathList; //리스트 리턴
+			
+		return null;
 	}
 	
 
