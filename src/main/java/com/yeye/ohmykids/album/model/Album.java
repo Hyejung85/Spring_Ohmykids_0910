@@ -15,6 +15,8 @@ public class Album {
 	//private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
+	
+	
 	public int getId() {
 		return id;
 	}

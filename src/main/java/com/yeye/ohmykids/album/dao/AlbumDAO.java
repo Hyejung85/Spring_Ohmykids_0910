@@ -20,8 +20,8 @@ public interface AlbumDAO {
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
 			, @Param("weather") String weather
-			, @Param("content") String content
-			, @Param("imagePath") String imagePath);
+			, @Param("content") String content);
+			//, @Param("imagePath") String imagePath);
 	
 	//앨범 리스트
 	public List<Album> selectAlbumList();
@@ -50,5 +50,6 @@ public interface AlbumDAO {
 	
 	//파일 삭제
 	public Album selectAlbum(@Param("id") int id);
+
 	
 }

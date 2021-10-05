@@ -6,12 +6,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.yeye.ohmykids.imagefile.model.ImageFile;
 
 public class MultiFileManagerService {
 
@@ -21,7 +23,7 @@ public class MultiFileManagerService {
 	
 	
 	//파일업로드(다중)
-	public String saveFile(int userId, String type, int targetId, MultipartFile[] files, MultipartHttpServletRequest msrt) {
+	public List<String> saveFile(int userId, String type, int targetId, MultipartFile[] files) {
 		
 		//사용자별로 파일이름이 겹치는 것을 방지하기 위해 디렉토리 생성
 		String directoryName = userId + "_" + type + "_" + targetId + "_" +System.currentTimeMillis() + "/";
@@ -38,33 +40,33 @@ public class MultiFileManagerService {
 			return null;
 		}
 		
-	
-		//파일을 리스트로 저장
-		List<MultipartFile> mf = msrt.getFiles(filePath);
-		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-			
-		}else {
 		//파일저장(byte 단위로 저장)
 			byte[] bytes;
 			try {
+				
 				for(MultipartFile file : files) {
-					
 					bytes = file.getBytes();
 					Path path = Paths.get(filePath + file.getOriginalFilename());// static 메소드 :  객체생성없이 사용
 					Files.write(path, bytes);
 				}
+				
 			} catch (IOException e) {
 				logger.error("[FileManagerService saveFile] 파일 생성 실패");
 				e.printStackTrace();
 				return null;
 			}
+	
+		
+		//파일접근이 가능한 path를 스트링에 저장 > 리스트경로로 만든다 > 리스트에 애드한다.
+		List<String> filePathList = new ArrayList<>();
+		
+		for(MultipartFile file:files) {
+			//파일접근이 가능한 path
+			String path=  "/images/" + directoryName + file.getOriginalFilename(); 
+			filePathList.add(path);
 		}
 		
-		//파일접근이 가능한 path 리턴
-		for(MultipartFile file:files) {
-			return "/images/" + directoryName + file.getOriginalFilename();
-		}
-		return filePath;
+		return filePathList; //리스트 리턴
 	}
 	
 
@@ -95,6 +97,7 @@ public class MultiFileManagerService {
 		}
 		
 	}
+
 
 
 }

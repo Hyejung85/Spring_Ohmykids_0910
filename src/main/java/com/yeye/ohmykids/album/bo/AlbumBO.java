@@ -36,22 +36,17 @@ public class AlbumBO {
 	public int createAlbum(int userId, String userName, String type, int kidsId, String kidsClass, String kidsName
 			, String weather, String content, MultipartFile[] files) {
 		
-		MultiFileManagerService multiFileManager = new MultiFileManagerService();
 		
-		// 이미지 파일
-		imageFileBO.createImageFile(userId, type, targetId, filePath);
-		
-		
-		for(MultipartFile file:files) {
-			String filePath = multiFileManager.saveFile(userId, type, targetId, file);
+		// 반복문을 통해서 파일을 하나씩 인서트
+		for(String filePath : filePathList) {
 			
 			if(filePath == null) {
 				return -1;
 			}
-		
-			
-		return albumDAO.insertAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, filePath);
 		}
+			
+		return albumDAO.insertAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content);
+	
 	}
 	
 	//앨범 목록

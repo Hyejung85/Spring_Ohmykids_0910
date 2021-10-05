@@ -41,14 +41,14 @@ public class AlbumRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		for(MultipartFile file:files) {
-			int count = albumBO.createAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, file);
+		
+			int count = albumBO.createAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, files);
 			if(count == 1) {
 				result.put("result", "success");
 			}else {
 				result.put("result", "fail");
 			}
-		}
+		
 		return result;
 	}
 	
