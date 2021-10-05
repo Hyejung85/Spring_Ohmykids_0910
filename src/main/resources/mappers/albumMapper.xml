@@ -17,7 +17,6 @@
  			, `kidsName`
  			, `weather`
  			, `content`
- 			, `imagePath`
  			, `createdAt`
  			, `updatedAt`
  		)
@@ -31,7 +30,6 @@
  			, #{kidsName}
  			, #{weather}
  			, #{content}
- 			, #{imagePath}
  			, now()
  			, now()
  		)
@@ -48,7 +46,6 @@
  			, `kidsName`
  			, `weather`
  			, `content`
- 			, `imagePath`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -67,7 +64,6 @@
  			, `kidsName`
  			, `weather`
  			, `content`
- 			, `imagePath`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -106,7 +102,6 @@
  			, `kidsName`
  			, `weather`
  			, `content`
- 			, `imagePath`
  			, `createdAt`
  			, `updatedAt`
  		FROM

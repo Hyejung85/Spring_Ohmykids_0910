@@ -45,7 +45,7 @@ public class AlbumRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-			if(albumBO.createAlbum(album, files)) {
+			if(albumBO.createAlbum(album, userId, userName, files)) {
 				result.put("result", "success");
 			}else {
 				result.put("result", "fail");

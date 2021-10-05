@@ -14,13 +14,14 @@ public interface AlbumDAO {
 	//앨범 입력
 	public int insertAlbum(
 			Album album
-			/*
-			 * @Param("userId") int userId , @Param("userName") String userName
-			 * , @Param("type") String type , @Param("kidsId") int kidsId
-			 * , @Param("kidsClass") String kidsClass , @Param("kidsName") String kidsName
-			 * , @Param("weather") String weather , @Param("content") String content
-			 * , @Param("imagePath") String imagePath
-			 */);
+			 , @Param("userId") int userId 
+			 , @Param("userName") String userName
+			 
+			 /*, @Param("type") String type , @Param("kidsId") int kidsId
+			 , @Param("kidsClass") String kidsClass , @Param("kidsName") String kidsName
+			 , @Param("weather") String weather , @Param("content") String content
+			 , @Param("imagePath") String imagePath*/
+			 );
 	
 	//앨범 리스트
 	public List<Album> selectAlbumList();

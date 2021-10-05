@@ -73,9 +73,11 @@ public class Album {
 	}
 
 	/*
-	 * public String getImagePath() { return imagePath; } public void
-	 * setImagePath(String imagePath) { this.imagePath = imagePath; }
+	 * public String getImagePath() { return imagePath; }
+	 * 
+	 * public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 	 */
+	
 	public Date getCreatedAt() {
 		return createdAt;
 	}
