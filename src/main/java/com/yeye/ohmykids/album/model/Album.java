@@ -12,7 +12,7 @@ public class Album {
 	private String kidsName;
 	private String weather;
 	private String content;
-	private String imagePath;
+	//private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -69,12 +69,11 @@ public class Album {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+
+	/*
+	 * public String getImagePath() { return imagePath; } public void
+	 * setImagePath(String imagePath) { this.imagePath = imagePath; }
+	 */
 	public Date getCreatedAt() {
 		return createdAt;
 	}

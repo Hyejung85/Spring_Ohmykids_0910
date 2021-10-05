@@ -46,7 +46,7 @@
 				</div>
 				<!-- /submenu-bar -->
 				<!-- page section -->
-				<div class="page-section px-2 d-flex justify-content-center">
+				<div class="page-section d-flex justify-content-center">
 					<!-- 알림장 요약 section -->
 					<c:forEach var="note" items="${noteList }">
 					<div>

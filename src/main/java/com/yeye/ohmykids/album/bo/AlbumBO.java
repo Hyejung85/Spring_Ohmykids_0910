@@ -13,6 +13,8 @@ import com.yeye.ohmykids.album.model.AlbumWithComment;
 import com.yeye.ohmykids.comment.bo.CommentBO;
 import com.yeye.ohmykids.comment.model.Comment;
 import com.yeye.ohmykids.common.FileManagerService;
+import com.yeye.ohmykids.common.MultiFileManagerService;
+import com.yeye.ohmykids.imagefile.bo.ImageFileBO;
 import com.yeye.ohmykids.like.bo.LikeBO;
 
 @Service
@@ -27,18 +29,29 @@ public class AlbumBO {
 	@Autowired
 	private LikeBO likeBO;
 	
+	@Autowired
+	private ImageFileBO imageFileBO;
+	
 	//앨범 작성
 	public int createAlbum(int userId, String userName, String type, int kidsId, String kidsClass, String kidsName
-			, String weather, String content, MultipartFile file) {
+			, String weather, String content, MultipartFile[] files) {
 		
-		FileManagerService fileManager = new FileManagerService();
-		String filePath = fileManager.saveFile(userId, file);
+		MultiFileManagerService multiFileManager = new MultiFileManagerService();
 		
-		if(filePath == null) {
-			return -1;
-		}
+		// 이미지 파일
+		imageFileBO.createImageFile(userId, type, targetId, filePath);
 		
+		
+		for(MultipartFile file:files) {
+			String filePath = multiFileManager.saveFile(userId, type, targetId, file);
+			
+			if(filePath == null) {
+				return -1;
+			}
+		
+			
 		return albumDAO.insertAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, filePath);
+		}
 	}
 	
 	//앨범 목록

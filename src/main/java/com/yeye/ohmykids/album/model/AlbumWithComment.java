@@ -3,10 +3,12 @@ package com.yeye.ohmykids.album.model;
 import java.util.List;
 
 import com.yeye.ohmykids.comment.model.Comment;
+import com.yeye.ohmykids.imagefile.model.ImageFile;
 
 public class AlbumWithComment {
 	private Album album;
 	private List<Comment> commentList;
+	private List<ImageFile> imageFileList;
 	private boolean isLike;
 	private int likeCount;
 	

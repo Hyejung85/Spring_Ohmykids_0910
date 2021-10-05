@@ -115,6 +115,7 @@
 	</div>
 	<script>
 		$(document).ready(function(){
+			
 			//저장버튼에 kidsId를 주입한다.
 			$("#kidsClassAndNameInput").on("change",function(){
 				var kidsId = $("#kidsClassAndNameInput option:selected").data("kids-id");
@@ -155,7 +156,12 @@
 				formData.append("kidsName", kidsName);
 				formData.append("weather", weather);
 				formData.append("content", content);
-				formData.append("file", $("#fileInput")[0].files[0]);
+				//formData.append("file", $("#fileInput")[0].files[0]); //파일 1개만 업로드시
+				fileList = $(this)[0].files;  //파일 대상이 리스트 형태로 넘어온다.
+				for(var i=0;i < fileList.length;i++){
+					var file = fileList[i];
+					formData.append("file" , file);
+				}
 				
 				$.ajax({
 					enctype: "multipart/form-data", //파일업로드 필수

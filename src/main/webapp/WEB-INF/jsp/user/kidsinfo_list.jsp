@@ -22,7 +22,7 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
-		<section class="d-flex justify-content-center align-items-center">
+		<section class="d-flex justify-content-center align-items-center mt-3">
 			<div>
 			<!-- submenu-bar -->
 			<div class="submenu-bar d-flex justify-content-center w-100">
@@ -33,7 +33,7 @@
 			</div>
 			<!-- page section -->
 			<div class="page-section pt-3 pb-5 px-2 d-flex justify-content-center">
-				<div>
+				<div class="h-100">
 				<c:forEach var="kids" items="${kidsInfoList }" varStatus="state">
 				<div class="d-flex kidsInfo h-50 w-100 mt-3 mb-3">
 					<!-- 사진 box-->

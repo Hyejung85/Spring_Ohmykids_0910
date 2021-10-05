@@ -2,6 +2,7 @@
 
 #wrap{
 	width:1200px;
+	height:auto;
 	margin:auto;
 }
 
@@ -80,7 +81,7 @@ nav{
 }
 
 section{
-	height: 800px;
+
 }
 
 .sign-section{
@@ -91,7 +92,7 @@ section{
 }
 .page-section{
 	width : 500px;
-	height : 600px;
+	height : 100%;
 	border :1px solid #088A29;
 	border-radius: 0px 0px 10px 10px;
 }
@@ -120,7 +121,7 @@ section{
 
 .note-section{
 	width : 500px;
-	height : 450px;
+	height : auto;
 	border :1px solid #088A29;
 	border-radius: 0px 0px 10px 10px ;
 	overflow: auto;
@@ -203,10 +204,12 @@ section{
 .info-box{
 	width: 400px;
 	height: 300px;
+	height: auto;
 }
 .kidsInfo{
 	border :1px solid #088A29;
 	border-radius: 10px 10px 10px 10px ;
+	
 }
 
 .note-textarea{

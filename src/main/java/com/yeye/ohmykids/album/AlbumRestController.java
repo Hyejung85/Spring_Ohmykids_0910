@@ -1,6 +1,7 @@
 package com.yeye.ohmykids.album;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +31,7 @@ public class AlbumRestController {
 			, @RequestParam("kidsName") String kidsName
 			, @RequestParam(value="weather" , required=false) String weather
 			, @RequestParam(value="content", required=false) String content
-			, @RequestParam("file") MultipartFile file
+			, @RequestParam("files") MultipartFile[] files //멀티파일
 			, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -41,11 +41,13 @@ public class AlbumRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = albumBO.createAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, file);
-		if(count == 1) {
-			result.put("result", "success");
-		}else {
-			result.put("result", "fail");
+		for(MultipartFile file:files) {
+			int count = albumBO.createAlbum(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, file);
+			if(count == 1) {
+				result.put("result", "success");
+			}else {
+				result.put("result", "fail");
+			}
 		}
 		return result;
 	}
