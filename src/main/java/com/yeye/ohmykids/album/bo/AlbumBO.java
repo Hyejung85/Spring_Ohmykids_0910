@@ -33,10 +33,10 @@ public class AlbumBO {
 	private ImageFileBO imageFileBO;
 	
 	//앨범 작성
-	public boolean createAlbum(Album album, int userId, String userName, MultipartFile[] files) {
+	public boolean createAlbum(Album album, MultipartFile[] files) {
 		
 		//앨범 정보, 내용 입력
-		int albumCount = albumDAO.insertAlbum(album, userId, userName);
+		int albumCount = albumDAO.insertAlbum(album);
 		
 		
 		//앨범 파일 입력

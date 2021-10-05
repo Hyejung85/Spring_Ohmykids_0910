@@ -36,7 +36,7 @@ public class AlbumRestController {
 			 * weather , @RequestParam(value="content", required=false) String content
 			 */
 			, @RequestParam("files") MultipartFile[] files //멀티파일
-			, HttpServletRequest request){
+			, HttpServletRequest request ){
 		
 		HttpSession session = request.getSession();
 		
@@ -45,7 +45,7 @@ public class AlbumRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-			if(albumBO.createAlbum(album, userId, userName, files)) {
+			if(albumBO.createAlbum(album, files)) {
 				result.put("result", "success");
 			}else {
 				result.put("result", "fail");
@@ -85,18 +85,23 @@ public class AlbumRestController {
 	}
 	
 	//앨범삭제
-	/*
-	 * @GetMapping("/delete") public Map<String, String> delete(
-	 * 
-	 * @RequestParam("targetId") int targetId , @RequestParam("type") String type ,
-	 * HttpServletRequest request){
-	 * 
-	 * HttpSession session = request.getSession(); int userId =
-	 * (Integer)session.getAttribute("userId");
-	 * 
-	 * Map<String, String> result = new HashMap<>();
-	 * 
-	 * if(albumBO.deleteAlbum(targetId, type, userId)) { result.put("result",
-	 * "success"); }else { result.put("result", "fail"); } return result; }
-	 */
+	
+	  @GetMapping("/delete") 
+	  public Map<String, String> delete(
+			  @RequestParam("targetId") int targetId 
+			  , @RequestParam("type") String type ,
+			  HttpServletRequest request){
+	  
+	  HttpSession session = request.getSession(); int userId =
+	  (Integer)session.getAttribute("userId");
+	  
+	  Map<String, String> result = new HashMap<>();
+	  
+	  if(albumBO.deleteAlbum(targetId, type, userId)) { 
+		  result.put("result", "success"); 
+		  }else { 
+			  result.put("result", "fail"); 
+	  } return result; 
+	  }
+	 
 }
