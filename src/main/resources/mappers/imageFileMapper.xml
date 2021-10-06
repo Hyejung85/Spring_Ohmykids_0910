@@ -11,21 +11,22 @@
  			`userId`
  			, `type`
  			, `targetId`
- 			, `imagePath
+ 			, `imagePath`
  			, `createdAt`
  			, `updatedAt`
  		)
  		VALUES
+ 		<foreach collection = "imageFiles" item = "imagefile" separator=",">
  		(
- 			#{userId}
- 			, #{type}
- 			, #{targetId}
- 			<foreach collection = "filePathList" item = "imagePath" open="(" close=")" separator=",">
- 			, #{imagePath}
- 			</foreach>
- 			, now()
- 			, now()
+ 			#{imagefile.userId}
+ 			,#{imagefile.type}
+ 			,#{imagefile.targetId}
+ 			,#{imagefile.imagePath}
+ 			,now()
+ 			,now()
  		)
+ 		</foreach>
+
  	</insert>
  
  

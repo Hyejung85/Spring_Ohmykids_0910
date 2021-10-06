@@ -1,13 +1,14 @@
 package com.yeye.ohmykids.imagefile.bo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.yeye.ohmykids.album.dao.AlbumDAO;
-import com.yeye.ohmykids.album.model.Album;
 import com.yeye.ohmykids.common.MultiFileManagerService;
 import com.yeye.ohmykids.imagefile.dao.ImageFileDAO;
 
@@ -28,7 +29,19 @@ public class ImageFileBO {
 				if(files == null) {
 					return -1;
 				}
-		
-		return imageFileDAO.insertImgeFiles(userId, type, targetId, filePathList);
+				
+			List<Map<String, Object>> imageFiles = new ArrayList<>();
+			for(String path: filePathList) {
+				Map<String, Object> item = new HashMap<>();
+				item.put("userId", userId);
+				item.put("type", type);
+				item.put("targetId", targetId);
+				item.put("imagePath", path);
+				
+				imageFiles.add(item);
+				
+			}
+			
+			return imageFileDAO.insertImgeFiles(imageFiles);
 	}
 }
