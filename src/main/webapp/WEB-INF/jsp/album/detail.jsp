@@ -76,7 +76,7 @@
 				    		<b>♡${albumWithComment.album.kidsClass }♡</b>
 				    	</div>
 				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${albumWithComment.album.kidsId }>
-				    		<b>${albumWithComment.album.kidsName }의 알림장</b>
+				    		<b>${albumWithComment.album.kidsName }의 앨범</b>
 				    	</div>
 				    </div>
 				    <!-- 학생 section -->
@@ -85,9 +85,11 @@
 						<div class="d-flex justify-content-center">
 							<div>
 								<!-- 이미지 출력 -->
+								<c:forEach var="image" items="${imageFileList }">
 								<div class="picture-full title-text d-flex justify-content-center align-items-center" id="picture">
-									<img src="${albumWithComment.album.imagePath }" id="imagePath" class="imagethumbnail" data-album-id="${albumWithComment.album.id }">
+									<img src="${image.imagePath }" id="imagePath" class="imagethumbnail" data-album-id="${albumWithComment.album.id }">
 								</div>
+								</c:forEach>
 								<!-- /이미지 출력 -->
 								<div class="d-flex justify-content-between">
 								<!-- 좋아요 -->

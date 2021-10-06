@@ -18,4 +18,10 @@ public interface ImageFileDAO {
 //			, @Param("type") String type
 //			, @Param("targetId") int targetId
 //			, @Param("imagePath") List<String> filePathList);
+	
+	
+	//이미지 목록
+	public List<ImageFile> selectImageFiles(
+			@Param("targetId") int targetId
+			, @Param("type") String type);
 }

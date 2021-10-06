@@ -11,6 +11,7 @@ public class AlbumWithComment {
 	private List<ImageFile> imageFileList;
 	private boolean isLike;
 	private int likeCount;
+	private String type;
 	
 	public Album getAlbum() {
 		return album;
@@ -42,6 +43,16 @@ public class AlbumWithComment {
 	public void setImageFileList(List<ImageFile> imageFileList) {
 		this.imageFileList = imageFileList;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -15,6 +15,7 @@ import com.yeye.ohmykids.comment.model.Comment;
 import com.yeye.ohmykids.common.FileManagerService;
 import com.yeye.ohmykids.common.MultiFileManagerService;
 import com.yeye.ohmykids.imagefile.bo.ImageFileBO;
+import com.yeye.ohmykids.imagefile.model.ImageFile;
 import com.yeye.ohmykids.like.bo.LikeBO;
 
 @Service
@@ -38,19 +39,29 @@ public class AlbumBO {
 		//앨범 정보, 내용 입력
 		int albumCount = albumDAO.insertAlbum(album);
 		
-		
 		//앨범 파일 입력
 		int fileCount = imageFileBO.addImageFiles(album.getUserId(), album.getType(), album.getId(), files);
-		
-			
+				
 		return true;
-	
 	}
 	
 	//앨범 목록
 	public List<Album> getAlbumList(){
+		//앨범 리스트
 		List<Album> albumList = albumDAO.selectAlbumList();
+		/*//앨범+사진 리스트
+		List<AlbumWithComment> albumWithImageList = new ArrayList<>();
+		//사진 리스트
+		List<ImageFile> imageFileList = imageFileBO.getImageFileList(((Album) albumList).getId(), ((Album) albumList).getType());
+		
+		AlbumWithComment albumWithImage = new AlbumWithComment();	
+		albumWithImage.setAlbumList(albumList);
+		albumWithImage.setImageFileList(imageFileList);
+		
+		albumWithImageList.add(albumWithImage);*/
+		
 		return albumList;
+		
 	}
 	
 	//앨범 상세

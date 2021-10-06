@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yeye.ohmykids.common.MultiFileManagerService;
 import com.yeye.ohmykids.imagefile.dao.ImageFileDAO;
+import com.yeye.ohmykids.imagefile.model.ImageFile;
 
 @Service
 public class ImageFileBO {
@@ -43,5 +44,12 @@ public class ImageFileBO {
 			}
 			
 			return imageFileDAO.insertImgeFiles(imageFiles);
+	}
+	
+	//앨범 리스트에 이미지 보여주기
+	public List<ImageFile> getImageFileList(int targetId, String type) {
+		List<ImageFile> imageFileList = imageFileDAO.selectImageFiles(targetId, type);
+		
+		return imageFileList;
 	}
 }

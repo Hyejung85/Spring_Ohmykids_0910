@@ -26,8 +26,22 @@
  			,now()
  		)
  		</foreach>
-
  	</insert>
- 
+ 	<select id="selectImageFiles" resultType="com.yeye.ohmykids.imagefile.model.ImageFile">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `type`
+ 			, `targetId`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM 
+ 			`imagefile`
+ 		WHERE
+ 			`targetId` = #{targetId}
+ 			AND
+ 			`type` = #{type}
+ 	</select>
  
  </mapper>

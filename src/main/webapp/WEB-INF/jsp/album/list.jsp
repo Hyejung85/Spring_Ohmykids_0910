@@ -72,36 +72,40 @@
 								</h3></div>
 							</div>
 							<!-- /일자, 날씨 -->
+							<div class="ml-4 w-100">
+							<!-- 사진 -->
+							<div id="picture" class="d-flex justify-content-center align-items-center w-25 ml-5 mt-3">
+								<c:forEach var= "image" items="${imageFileList }">
+									<a href="/album/detail_view?id=${album.id }&targetId=${album.id}&type=album" class="title-text">
+										<div class="d-flex flex-wrap">
+											<!-- 이미지 출력 -->
+											<div class="picture-square-sm title-text d-flex justify-content-center align-items-center" id="picture">
+											<img src="${image.imagePath }" id="imagePath" class="imagethumbnail">
+											</div>
+										</div>
+									</a>
+								</c:forEach>
+							</div>
+							<!-- /사진 -->
 							<!-- 앨범 내용 -->
-							<div class="w-50 d-flex align-items-center mx-3">
-								<a href="/album/detail_view?id=${album.id }&targetId=${album.id}&type=album" class="title-text">
+							<div id="albumContent" class="w-50 d-flex align-items-center mt-2">
 								<div>
-									<h5><b>원에서 가정으로</b></h5>
 									<c:set var="content" value="${album.content }" />
 									<div>
 										<c:choose>									
 											<c:when test="${content.length() > 30}">
-											${fn:substring(content,0,30) }...
+											<small>${fn:substring(content,0,30) }...</small>
 											</c:when>
 											<c:otherwise>
-											${album.content }
+											<small>${album.content }</small>
 											</c:otherwise>
 										</c:choose>
 									</div>
 								</div>
-								</a>
 							</div>
 							<!-- /앨범 내용 -->
-							<!-- 사진 -->
-							<div class="d-flex justify-content-center align-items-center w-25 mr-3">
-								<div>
-									<!-- 이미지 출력 -->
-									<div class="picture-square-sm title-text d-flex justify-content-center align-items-center" id="picture">
-									<img src="${album.imagePath }" id="imagePath" class="imagethumbnail">
-									</div>
-								</div>
 							</div>
-							<!-- /사진 -->
+							
 					</div>
 					</c:forEach>
 					<!-- /앨범 요약 -->
