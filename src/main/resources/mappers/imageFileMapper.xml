@@ -4,7 +4,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.yeye.ohmykids.imagefile.dao.ImageFileDAO">
- 	<insert id="insertImgeFiles" parameterType="map">
+ 	<insert id="insertImgeFiles" parameterType="list">
  		INSERT INTO
  			`imagefile`
  		(

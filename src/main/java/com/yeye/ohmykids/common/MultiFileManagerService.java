@@ -42,9 +42,9 @@ public class MultiFileManagerService {
 		
 		//파일저장(byte 단위로 저장)
 			byte[] bytes;
+			List<String> filePathList = new ArrayList<>();
 			try {
 				//파일접근이 가능한 path를 스트링에 저장 > 리스트경로로 만든다 > 리스트에 애드한다.
-				List<String> filePathList = new ArrayList<>();
 				
 				for(MultipartFile file : files) {
 					
@@ -57,7 +57,6 @@ public class MultiFileManagerService {
 					
 					filePathList.add(accessiblePath);
 					
-					return filePathList; //리스트 리턴
 				}
 				
 			} catch (IOException e) {
@@ -66,7 +65,7 @@ public class MultiFileManagerService {
 				return null;
 			}
 			
-		return null;
+			return filePathList; //리스트 리턴
 	}
 	
 
