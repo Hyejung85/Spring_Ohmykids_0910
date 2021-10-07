@@ -76,11 +76,12 @@
  		UPDATE 
  			`album`
  		SET
+ 			<if test = "weather != null">
  			`weather` = #{weather}
+ 			</if>
+ 			<if test = "content != null">
  			, `content` = #{content}
- 				<if test = "imagePath != null">
- 			, `imagePath` = '%'||#{imagePath}||'%'
- 				</if>
+ 			</if>
  		WHERE
  			`id` = #{id}
  	</update>

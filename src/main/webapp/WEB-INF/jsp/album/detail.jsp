@@ -84,37 +84,41 @@
 					<div class="d-flex justify-content-center mt-1 mb-1">
 						<div class="d-flex justify-content-center">
 							<div>
-								<!-- 이미지 출력 -->
-								<c:forEach var="image" items="${imageFileList }">
-								<div class="picture-full title-text d-flex justify-content-center align-items-center" id="picture">
-									<img src="${image.imagePath }" id="imagePath" class="imagethumbnail" data-album-id="${albumWithComment.album.id }">
-								</div>
+								<div class="mulitiple-image">
+									<!-- 이미지 출력 -->
+									<c:forEach var="image" items="${imageFileList }">
+									<div class="picture-full title-text d-flex justify-content-center align-items-center" id="picture">
+										<img src="${image.imagePath }" id="imagePath" class="imagethumbnail" data-album-id="${albumWithComment.album.id }">
+									</div>
 								</c:forEach>
+								</div>
 								<!-- /이미지 출력 -->
+								<!-- 좋아요 & 사진 변경 -->
 								<div class="d-flex justify-content-between">
-								<!-- 좋아요 -->
-								<div class="d-flex align-items-center title-text justify-content-end mr-3">
-									<a href="#" id="likeBtn" data-album-id="${albumWithComment.album.id }" class="ml-2">
-										<c:choose>
-											<c:when test="${albumWithComment.like }">
-												<!-- 풀하트 -->
-												<i class="bi bi-suit-heart-fill text-danger" id="heartIcon"></i> 
-											</c:when>
-												<c:otherwise>
-												<!-- 빈하트 -->
-													<i class="bi bi-suit-heart title-text" id="heartIcon"></i>
-												</c:otherwise>
-										</c:choose>
-									</a>
-									<!-- 좋아요 갯수-->
-									<b><span id="likeCount" class="ml-1">${albumWithComment.likeCount }</span> Like</b>
+									<!-- 좋아요 -->
+									<div class="d-flex align-items-center title-text justify-content-end mr-3">
+										<a href="#" id="likeBtn" data-album-id="${albumWithComment.album.id }" class="ml-2">
+											<c:choose>
+												<c:when test="${albumWithComment.like }">
+													<!-- 풀하트 -->
+													<i class="bi bi-suit-heart-fill text-danger" id="heartIcon"></i> 
+												</c:when>
+													<c:otherwise>
+													<!-- 빈하트 -->
+														<i class="bi bi-suit-heart title-text" id="heartIcon"></i>
+													</c:otherwise>
+											</c:choose>
+										</a>
+										<!-- 좋아요 갯수-->
+										<b><span id="likeCount" class="ml-1">${albumWithComment.likeCount }</span> Like</b>
+									</div>
+									<!-- /좋아요 -->
+									<!-- MIME -->
+									<input type="file" multiple accept="image/*" id="fileInput" class="d-none">
+									<div class="d-flex justify-content-left ml-3"><a href="#" class="mx-2" id="imageUploadBtn"><i class="bi bi-plus-square-fill title-text w-100 h-100"></i></a></div>
+									<!-- /사진변경 버튼 -->
 								</div>
-								<!-- /좋아요 -->
-								<!-- MIME -->
-								<input type="file" accept="image/*" id="fileInput" class="d-none">
-								<div class="d-flex justify-content-left ml-3"><a href="#" class="mx-2" id="imageUploadBtn"><i class="bi bi-plus-square-fill title-text w-100 h-100"></i></a></div>
-								<!-- /사진변경 버튼 -->
-								</div>
+								<!-- /좋아요 & 사진 변경 -->
 							</div>
 						</div>
 					</div>
@@ -163,27 +167,32 @@
 		$(document).ready(function(){
 			
 			//앨범 수정
-				$("#updateAlbumBtn").on("click", function(){
+				$("#updateAlbumBtn").on("click", function(e){
 				
+				e.preventDefault();
 				var type = $("#typeInput").val();
 				type = "album";
-				var albumId = $("#updateAlbumBtn").data("album-id");
+				var targetId = $("#updateAlbumBtn").data("album-id");
 				var kidsId = $("#kidsNameInput").data("kids-id");
 				var kidsClass = $("#kidsClassInput").val();
 				var kidsName = $("#kidsNameInput").val();
 				var weather = $("#weatherInput").val();
 				var content = $("#contentInput").val();
-				
+				var files = $("#fileInput")[0].files;
+				alert(targetId);
 				
 				var formData = new FormData();
 				formData.append("type", type);
-				formData.append("albumId", albumId);
+				formData.append("targetId", targetId);
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
 				formData.append("weather", weather);
 				formData.append("content", content);
-				formData.append("file", $("#fileInput")[0].files[0]);
+				//formData.append("file", $("#fileInput")[0].files[0]);
+				for(var i = 0; i < files.length; i++){
+					formData.append("files" , files[i]);
+				}
 				
 				$.ajax({
 					enctype:"multipart/form-data", //파일업로드 필수
@@ -241,20 +250,51 @@
 				$("#fileInput").click();
 			});
 			
-			//사진 미리보여주기
-			$("#fileInput").on("change",function(){
-				setImageFromFile(this, "#imagePath");
-			});
+			//다중 이미지 미리보기
+		    $("#fileInput").on("change", handleImgFileSelect);
 			
-			function setImageFromFile(input, expression){
-				if(input.files && input.files[0]){
-					var reader = new FileReader();
-					reader.onload = function(e){
-						$(expression).attr("src",e.target.result);
+				 
+		    function handleImgFileSelect(e) {
+		    	//첨부파일 배열
+	    	 	var sel_files = [];
+		        var files = e.target.files;
+		     	// 파일 고유넘버
+		        var fileNum = 0;
+		        //파일 배열 담기
+		        var filesArr = Array.prototype.slice.call(files);
+		        var index = 0;
+		        
+		        filesArr.forEach(function(f) {
+	            	
+		        	sel_files.push(f);
+		        	//이미지 다시 선택했을때 이미지 정보 초기화
+		        	$(".mulitiple-image").empty();
+		 
+		            var reader = new FileReader();
+		            reader.onload = function(e) {
+
+				        var html = "";
+			            
+			            html += "<div class='picture-full title-text d-flex justify-content-center align-items-center' id='imagePreview-";
+			            html += index
+			            html += "' data-index= ";
+			            html += index		
+			            html += "><img id=imgPath class='imagethumbnail' src='";
+			            html += e.target.result
+			            html += "'></div>";
+			            $(".mulitiple-image").append(html);
+			            
+			            index++;
+			            
+			            //다중 이미지중 특정 이미지만 삭제하기
+			    		$(".picture-full").on("click",function(){
+			    			$(this).remove();
+			    		}); 
+			    		
 					}
-					reader.readAsDataURL(input.files[0]);
-				}
-			}	
+		            reader.readAsDataURL(f);
+		        });		
+		    }
 			
 			
 			//코멘트 입력

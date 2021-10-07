@@ -1,5 +1,6 @@
 package com.yeye.ohmykids.album;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -51,7 +51,7 @@ public class AlbumConroller {
 	//앨범 목록
 	@RequestMapping("/list_view")
 	public String listView(
-			 Model model
+			Model model
 			, HttpServletRequest request) {
 		
 			HttpSession session = request.getSession();
@@ -65,9 +65,10 @@ public class AlbumConroller {
 			List<Album> albumList = albumBO.getAlbumList();			
 			model.addAttribute("albumList", albumList);
 			
+			
 			for(Album album : albumList) {
 				//imageFileList
-				List<ImageFile> imageFileList = imageFileBO.getImageFileList(album.getId(), album.getType());
+				List<ImageFile> imageFileList = imageFileBO.getImageFileList(album.getId(),album.getType());
 				model.addAttribute("imageFileList", imageFileList);
 			}
 			

@@ -4,7 +4,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.yeye.ohmykids.imagefile.dao.ImageFileDAO">
- 	<insert id="insertImgeFiles" parameterType="list">
+ 	<insert id="insertImageFiles" parameterType="list">
  		INSERT INTO
  			`imagefile`
  		(
@@ -43,5 +43,20 @@
  			AND
  			`type` = #{type}
  	</select>
+ 	<update id="updateImageFiles" parameterType="map">
+ 		UPDATE
+ 			`imagefile`
+ 		SET
+ 			<foreach collection = "imageFiles" item = "imagefile" separator=",">
+ 			`userId` = #{imagefile.userId}
+ 			,`type` = #{imagefile.type}
+ 			,`targetId` = #{imagefile.targetId}
+ 			<if test = "imagePaht != null">
+ 			,`imagePath` = #{imagefile.imagePath}
+ 			</if>
+ 			</foreach>
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  
  </mapper>

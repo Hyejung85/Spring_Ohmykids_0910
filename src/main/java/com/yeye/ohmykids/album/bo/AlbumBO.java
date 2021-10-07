@@ -47,19 +47,7 @@ public class AlbumBO {
 	
 	//앨범 목록
 	public List<Album> getAlbumList(){
-		//앨범 리스트
 		List<Album> albumList = albumDAO.selectAlbumList();
-		/*//앨범+사진 리스트
-		List<AlbumWithComment> albumWithImageList = new ArrayList<>();
-		//사진 리스트
-		List<ImageFile> imageFileList = imageFileBO.getImageFileList(((Album) albumList).getId(), ((Album) albumList).getType());
-		
-		AlbumWithComment albumWithImage = new AlbumWithComment();	
-		albumWithImage.setAlbumList(albumList);
-		albumWithImage.setImageFileList(imageFileList);
-		
-		albumWithImageList.add(albumWithImage);*/
-		
 		return albumList;
 		
 	}
@@ -75,6 +63,8 @@ public class AlbumBO {
 		boolean isLike = likeBO.existLike(userId, album.getType(), album.getId());
 		//좋아요 갯수
 		int likeCount = likeBO.countLike(album.getType(), album.getId());
+		//이미지 파일
+		List<ImageFile> imageFileList = imageFileBO.getImageFileList(album.getId(), album.getType());
 		
 		AlbumWithComment albumWithComment = new AlbumWithComment();
 			//앨범
@@ -85,6 +75,8 @@ public class AlbumBO {
 			albumWithComment.setLike(isLike);
 			//좋아요 갯수
 			albumWithComment.setLikeCount(likeCount);
+			//이미지 파일
+			albumWithComment.setImageFileList(imageFileList);
 			
 			albumWithCommentList.add(albumWithComment);
 			
@@ -92,21 +84,14 @@ public class AlbumBO {
 	}
 	
 	//앨범 수정
-	public int updateAlbum(int userId, String type, int noteId, int kidsId, String kidsClass, String KidsName, String weather, String content, MultipartFile file) {
+	public boolean updateAlbum(int userId, String type, int targetId, int kidsId, String kidsClass
+			, String KidsName, String weather, String content, MultipartFile[] files) {
 		
-		//사진 업데이트가 없는 경우 예외 처리
-		String filePath = null;
 		
-		if(file != null) {
-			FileManagerService fileManager = new FileManagerService();
-			filePath = fileManager.saveFile(userId, file);
-			
-			if(filePath == null) {
-				return -1;
-			}
-		}
+		int albumCount = albumDAO.updateAlbum(userId, targetId, type, kidsId, kidsClass, KidsName, weather, content);
+		int imageFileCount = imageFileBO.updateImageFiles(userId, type, targetId, files);
 		
-		return albumDAO.updateAlbum(userId, noteId, type, kidsId, kidsClass, KidsName, weather, content, filePath);
+		return true;
 	}
 	
 	//앨범 삭제
@@ -121,7 +106,7 @@ public class AlbumBO {
 			  } 
 	  //파일 삭제 
 		  MultiFileManagerService multiFileManagerService = new MultiFileManagerService(); 
-		  //multiFileManagerService.removeFile(imageFile.getImagePath()); 수정필요
+		  multiFileManagerService.removeFile(imageFile.getImagePath());
 	  //코멘트 삭제 
 	  int commentCount = commentBO.deleteCommentWithNote(targetId, type);
 	  //좋아요 삭제 

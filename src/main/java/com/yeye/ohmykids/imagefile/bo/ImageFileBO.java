@@ -43,7 +43,7 @@ public class ImageFileBO {
 				
 			}
 			
-			return imageFileDAO.insertImgeFiles(imageFiles);
+			return imageFileDAO.insertImageFiles(imageFiles);
 	}
 	
 	//앨범 리스트에 이미지 보여주기
@@ -51,5 +51,35 @@ public class ImageFileBO {
 		List<ImageFile> imageFileList = imageFileDAO.selectImageFiles(targetId, type);
 		
 		return imageFileList;
+	}
+	
+	//앨범 수정
+	public int updateImageFiles(int userId, String type, int targetId, MultipartFile[] files) {
+		
+		//사진 업데이트가 없는 경우 예외 처리 
+		  List<String> filePathList = new ArrayList<>();
+		  
+		  if(files != null) { 
+			  MultiFileManagerService multiFileManager = new MultiFileManagerService();
+			  filePathList = multiFileManager.saveFile(userId, type, targetId, files);
+		  
+			  if(filePathList == null) { 
+				  return -1; 
+				  } 
+		  }
+			
+		List<Map<String, Object>> imageFiles = new ArrayList<>();
+		for(String path: filePathList) {
+			Map<String, Object> item = new HashMap<>();
+			item.put("userId", userId);
+			item.put("type", type);
+			item.put("targetId", targetId);
+			item.put("imagePath", path);
+			
+			imageFiles.add(item);
+			
+		}
+		
+		return imageFileDAO.updateImageFiles(imageFiles);
 	}
 }

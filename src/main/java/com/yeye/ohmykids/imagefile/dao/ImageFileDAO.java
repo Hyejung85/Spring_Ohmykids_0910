@@ -12,7 +12,7 @@ import com.yeye.ohmykids.imagefile.model.ImageFile;
 public interface ImageFileDAO {
 	
 	//이미지 파일 저장
-	public int insertImgeFiles(
+	public int insertImageFiles(
 			@Param("imageFiles") List<Map<String, Object>> imageFiles);
 //			@Param("userId") int userId
 //			, @Param("type") String type
@@ -24,4 +24,7 @@ public interface ImageFileDAO {
 	public List<ImageFile> selectImageFiles(
 			@Param("targetId") int targetId
 			, @Param("type") String type);
+	
+	//이미지 수정
+	public int updateImageFiles(@Param("imageFiles") List<Map<String, Object>> imageFiles);
 }

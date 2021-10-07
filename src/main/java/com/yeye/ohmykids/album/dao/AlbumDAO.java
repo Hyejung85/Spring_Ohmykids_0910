@@ -42,8 +42,7 @@ public interface AlbumDAO {
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
 			, @Param("weather") String weather
-			, @Param("content") String content
-			, @Param("imagePath") String imagePath);
+			, @Param("content") String content);
 	
 	//앨범 삭제
 	public int deleteAlbum(
