@@ -84,7 +84,7 @@ public class AlbumConroller {
 		model.addAttribute("kidsInfoList", kidsInfoList);
 		
 		//album + comment
-		List<AlbumWithComment> albumDetailList = albumBO.getAlbum(id, userId);
+		List<AlbumWithComment> albumDetailList = albumBO.getAlbum(id, userId, type);
 		model.addAttribute("albumDetailList", albumDetailList);
 		
 		//imageFileList

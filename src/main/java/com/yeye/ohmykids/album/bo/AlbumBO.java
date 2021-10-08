@@ -72,8 +72,8 @@ public class AlbumBO {
 	}
 	
 	//앨범 상세
-	public List<AlbumWithComment> getAlbum(int id, Integer userId){
-		Album album = albumDAO.selectAlbumById(id, userId);
+	public List<AlbumWithComment> getAlbum(int targetId, Integer userId, String type){
+		Album album = albumDAO.selectAlbumById(targetId, userId);
 		
 		List<AlbumWithComment> albumWithCommentList = new ArrayList<>();
 		//코멘트 리스트
@@ -114,31 +114,28 @@ public class AlbumBO {
 	}
 	
 	//앨범 삭제
-	  public boolean deleteAlbum(int targetId, String type, int userId) { 
-	  //삭제 대상 select 
-	  //Album album = albumDAO.selectAlbum(targetId); 
-	  AlbumWithComment albumWithComment = albumDAO.selectAlbum(targetId); 
-	  //앨범 삭제 
-	  int count = albumDAO.deleteAlbum(targetId, userId);
-		  //코멘트부터 삭제 실패하는지 확인 
-		  if(count != 1) {
-			  return false; 
-			  } 
-		  
-	  // 파일 디렉토리 삭제 로직
-	  MultiFileManagerService multiFileManagerService = new MultiFileManagerService(); 
-	  multiFileManagerService.removeFile(albumWithComment.getImageFileList());
-	  
-	  //사진 삭제
-	  int imageFileCount = imageFileBO.deleteImageFiles(targetId, type); 
-	  
-	  //코멘트 삭제 
-	  int commentCount = commentBO.deleteCommentWithNote(targetId, type);
-	  
-	  //좋아요 삭제 
-	  int likeCount = likeBO.deleteLike(type, targetId);
-	  
-	  return true; 
-	  }
-	 
+	public boolean deleteAlbum(int targetId, String type, int userId) { 
+		//삭제 대상 select 
+		Album album = albumDAO.selectAlbum(targetId); 
+
+		
+		//앨범 삭제 
+		int count = albumDAO.deleteAlbum(targetId, userId);
+		//코멘트부터 삭제 실패하는지 확인 
+		if(count != 1) {
+			return false; 
+		} 
+
+		//사진 삭제 (+디렉토리 삭제)
+		int imageFileCount = imageFileBO.deleteImageFiles(targetId, type, userId); 
+
+		//코멘트 삭제 
+		int commentCount = commentBO.deleteCommentWithNote(targetId, type);
+
+		//좋아요 삭제 
+		int likeCount = likeBO.deleteLike(type, targetId);
+
+		return true; 
+	}
+
 }

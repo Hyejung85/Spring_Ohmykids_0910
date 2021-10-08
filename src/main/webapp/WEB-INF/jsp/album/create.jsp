@@ -172,7 +172,7 @@
 					success:function(data){
 						if(data.result =="success"){
 							alert("앨범 작성 성공");
-							//location.href="/album/list_view";
+							location.href="/album/list_view";
 						}else{
 							alert("앨범 작성 실패");
 						}

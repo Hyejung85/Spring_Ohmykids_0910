@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yeye.ohmykids.album.bo.AlbumBO;
+import com.yeye.ohmykids.album.dao.AlbumDAO;
+import com.yeye.ohmykids.album.model.Album;
+import com.yeye.ohmykids.album.model.AlbumWithComment;
 import com.yeye.ohmykids.common.MultiFileManagerService;
 import com.yeye.ohmykids.imagefile.dao.ImageFileDAO;
 import com.yeye.ohmykids.imagefile.model.ImageFile;
@@ -18,6 +22,11 @@ public class ImageFileBO {
 	
 	@Autowired
 	private ImageFileDAO imageFileDAO;
+	@Autowired
+	private AlbumBO albumBO;
+	@Autowired
+	private AlbumDAO albumDAO;
+	
 	
 
 	//이미지 파일 저장 (리스트로 저장)
@@ -84,12 +93,16 @@ public class ImageFileBO {
 	}
 	
 	//이미지 파일 삭제
-	public int deleteImageFiles(int targetId, String type) {
+	public int deleteImageFiles(int targetId, String type, int userId) {
 		
-		//삭제대상 select
-		//int imageCount = imageFileDAO.selectImageFile(targetId, type);
-		//삭제
-		
+		List<AlbumWithComment> albumList = albumBO.getAlbum(targetId, userId, type);
+		for(AlbumWithComment item : albumList) {
+			
+			// 파일 디렉토리 삭제 로직
+			MultiFileManagerService multiFileManagerService = new MultiFileManagerService(); 
+			multiFileManagerService.removeFile(item.getImageFileList());
+			
+		}
 		return imageFileDAO.deleteImageWithAlbum(targetId, type);
 	}
 }

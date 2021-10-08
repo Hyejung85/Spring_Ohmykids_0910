@@ -54,7 +54,7 @@ public interface AlbumDAO {
 			, @Param("userId") int userId);
 	
 	//파일 삭제
-	public AlbumWithComment selectAlbum(@Param("id") int id);
+	public Album selectAlbum(@Param("id") int id);
 
 	
 }
