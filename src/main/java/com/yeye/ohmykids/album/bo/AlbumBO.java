@@ -48,22 +48,20 @@ public class AlbumBO {
 	//앨범 목록
 	public List<AlbumWithComment> getAlbumList(int userId){
 		
-		//앨범 리스트
-		List<Album> albumList = albumDAO.selectAlbumList();
-		
-		//앨범 셀렉트
-		Album album = albumDAO.selectAlbumById(album.getId(), userId); // ?파라미터로 id를 받지 않는데, 이미지를 가져오기 위한 앨범을 셀렉트할때 id를 어떻게 get할 것인가..
-		
-		
-		//이미지 파일(앨범에 해당하는 이미지 파일 리스트)
-		List<ImageFile> imageFileList = imageFileBO.getImageFileList(album.getId(), album.getType());
-		
 		List<AlbumWithComment> albumWithCommentList = new ArrayList<>();
 		AlbumWithComment albumWithComment = new AlbumWithComment();
 		
-		albumWithComment.setAlbum(album);
+		//앨범 리스트
+		List<Album> albumList = albumDAO.selectAlbumList();
+		
+		for(Album album : albumList) {
+			//이미지 파일(앨범에 해당하는 이미지 파일 리스트)
+			List<ImageFile> imageFileList = imageFileBO.getImageFileList(album.getId(), album.getType());
+			albumWithComment.setImageFileList(imageFileList);
+		}
+		
+		//albumWithComment.setAlbum(album);
 		albumWithComment.setAlbumList(albumList);
-		albumWithComment.setImageFileList(imageFileList);
 		
 		albumWithCommentList.add(albumWithComment);
 		
@@ -116,19 +114,22 @@ public class AlbumBO {
 	//앨범 삭제
 	  public boolean deleteAlbum(int targetId, String type, int userId) { 
 	  //삭제 대상 select 
-	  Album album = albumDAO.selectAlbum(targetId); 
+	  //Album album = albumDAO.selectAlbum(targetId); 
+	  AlbumWithComment albumWithComment = albumDAO.selectAlbum(targetId); 
 	  //앨범 삭제 
 	  int count = albumDAO.deleteAlbum(targetId, userId);
 		  //코멘트부터 삭제 실패하는지 확인 
 		  if(count != 1) {
 			  return false; 
 			  } 
+		  
+	  // 파일 디렉토리 삭제 로직
+	  MultiFileManagerService multiFileManagerService = new MultiFileManagerService(); 
+	  multiFileManagerService.removeFile(albumWithComment.getImageFileList()); //이미지 파일 리스트를 변수로 줘야 한다..
+	  
 	  //사진 삭제
 	  boolean imageFileCount = imageFileBO.deleteImageFiles(targetId, type); //boolean으로 받아도 될까?
 	  
-	  // 파일 디렉토리 삭제 로직
-	  MultiFileManagerService multiFileManagerService = new MultiFileManagerService(); 
-	  multiFileManagerService.removeFile(.getImagePath()); //이미지 파일 리스트를 변수로 줘야 한다..
 	  
 	  //코멘트 삭제 
 	  int commentCount = commentBO.deleteCommentWithNote(targetId, type);

@@ -47,25 +47,25 @@
 				<!-- page section -->
 				<div class="page-section px-2 d-flex justify-content-center">
 					<!-- 앨범 요약 section -->
-					<c:forEach var="album" items="${albumList }">
+					<c:forEach var="albumWithComment" items="${albumList }">
 					<div>
 						<div class="note-contraction d-flex">
 							<!-- 일자, 날씨 -->
 							<div class="w-25 text-center mt-3 ml-2">
-								<div class="d-flex align-items-center justify-content-center"><h2><b><fmt:formatDate value="${album.createdAt }" pattern="M" /></b></h2>월<h2><b><fmt:formatDate value="${album.createdAt }" pattern="d" /></b></h2>일</div>
-								<div><h5><small><fmt:formatDate value="${album.createdAt }" pattern="E" />요일</small></h5></div>
+								<div class="d-flex align-items-center justify-content-center"><h2><b><fmt:formatDate value="${albumWithComment.album.createdAt }" pattern="M" /></b></h2>월<h2><b><fmt:formatDate value="${albumWithComment.album.createdAt }" pattern="d" /></b></h2>일</div>
+								<div><h5><small><fmt:formatDate value="${albumWithComment.album.createdAt }" pattern="E" />요일</small></h5></div>
 								<div><h3>
 									<c:choose>
-									<c:when test="${album.weather eq '맑음' }">
+									<c:when test="${albumWithComment.album.weather eq '맑음' }">
 									<img src="/static/images/sunny.png" width="35" height="35">
 									</c:when>
-									<c:when test="${album.weather eq '흐림' }">
+									<c:when test="${albumWithComment.album.weather eq '흐림' }">
 									<img src="/static/images/cloud.png" width="35" height="35">
 									</c:when>
-									<c:when test="${album.weather eq '비' }">
+									<c:when test="${albumWithComment.album.weather eq '비' }">
 									<img src="/static/images/rain.png" width="35" height="35">
 									</c:when>
-									<c:when test="${album.weather eq '눈' }">
+									<c:when test="${albumWithComment.album.weather eq '눈' }">
 									<img src="/static/images/snow.png" width="35" height="35">
 									</c:when>
 									</c:choose>
@@ -75,8 +75,8 @@
 							<div class="ml-4 w-100">
 							<!-- 사진 -->
 							<div id="picture" class="d-flex justify-content-center align-items-center w-25 ml-5 mt-3">
-								<c:forEach var= "image" items="${imageFileList }">
-									<a href="/album/detail_view?id=${album.id }&targetId=${album.id}&type=album" class="title-text">
+								<c:forEach var= "image" items="${albumWithComment.imageFileList }">
+									<a href="/album/detail_view?id=${albumWithComment.album.album.id }&targetId=${albumWithComment.album.album.id}&type=album" class="title-text">
 										<div class="d-flex flex-wrap">
 											<!-- 이미지 출력 -->
 											<div class="picture-square-sm title-text d-flex justify-content-center align-items-center" id="picture">
@@ -90,14 +90,14 @@
 							<!-- 앨범 내용 -->
 							<div id="albumContent" class="w-50 d-flex align-items-center mt-2">
 								<div>
-									<c:set var="content" value="${album.content }" />
+									<c:set var="content" value="${albumWithComment.album.content }" />
 									<div>
 										<c:choose>									
 											<c:when test="${content.length() > 30}">
 											<small>${fn:substring(content,0,30) }...</small>
 											</c:when>
 											<c:otherwise>
-											<small>${album.content }</small>
+											<small>${albumWithComment.album.content  }</small>
 											</c:otherwise>
 										</c:choose>
 									</div>

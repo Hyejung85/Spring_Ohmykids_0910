@@ -69,9 +69,9 @@ public class MultiFileManagerService {
 	}
 	
 
-	public void removeFile(List<String> filePathList) {
+	public void removeFile(List<ImageFile> ImageFiles) {
 		
-		for(String filePath : filePathList) {
+		for(ImageFile filePath : ImageFiles) {
 			//삭제할 파일경로
 			String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images/", "");
 			//파일을 지운다
