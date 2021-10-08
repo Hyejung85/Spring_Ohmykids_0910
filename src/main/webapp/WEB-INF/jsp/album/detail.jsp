@@ -179,7 +179,7 @@
 				var weather = $("#weatherInput").val();
 				var content = $("#contentInput").val();
 				var files = $("#fileInput")[0].files;
-				alert(targetId);
+		
 				
 				var formData = new FormData();
 				formData.append("type", type);

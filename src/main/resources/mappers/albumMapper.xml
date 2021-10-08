@@ -94,11 +94,8 @@
  		UPDATE 
  			`album`
  		SET
- 			<if test = "weather != null">
- 			`weather` = #{weather}
- 			</if>
  			<if test = "content != null">
- 			, `content` = #{content}
+ 			 `content` = #{content}
  			</if>
  		WHERE
  			`id` = #{id}

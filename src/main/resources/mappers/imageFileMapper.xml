@@ -43,21 +43,6 @@
  			AND
  			`type` = #{type}
  	</select>
- 	<update id="updateImageFiles" parameterType="map">
- 		UPDATE
- 			`imagefile`
- 		SET
- 			<foreach collection = "imageFiles" item = "imagefile" separator=",">
- 			`userId` = #{imagefile.userId}
- 			,`type` = #{imagefile.type}
- 			,`targetId` = #{imagefile.targetId}
- 			<if test = "imagePaht != null">
- 			,`imagePath` = #{imagefile.imagePath}
- 			</if>
- 			</foreach>
- 		WHERE
- 			`id` = #{id}
- 	</update>
  	<delete id="deleteImageWithAlbum" parameterType="map">
  		DELETE FROM 
  			`imagefile`

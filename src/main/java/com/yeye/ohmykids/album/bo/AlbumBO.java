@@ -106,9 +106,23 @@ public class AlbumBO {
 	public boolean updateAlbum(int userId, String type, int targetId, int kidsId, String kidsClass
 			, String KidsName, String weather, String content, MultipartFile[] files) {
 		
-		
+		//앨범 내용 수정
 		int albumCount = albumDAO.updateAlbum(userId, targetId, type, kidsId, kidsClass, KidsName, weather, content);
-		int imageFileCount = imageFileBO.updateImageFiles(userId, type, targetId, files);
+		
+		//사진 업데이트가 없는 경우 예외 처리
+		List<String> filePathList = new ArrayList<>();
+
+		if(files != null) { 
+			MultiFileManagerService multiFileManager = new MultiFileManagerService();
+			filePathList = multiFileManager.saveFile(userId, type, targetId, files);
+
+			if(filePathList == null) { 
+				return false; 
+			} 
+			//이미지 전체 삭제 > 새로 인서트
+			int imageFileDeleteCount = imageFileBO.deleteImageFiles(targetId, type, userId);
+			int imageFileInsertCount = imageFileBO.addImageFiles(userId, type, targetId, files);
+		}
 		
 		return true;
 	}
