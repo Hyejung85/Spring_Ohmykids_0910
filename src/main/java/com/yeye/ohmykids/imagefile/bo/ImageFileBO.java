@@ -62,7 +62,7 @@ public class ImageFileBO {
 		return imageFileList;
 	}
 	
-	//앨범 수정
+	//앨범 수정 (이미지 전체 삭제 > 전체 인서트 로직)
 	public int updateImageFiles(int userId, String type, int targetId, MultipartFile[] files) {
 		
 		//사진 업데이트가 없는 경우 예외 처리 
@@ -95,14 +95,15 @@ public class ImageFileBO {
 	//이미지 파일 삭제
 	public int deleteImageFiles(int targetId, String type, int userId) {
 		
-		List<AlbumWithComment> albumList = albumBO.getAlbum(targetId, userId, type);
-		for(AlbumWithComment item : albumList) {
+		//album 하나에 해당하는 이미지 리스트 셀렉
+		//Album album = albumDAO.selectAlbum(targetId); 
+		
+		List<ImageFile> imageFileList = imageFileDAO.selectImageFiles(targetId, type);
 			
 			// 파일 디렉토리 삭제 로직
 			MultiFileManagerService multiFileManagerService = new MultiFileManagerService(); 
-			multiFileManagerService.removeFile(item.getImageFileList());
+			multiFileManagerService.removeFile(imageFileList);
 			
-		}
 		return imageFileDAO.deleteImageWithAlbum(targetId, type);
 	}
 }

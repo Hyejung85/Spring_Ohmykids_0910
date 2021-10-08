@@ -62,7 +62,7 @@
  		DELETE FROM 
  			`imagefile`
  		WHERE
- 			`id` = #{id}
+ 			`targetId` = #{targetId}
  			AND
  			`type` = #{type}
  	</delete>
