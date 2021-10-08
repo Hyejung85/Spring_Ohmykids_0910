@@ -73,7 +73,7 @@ public class MultiFileManagerService {
 		
 		for(ImageFile filePath : ImageFiles) {
 			//삭제할 파일경로
-			String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images/", "");
+			String realFilePath = FILE_UPLOAD_PATH + filePath.getImagePath().replace("/images/", "");
 			//파일을 지운다
 			Path path = Paths.get(realFilePath);
 		

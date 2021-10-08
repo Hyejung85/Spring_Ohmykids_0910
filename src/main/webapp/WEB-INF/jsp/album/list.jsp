@@ -45,7 +45,7 @@
 				</div>
 				<!-- /submenu-bar -->
 				<!-- page section -->
-				<div class="page-section px-2 d-flex justify-content-center">
+				<div class="page-section px-2 d-flex justify-content-center ">
 					<!-- 앨범 요약 section -->
 					<c:forEach var="albumWithComment" items="${albumList }">
 					<div>
@@ -72,12 +72,12 @@
 								</h3></div>
 							</div>
 							<!-- /일자, 날씨 -->
-							<div class="ml-4 w-100">
+							<div class=" w-100">
 							<!-- 사진 -->
-							<div id="picture" class="d-flex justify-content-center align-items-center w-25 ml-5 mt-3">
+							<div id="picture" class="d-flex align-items-center w-100 mt-3 flex-wrap">
 								<c:forEach var= "image" items="${albumWithComment.imageFileList }">
-									<a href="/album/detail_view?id=${albumWithComment.album.album.id }&targetId=${albumWithComment.album.album.id}&type=album" class="title-text">
-										<div class="d-flex flex-wrap">
+									<a href="/album/detail_view?id=${albumWithComment.album.id }&targetId=${albumWithComment.album.id}&type=album" class="title-text">
+										<div>
 											<!-- 이미지 출력 -->
 											<div class="picture-square-sm title-text d-flex justify-content-center align-items-center" id="picture">
 											<img src="${image.imagePath }" id="imagePath" class="imagethumbnail">

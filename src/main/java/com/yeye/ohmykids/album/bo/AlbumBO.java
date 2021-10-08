@@ -49,7 +49,6 @@ public class AlbumBO {
 	public List<AlbumWithComment> getAlbumList(int userId){
 		
 		List<AlbumWithComment> albumWithCommentList = new ArrayList<>();
-		AlbumWithComment albumWithComment = new AlbumWithComment();
 		
 		//앨범 리스트
 		List<Album> albumList = albumDAO.selectAlbumList();
@@ -57,13 +56,16 @@ public class AlbumBO {
 		for(Album album : albumList) {
 			//이미지 파일(앨범에 해당하는 이미지 파일 리스트)
 			List<ImageFile> imageFileList = imageFileBO.getImageFileList(album.getId(), album.getType());
+			
+			AlbumWithComment albumWithComment = new AlbumWithComment();
+			
 			albumWithComment.setImageFileList(imageFileList);
+			albumWithComment.setAlbum(album);
+			
+			albumWithCommentList.add(albumWithComment);
 		}
 		
-		//albumWithComment.setAlbum(album);
-		albumWithComment.setAlbumList(albumList);
 		
-		albumWithCommentList.add(albumWithComment);
 		
 		return albumWithCommentList;
 		
@@ -125,7 +127,7 @@ public class AlbumBO {
 		  
 	  // 파일 디렉토리 삭제 로직
 	  MultiFileManagerService multiFileManagerService = new MultiFileManagerService(); 
-	  multiFileManagerService.removeFile(albumWithComment.getImageFileList()); //이미지 파일 리스트를 변수로 줘야 한다..
+	  multiFileManagerService.removeFile(albumWithComment.getImageFileList());
 	  
 	  //사진 삭제
 	  boolean imageFileCount = imageFileBO.deleteImageFiles(targetId, type); //boolean으로 받아도 될까?
