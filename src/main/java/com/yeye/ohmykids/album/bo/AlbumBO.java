@@ -130,11 +130,11 @@ public class AlbumBO {
 	  multiFileManagerService.removeFile(albumWithComment.getImageFileList());
 	  
 	  //사진 삭제
-	  boolean imageFileCount = imageFileBO.deleteImageFiles(targetId, type); //boolean으로 받아도 될까?
-	  
+	  int imageFileCount = imageFileBO.deleteImageFiles(targetId, type); 
 	  
 	  //코멘트 삭제 
 	  int commentCount = commentBO.deleteCommentWithNote(targetId, type);
+	  
 	  //좋아요 삭제 
 	  int likeCount = likeBO.deleteLike(type, targetId);
 	  

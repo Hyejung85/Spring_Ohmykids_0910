@@ -28,11 +28,6 @@ public interface ImageFileDAO {
 	//이미지 수정
 	public int updateImageFiles(@Param("imageFiles") List<Map<String, Object>> imageFiles);
 	
-	//대상 이미지 선택
-	public int selectImageFile(
-			@Param("targetId") int targetId
-			, @Param("type") String type);
-	
 	//이미지 삭제
 	public int deleteImageWithAlbum(
 			@Param("targetId") int targetId
