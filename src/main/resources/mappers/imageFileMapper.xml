@@ -58,5 +58,30 @@
  		WHERE
  			`id` = #{id}
  	</update>
+ 	<select id = "selectImageFile" resultType="com.yeye.ohmykids.imagefile.model.ImageFile">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `type`
+ 			, `targetId`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM 
+ 			`imagefile`
+ 		WHERE
+ 			`targetId` = #{targetId}
+ 			AND
+ 			`type` = #{type}
+ 	
+ 	</select>
+ 	<delete id="deleteImageWithAlbum" parameterType="map">
+ 		DELETE FROM 
+ 			`imagefile`
+ 		WHERE
+ 			`id` = #{id}
+ 			AND
+ 			`type` = #{type}
+ 	</delete>
  
  </mapper>

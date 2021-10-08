@@ -82,4 +82,20 @@ public class ImageFileBO {
 		
 		return imageFileDAO.updateImageFiles(imageFiles);
 	}
+	
+	//이미지 select
+	public int getImageFile(int targetId, String type) {
+		return imageFileDAO.selectImageFile(targetId, type);
+	}
+	
+	//이미지 파일 삭제
+	public boolean deleteImageFiles(int targetId, String type) {
+		
+		//삭제대상 select
+		int imageCount = imageFileDAO.selectImageFile(targetId, type);
+		//삭제
+		int deleteCount = imageFileDAO.deleteImageWithAlbum(targetId, type);
+		
+		return true;
+	}
 }

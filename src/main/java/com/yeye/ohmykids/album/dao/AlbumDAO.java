@@ -28,6 +28,10 @@ public interface AlbumDAO {
 	//앨범 리스트
 	public List<Album> selectAlbumList();
 	
+	//앨범 셀렉트
+	public Album selectAlbumByUserId(
+			@Param("userId") int userId);
+	
 	//앨범 상세(+코멘트)
 	public Album selectAlbumById(
 			@Param("id") int id

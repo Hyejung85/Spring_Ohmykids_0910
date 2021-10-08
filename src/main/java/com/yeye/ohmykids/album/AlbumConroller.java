@@ -1,6 +1,5 @@
 package com.yeye.ohmykids.album;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -61,45 +61,38 @@ public class AlbumConroller {
 			List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 			model.addAttribute("kidsInfoList", kidsInfoList);
 			
-			//albumList
-			List<Album> albumList = albumBO.getAlbumList();			
+			//albumList(+이미지 리스트)
+			List<AlbumWithComment> albumList = albumBO.getAlbumList(userId);			
 			model.addAttribute("albumList", albumList);
-			
-			
-			for(Album album : albumList) {
-				//imageFileList
-				List<ImageFile> imageFileList = imageFileBO.getImageFileList(album.getId(),album.getType());
-				model.addAttribute("imageFileList", imageFileList);
-			}
-			
+		
 		return "album/list";
 	}
 	
 	//앨범 상세, 수정 화면
-		@RequestMapping("/detail_view")
-		public String detailView(
-				@RequestParam("id") int id
-				, @RequestParam("type") String type
-				, Model model
-				, HttpServletRequest request) {
-			
-			HttpSession session = request.getSession();
-			int userId = (Integer)session.getAttribute("userId");
-			
-			//kidsInfoList 보여주기
-			List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
-			model.addAttribute("kidsInfoList", kidsInfoList);
-			
-			//album + comment
-			List<AlbumWithComment> albumDetailList = albumBO.getAlbum(id, userId);
-			model.addAttribute("albumDetailList", albumDetailList);
-			
-			//imageFileList
-			List<ImageFile> imageFileList = imageFileBO.getImageFileList(id, type);
-			model.addAttribute("imageFileList", imageFileList);
-			
-			return "album/detail";
-		}
+	@RequestMapping("/detail_view")
+	public String detailView(
+			@RequestParam("id") int id
+			, @RequestParam("type") String type
+			, Model model
+			, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		//kidsInfoList 보여주기
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		model.addAttribute("kidsInfoList", kidsInfoList);
+		
+		//album + comment
+		List<AlbumWithComment> albumDetailList = albumBO.getAlbum(id, userId);
+		model.addAttribute("albumDetailList", albumDetailList);
+		
+		//imageFileList
+		List<ImageFile> imageFileList = imageFileBO.getImageFileList(id, type);
+		model.addAttribute("imageFileList", imageFileList);
+		
+		return "album/detail";
+	}
 		
 
 }

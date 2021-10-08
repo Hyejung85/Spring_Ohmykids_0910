@@ -72,6 +72,24 @@
  			`userId` = #{userId}
  			AND `id` = #{id} 
  	</select>
+ 	<select id="selectAlbumByUserId" parameterType="map" resultType="com.yeye.ohmykids.album.model.Album">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `type`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`album`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
  	<update id = "updateAlbum" parameterType="map">
  		UPDATE 
  			`album`

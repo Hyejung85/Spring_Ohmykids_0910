@@ -69,30 +69,35 @@ public class MultiFileManagerService {
 	}
 	
 
-	public void removeFile(String filePath) {
-		//삭제할 파일경로
-		String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images/", "");
-		//파일을 지운다
-		Path path = Paths.get(realFilePath);
-		//해당파일이 있는지 확인
-		if(Files.exists(path)) {
-			try {
-				Files.delete(path);
-			} catch (IOException e) {
-				logger.error("[FileManagerService saveFile] 파일 삭제 실패");
-				e.printStackTrace();
-			}
-		}
-		//디렉토리(폴더) 지우기
-		path = path.getParent();
+	public void removeFile(List<String> filePathList) {
 		
-		if(Files.exists(path)) {
-			try {
-				Files.delete(path);
-			} catch (IOException e) {
-				logger.error("[FileManagerService saveFile] 파일 디렉토리 삭제 실패");
-				e.printStackTrace();
+		for(String filePath : filePathList) {
+			//삭제할 파일경로
+			String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images/", "");
+			//파일을 지운다
+			Path path = Paths.get(realFilePath);
+		
+			//해당파일이 있는지 확인
+			if(Files.exists(path)) {
+				try {
+					Files.delete(path);
+				} catch (IOException e) {
+					logger.error("[FileManagerService saveFile] 파일 삭제 실패");
+					e.printStackTrace();
+				}
 			}
+			//디렉토리(폴더) 지우기
+			path = path.getParent();
+			
+			if(Files.exists(path)) {
+				try {
+					Files.delete(path);
+				} catch (IOException e) {
+					logger.error("[FileManagerService saveFile] 파일 디렉토리 삭제 실패");
+					e.printStackTrace();
+				}
+			}
+		
 		}
 		
 	}

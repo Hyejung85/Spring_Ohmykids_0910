@@ -7,6 +7,7 @@ import com.yeye.ohmykids.imagefile.model.ImageFile;
 
 public class AlbumWithComment {
 	private Album album;
+	private List<Album> albumList;
 	private List<Comment> commentList;
 	private List<ImageFile> imageFileList;
 	private boolean isLike;
@@ -48,6 +49,12 @@ public class AlbumWithComment {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public List<Album> getAlbumList() {
+		return albumList;
+	}
+	public void setAlbumList(List<Album> albumList) {
+		this.albumList = albumList;
 	}
 	
 	
