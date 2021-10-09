@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
 import com.yeye.ohmykids.note.bo.NoteBO;
-import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
 
 @RestController
 @RequestMapping("/note")

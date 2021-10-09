@@ -1,4 +1,4 @@
-package com.yeye.ohmykids.user.kidsinfo.model;
+package com.yeye.ohmykids.kidsinfo.model;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.yeye.ohmykids.user.kidsinfo.bo;
+package com.yeye.ohmykids.kidsinfo.bo;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yeye.ohmykids.common.FileManagerService;
-import com.yeye.ohmykids.user.kidsinfo.dao.KidsInfoDAO;
-import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
+import com.yeye.ohmykids.kidsinfo.dao.KidsInfoDAO;
+import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
 
 @Service
 public class KidsInfoBO {

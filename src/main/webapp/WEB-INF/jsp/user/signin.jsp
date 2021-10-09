@@ -79,7 +79,7 @@
 				data:{"type":type, "loginId":loginId, "password":password},
 				success:function(data){
 					if(data.result == "success"){
-						location.href="/user/accounts/kidsinfo/list_view";
+						location.href="/kidsinfo/list_view";
 					}else{
 						alert("아이디 또는 비밀번호를 확인해 주세요.");
 					}

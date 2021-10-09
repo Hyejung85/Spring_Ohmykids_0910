@@ -30,7 +30,7 @@
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5>My Kids List</h5></div> 
 					<!-- 자녀정보 등록 -->
-					<div class="mx-3"><a href="/user/accounts/kidsinfo/create_view" class="btn btn-yellow btn-sm" id="kidsinfoCreateBtn"><b>자녀등록</b></a></div>
+					<div class="mx-3"><a href="/kidsinfo/create_view" class="btn btn-yellow btn-sm" id="kidsinfoCreateBtn"><b>자녀등록</b></a></div>
 				</div>
 			</div>
 			<!-- page section -->
@@ -55,7 +55,7 @@
 								</div>
 								<!-- /이미지 출력 -->
 								<!-- 상세보기 이동 버튼 -->	
-								<div class="d-flex justify-content-center"><a href="/user/accounts/kidsinfo/detail_view?id=${kids.id }"class="btn btn-green mt-2" id="listBtn" data-kidsinfo-id="${kids.id }">상세보기</a></div>
+								<div class="d-flex justify-content-center"><a href="/kidsinfo/detail_view?id=${kids.id }"class="btn btn-green mt-2" id="listBtn" data-kidsinfo-id="${kids.id }">상세보기</a></div>
 								<!-- /상세보기 이동 버튼 -->
 							</div>
 						</div>

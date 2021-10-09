@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.yeye.ohmykids.user.kidsinfo.dao.KidsInfoDAO">
+ <mapper namespace="com.yeye.ohmykids.kidsinfo.dao.KidsInfoDAO">
  	<insert id="insertKidsInfo" parameterType="map">
  		INSERT INTO
  			`kidsinfo`
@@ -49,7 +49,7 @@
  			`id` = #{id}
  	</update>
  	<!-- 자녀목록 -->
- 	<select id="selectKidsInfoList" parameterType="int" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo" >
+ 	<select id="selectKidsInfoList" parameterType="int" resultType="com.yeye.ohmykids.kidsinfo.model.KidsInfo" >
  		SELECT
  			`id`
  			, `userId`
@@ -69,7 +69,7 @@
  		ORDER BY `id` 
  	</select>
  	<!-- 자녀목록(반정보 중복없이 보기) -->
- 	<select id="selectKidsInfoListByClass" parameterType="int" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo" >
+ 	<select id="selectKidsInfoListByClass" parameterType="int" resultType="com.yeye.ohmykids.kidsinfo.model.KidsInfo" >
  		SELECT
  			`id`
  			, `userId`
@@ -90,7 +90,7 @@
  	</select>
  	
  	<!-- 자녀정보리스트(반 선택에 따른 이름정보 보기)-->
- 	<select id="selectKidsInfoName" parameterType="int" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo" >
+ 	<select id="selectKidsInfoName" parameterType="int" resultType="com.yeye.ohmykids.kidsinfo.model.KidsInfo" >
  		SELECT
  			`id`
  			, `userId`
@@ -112,7 +112,7 @@
  	
  	
  	<!-- 자녀정보 상세 -->
- 	<select id="selectKidsInfo" parameterType="map" resultType="com.yeye.ohmykids.user.kidsinfo.model.KidsInfo">
+ 	<select id="selectKidsInfo" parameterType="map" resultType="com.yeye.ohmykids.kidsinfo.model.KidsInfo">
  		SELECT
  			`id`
  			, `userId`

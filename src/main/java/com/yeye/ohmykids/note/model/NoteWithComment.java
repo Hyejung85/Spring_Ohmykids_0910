@@ -3,7 +3,7 @@ package com.yeye.ohmykids.note.model;
 import java.util.List;
 
 import com.yeye.ohmykids.comment.model.Comment;
-import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
+import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
 
 public class NoteWithComment {
 	private Note note;

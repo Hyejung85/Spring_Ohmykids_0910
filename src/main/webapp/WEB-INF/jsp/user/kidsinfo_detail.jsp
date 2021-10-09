@@ -31,7 +31,7 @@
 					<div class="mx-3 mt-2"><h5>My Kids 상세</h5></div> 
 					<div class="d-flex">
 					<!-- 목록 버튼 -->
-					<div class="ml-3"><a href="/user/accounts/kidsinfo/list_view" class="btn btn-yellow btn-sm" id="kidsinfoListBtn"><b>목록으로</b></a></div>
+					<div class="ml-3"><a href="/kidsinfo/list_view" class="btn btn-yellow btn-sm" id="kidsinfoListBtn"><b>목록으로</b></a></div>
 					<!-- 저장 버튼 -->
 					<div class="ml-2 mr-3"><button type="submit" class="btn btn-yellow btn-sm" id="kidsinfoUpdateBtn" data-kidsinfo-id="${kidsInfo.id }"><b>수정</b></button></div>
 					</div>
@@ -178,7 +178,7 @@
 				$.ajax({
 					enctype:"multipart/form-data", //파일업로드 필수
 					type:"POST",
-					url:"/user/accounts/kidsinfo/update",
+					url:"kidsinfo/update",
 					processData:false, //파일업로드 필수
 					contentType:false, //파일업로드 필수
 					data:formData,

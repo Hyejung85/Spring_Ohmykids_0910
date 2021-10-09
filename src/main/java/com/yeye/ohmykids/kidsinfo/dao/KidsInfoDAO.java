@@ -1,11 +1,11 @@
-package com.yeye.ohmykids.user.kidsinfo.dao;
+package com.yeye.ohmykids.kidsinfo.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
+import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
 
 @Repository
 public interface KidsInfoDAO {

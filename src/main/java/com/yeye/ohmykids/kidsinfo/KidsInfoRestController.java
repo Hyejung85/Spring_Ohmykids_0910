@@ -1,4 +1,4 @@
-package com.yeye.ohmykids.user.kidsinfo;
+package com.yeye.ohmykids.kidsinfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
+import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
 
 @RestController
-@RequestMapping("/user/accounts/kidsinfo")
+@RequestMapping("/kidsinfo")
 public class KidsInfoRestController {
 	
 	@Autowired

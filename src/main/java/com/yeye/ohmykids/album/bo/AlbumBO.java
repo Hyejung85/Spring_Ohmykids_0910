@@ -65,8 +65,6 @@ public class AlbumBO {
 			albumWithCommentList.add(albumWithComment);
 		}
 		
-		
-		
 		return albumWithCommentList;
 		
 	}

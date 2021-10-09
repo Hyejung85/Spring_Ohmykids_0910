@@ -17,8 +17,8 @@ import com.yeye.ohmykids.album.model.Album;
 import com.yeye.ohmykids.album.model.AlbumWithComment;
 import com.yeye.ohmykids.imagefile.bo.ImageFileBO;
 import com.yeye.ohmykids.imagefile.model.ImageFile;
-import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
-import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
+import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
+import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
 
 @Controller
 @RequestMapping("/album")

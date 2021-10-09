@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
+import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
 import com.yeye.ohmykids.note.bo.NoteBO;
 import com.yeye.ohmykids.note.model.Note;
 import com.yeye.ohmykids.note.model.NoteWithComment;
-import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
-import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
 
 @Controller
 @RequestMapping("/note")

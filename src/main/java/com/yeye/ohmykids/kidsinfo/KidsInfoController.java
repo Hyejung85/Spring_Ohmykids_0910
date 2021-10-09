@@ -1,4 +1,4 @@
-package com.yeye.ohmykids.user.kidsinfo;
+package com.yeye.ohmykids.kidsinfo;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.yeye.ohmykids.user.kidsinfo.bo.KidsInfoBO;
-import com.yeye.ohmykids.user.kidsinfo.model.KidsInfo;
+import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
+import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
 
 @Controller
-@RequestMapping("/user/accounts/kidsinfo")
+@RequestMapping("/kidsinfo")
 public class KidsInfoController {
 	
 	@Autowired
