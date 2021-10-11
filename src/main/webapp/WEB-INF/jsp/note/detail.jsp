@@ -24,7 +24,7 @@
 		<c:import url="/WEB-INF/jsp/include/menu.jsp" />
 		<section class="d-flex justify-content-center align-items-top mt-3">
 			<div id="typeInput">
-			<c:forEach var="noteWithComment" items="${noteDetailList }" varStatus="status">
+			<c:forEach var="noteWithComment" items="${noteDetailListForTeacher }" varStatus="status">
 			<!-- submenu-bar -->
 			<div class="submenu-bar d-flex justify-content-center w-100">
 				<div class="d-flex justify-content-between align-items-center w-100">
@@ -34,9 +34,11 @@
 						<!-- 목록 버튼 -->
 						<div class="mr-2"><a href="/note/list_view" class="btn btn-yellow btn-sm"><b>목록으로</b></a></div>
 						<!-- 수정 버튼 -->
+						<c:if test="${noteWithComment.note.userId eq userId }">
 						<div class="mr-2"><button type="button" class="btn btn-info text-white btn-sm" id="updateNoteBtn" data-note-id="${noteWithComment.note.id }"><b>수정</b></button></div>
 						<!-- 삭제 버튼 -->
 						<div class="mr-3"><button type="button" class="btn btn-danger text-white btn-sm" id="deleteNoteBtn" data-note-id="${noteWithComment.note.id }"><b>삭제</b></button></div>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -128,9 +130,9 @@
 					
 					<!-- /댓글 입력창 -->
 					</div>
-					<!-- 알림장 section -->
+					<!-- /알림장 section -->
 				</div>
-			</c:forEach>
+				</c:forEach>
 			</div>
 			<!-- /page section -->
 			</div>

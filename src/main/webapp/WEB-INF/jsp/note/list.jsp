@@ -36,9 +36,18 @@
 							<div class="mx-3">
 								<select id="kidsNameInput" class="form-control btn-yellow">
 									<option value="">--자녀 선택--</option>
-									<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
-				    				<option value="${kid.kidsName }">${kid.kidsName }</option>
-				    				</c:forEach>
+									<c:choose>
+						    		<c:when test="${userType eq '학부모' }">
+							    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
+							    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
+							    		</c:forEach>
+						    		</c:when>
+						    		<c:otherwise>
+						    			<c:forEach var="kid" items="${kidsInfoListForTeacher }" varStatus="state">
+							    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
+							    		</c:forEach>
+						    		</c:otherwise>
+						    		</c:choose>
 								</select>
 							</div>
 						</div>
@@ -76,10 +85,11 @@
 							<!-- 알림장 내용 -->
 							<div class="w-50 d-flex align-items-center mx-3">
 								<a href="/note/detail_view?id=${note.id }" class="title-text">
+								<div class="mb-1"><small><b>♡${note.kidsClass}♡ ${note.kidsName }</b></small></div>
 								<div>
 									<h5><b>
 										<c:choose>
-											<c:when test="${userType eq '선생님'}">
+											<c:when test="${note.userType eq '선생님'}">
 											원에서 가정으로
 											</c:when>
 											<c:otherwise>

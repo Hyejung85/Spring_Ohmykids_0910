@@ -32,6 +32,10 @@ public interface NoteDAO {
 			@Param("id") int id
 			, @Param("userId") int userId);
 	
+	//알림장 상세(for teacher)
+	public Note selectNoteByIdForTeacher(
+			@Param("id") int id);
+	
 	//알림장 수정
 	public int updateNote(
 			@Param("userId") int userId

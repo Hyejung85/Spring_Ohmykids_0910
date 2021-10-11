@@ -41,9 +41,13 @@ public class AlbumConroller {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		
-		//kidsInfoList 보여주기
+		//kidsInfoList보여주기(학부모-본인자녀만)
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
+			
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "album/create";
 	}
@@ -54,16 +58,20 @@ public class AlbumConroller {
 			Model model
 			, HttpServletRequest request) {
 		
-			HttpSession session = request.getSession();
-			int userId = (Integer)session.getAttribute("userId");
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		//kidsInfoList보여주기(학부모-본인자녀만)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		model.addAttribute("kidsInfoList", kidsInfoList);
 			
-			//kidsInfoList 보여주기
-			List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
-			model.addAttribute("kidsInfoList", kidsInfoList);
-			
-			//albumList(+이미지 리스트)
-			List<AlbumWithComment> albumList = albumBO.getAlbumList(userId);			
-			model.addAttribute("albumList", albumList);
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
+		
+		//albumList(+이미지 리스트)
+		List<AlbumWithComment> albumList = albumBO.getAlbumList(userId);			
+		model.addAttribute("albumList", albumList);
 		
 		return "album/list";
 	}
@@ -79,9 +87,13 @@ public class AlbumConroller {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		
-		//kidsInfoList 보여주기
+		//kidsInfoList보여주기(학부모-본인자녀만)
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
+			
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		//album + comment
 		List<AlbumWithComment> albumDetailList = albumBO.getAlbum(id, userId, type);

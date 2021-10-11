@@ -44,6 +44,7 @@
  			`id`
  			,`userId`
  			, `userName`
+ 			, `userType`
  			, `type`
  			, `kidsId`
  			, `kidsClass`
@@ -78,6 +79,27 @@
  		WHERE
  			`userId` = #{userId}
  			AND `id` = #{id} 	
+ 	</select>
+ 	<!-- 알림장 상세(for teacher) -->
+ 	<select id="selectNoteByIdForTeacher" parameterType = "map" resultType="com.yeye.ohmykids.note.model.Note">
+ 		SELECT
+ 			`id`
+ 			,`userId`
+ 			, `userName`
+ 			, `userType`
+ 			, `type`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `weather`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`note`
+ 		WHERE
+ 			`id` = #{id} 	
  	</select>
  	<update id="updateNote" parameterType="map">
  		UPDATE

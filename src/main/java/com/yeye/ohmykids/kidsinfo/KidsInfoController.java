@@ -52,8 +52,11 @@ public class KidsInfoController {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		//for teacher
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
 		
 		model.addAttribute("kidsInfoList", kidsInfoList);
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "user/kidsinfo_list";
 	}

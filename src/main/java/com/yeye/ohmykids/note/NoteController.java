@@ -37,10 +37,13 @@ public class NoteController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		
-		//kidsInfoList보여주기
+		//kidsInfoList보여주기(학부모-본인자녀만)
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
 	
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "note/create";
 	}
@@ -55,13 +58,21 @@ public class NoteController {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		
-		//note + comment
+		//note + comment(학부모-본인자녀만)
 		List<NoteWithComment> noteDetailList = noteBO.getNote(id, userId);
 		model.addAttribute("noteDetailList", noteDetailList);
 		
-		//학생정보
-		KidsInfo kidsInfo = kidsInfoBO.getKidsInfo(id, userId);
-		model.addAttribute("kidsInfo",kidsInfo);
+		//note + comment(선생님-전체)
+		List<NoteWithComment> noteDetailListForTeacher = noteBO.getNoteForTeacher(id);
+		model.addAttribute("noteDetailListForTeacher", noteDetailListForTeacher);
+		
+		//kidsInfoList보여주기(학부모-본인자녀만)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		model.addAttribute("kidsInfoList", kidsInfoList);
+			
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "note/detail";
 	}
@@ -77,9 +88,13 @@ public class NoteController {
 		List<Note> noteList = noteBO.getNoteList();
 		model.addAttribute("noteList", noteList);
 		
-		// kidsInfoList보여주기
+		//kidsInfoList보여주기(학부모-본인자녀만)
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
+			
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "note/list";
 	}

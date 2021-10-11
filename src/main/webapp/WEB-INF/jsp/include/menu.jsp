@@ -41,8 +41,10 @@
 		        </a>
 		        <!-- 앨범 submenu dropdown-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <c:if test="${userType eq '선생님' }">
 		          <a class="dropdown-item title-text" href="/album/create_view">앨범작성</a>
 		          <div class="dropdown-divider"></div>
+		          </c:if>
 		          <a class="dropdown-item title-text" href="/album/list_view">앨범목록</a>
 		        </div>
 		        <!-- /앨범 submenu dropdown-->

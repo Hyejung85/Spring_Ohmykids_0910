@@ -34,9 +34,11 @@
 						<!-- 목록 버튼 -->
 						<div class="mr-2"><a href="/album/list_view" class="btn btn-yellow btn-sm"><b>목록으로</b></a></div>
 						<!-- 수정 버튼 -->
+						<c:if test="${albumWithComment.album.userId eq userId }">
 						<div class="mr-2"><button type="button" class="btn btn-info text-white btn-sm" id="updateAlbumBtn" data-album-id="${albumWithComment.album.id }"><b>수정</b></button></div>
 						<!-- 삭제 버튼 -->
 						<div class="mr-3"><button type="button" class="btn btn-danger text-white btn-sm" id="deleteAlbumBtn" data-album-id="${albumWithComment.album.id }"><b>삭제</b></button></div>
+						</c:if>
 					</div>
 				</div>
 			</div>

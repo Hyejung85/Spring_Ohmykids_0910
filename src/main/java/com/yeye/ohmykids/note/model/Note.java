@@ -6,6 +6,7 @@ public class Note {
 	private int id;
 	private int userId;
 	private String userName;
+	private String userType;
 	private String type;
 	private int kidsId;
 	private String kidsClass;
@@ -15,6 +16,7 @@ public class Note {
 	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
+	
 	public int getId() {
 		return id;
 	}
@@ -87,6 +89,13 @@ public class Note {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	
 
 	
 	

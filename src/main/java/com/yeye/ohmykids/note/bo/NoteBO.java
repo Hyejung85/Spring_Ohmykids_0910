@@ -51,9 +51,6 @@ public class NoteBO {
 	}
 	
 	//알림장 상세
-//	public Note getNote(int id, int userId) {
-//		return noteDAO.selectNoteById(id, userId);
-//	}
 	public List<NoteWithComment> getNote(int id, Integer userId){
 		
 		Note note = noteDAO.selectNoteById(id, userId);
@@ -70,6 +67,25 @@ public class NoteBO {
 		
 		return noteWithCommentList;
 	}
+	
+	//알림장 상세(for teacher)
+		public List<NoteWithComment> getNoteForTeacher(int id){
+			
+			Note note = noteDAO.selectNoteByIdForTeacher(id);
+			
+			List<NoteWithComment> noteWithCommentList = new ArrayList<>();
+			List<Comment> commentList = commentBO.getCommentList(note.getType(), note.getId());
+			
+			NoteWithComment noteWithComment =  new NoteWithComment();
+			
+			noteWithComment.setNote(note);
+			noteWithComment.setCommentList(commentList);
+			
+			noteWithCommentList.add(noteWithComment);
+			
+			return noteWithCommentList;
+		}
+	
 	
 	//알림장 수정
 	public int updateNote(int userId, String userType, String type, int noteId, int kidsId, String kidsClass, String KidsName, String weather, String content, MultipartFile file) {
