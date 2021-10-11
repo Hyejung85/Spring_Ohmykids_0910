@@ -71,7 +71,7 @@ public class AlbumBO {
 	
 	//앨범 상세
 	public List<AlbumWithComment> getAlbum(int targetId, Integer userId, String type){
-		Album album = albumDAO.selectAlbumById(targetId, userId);
+		Album album = albumDAO.selectAlbumById(targetId);
 		
 		List<AlbumWithComment> albumWithCommentList = new ArrayList<>();
 		//코멘트 리스트

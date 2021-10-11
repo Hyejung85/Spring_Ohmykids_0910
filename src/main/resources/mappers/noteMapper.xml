@@ -59,7 +59,7 @@
  		ORDER BY `id` DESC
  	</select>
  	<!-- 알림장 상세 -->
- 	<select id="selectNoteById" parameterType = "map" resultType="com.yeye.ohmykids.note.model.Note">
+ 	<!-- <select id="selectNoteById" parameterType = "map" resultType="com.yeye.ohmykids.note.model.Note">
  		SELECT
  			`id`
  			,`userId`
@@ -79,7 +79,7 @@
  		WHERE
  			`userId` = #{userId}
  			AND `id` = #{id} 	
- 	</select>
+ 	</select> -->
  	<!-- 알림장 상세(for teacher) -->
  	<select id="selectNoteByIdForTeacher" parameterType = "map" resultType="com.yeye.ohmykids.note.model.Note">
  		SELECT

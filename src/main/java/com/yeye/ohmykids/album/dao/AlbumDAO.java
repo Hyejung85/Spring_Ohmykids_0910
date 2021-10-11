@@ -34,8 +34,7 @@ public interface AlbumDAO {
 	
 	//앨범 상세(+코멘트)
 	public Album selectAlbumById(
-			@Param("id") int id
-			, @Param("userId") int userId);
+			@Param("id") int id);
 	
 	//앨범 수정
 	public int updateAlbum(

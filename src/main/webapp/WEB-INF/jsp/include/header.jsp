@@ -12,7 +12,7 @@
 				</div>
 				<c:choose>
 					<c:when test="${not empty userName }">
-						<div class="mt-4 title-text"><b>${userName }님</b> <a href="/user/sign_out" class="title-text">Log-out</a></div>
+						<div class="mt-4 title-text"><b>[${userType}] ${userName }님</b> <a href="/user/sign_out" class="title-text">Log-out</a></div>
 					</c:when>
 					<c:otherwise>
 						<div class="mt-4 title-text"> <a href="/user/signin_view" class="title-text"><b>Log-in</b></a></div>

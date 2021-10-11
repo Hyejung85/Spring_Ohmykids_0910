@@ -28,9 +28,11 @@ public interface NoteDAO {
 	public List<Note> selectNoteList();
 	
 	//알림장 상세
-	public Note selectNoteById(
-			@Param("id") int id
-			, @Param("userId") int userId);
+	/*
+	 * public Note selectNoteById(
+	 * 
+	 * @Param("id") int id , @Param("userId") int userId);
+	 */
 	
 	//알림장 상세(for teacher)
 	public Note selectNoteByIdForTeacher(

@@ -59,8 +59,10 @@ public class NoteController {
 		int userId = (Integer)session.getAttribute("userId");
 		
 		//note + comment(학부모-본인자녀만)
-		List<NoteWithComment> noteDetailList = noteBO.getNote(id, userId);
-		model.addAttribute("noteDetailList", noteDetailList);
+		/*
+		 * List<NoteWithComment> noteDetailList = noteBO.getNote(id, userId);
+		 * model.addAttribute("noteDetailList", noteDetailList);
+		 */
 		
 		//note + comment(선생님-전체)
 		List<NoteWithComment> noteDetailListForTeacher = noteBO.getNoteForTeacher(id);
@@ -85,6 +87,11 @@ public class NoteController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		
+		//noteList(학부모-본인자녀만, userId는 본인이 작성한것만 보여짐. 선생님이 작성한것도 보여져야함)
+	
+		
+		
+		//noteList(선생님-전체)
 		List<Note> noteList = noteBO.getNoteList();
 		model.addAttribute("noteList", noteList);
 		

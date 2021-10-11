@@ -69,8 +69,7 @@
  		FROM
  			`album`
  		WHERE
- 			`userId` = #{userId}
- 			AND `id` = #{id} 
+ 			`id` = #{id} 
  	</select>
  	<select id="selectAlbumByUserId" parameterType="map" resultType="com.yeye.ohmykids.album.model.Album">
  		SELECT

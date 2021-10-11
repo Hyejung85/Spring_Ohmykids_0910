@@ -51,22 +51,22 @@ public class NoteBO {
 	}
 	
 	//알림장 상세
-	public List<NoteWithComment> getNote(int id, Integer userId){
-		
-		Note note = noteDAO.selectNoteById(id, userId);
-		
-		List<NoteWithComment> noteWithCommentList = new ArrayList<>();
-		List<Comment> commentList = commentBO.getCommentList(note.getType(), note.getId());
-		
-		NoteWithComment noteWithComment =  new NoteWithComment();
-		
-		noteWithComment.setNote(note);
-		noteWithComment.setCommentList(commentList);
-		
-		noteWithCommentList.add(noteWithComment);
-		
-		return noteWithCommentList;
-	}
+	/*
+	 * public List<NoteWithComment> getNote(int id, Integer userId){
+	 * 
+	 * Note note = noteDAO.selectNoteById(id, userId);
+	 * 
+	 * List<NoteWithComment> noteWithCommentList = new ArrayList<>(); List<Comment>
+	 * commentList = commentBO.getCommentList(note.getType(), note.getId());
+	 * 
+	 * NoteWithComment noteWithComment = new NoteWithComment();
+	 * 
+	 * noteWithComment.setNote(note); noteWithComment.setCommentList(commentList);
+	 * 
+	 * noteWithCommentList.add(noteWithComment);
+	 * 
+	 * return noteWithCommentList; }
+	 */
 	
 	//알림장 상세(for teacher)
 		public List<NoteWithComment> getNoteForTeacher(int id){

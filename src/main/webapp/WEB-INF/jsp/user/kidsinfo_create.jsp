@@ -178,7 +178,7 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("자녀정보 등록 성공");
-							location.href="kidsinfo/list_view";
+							location.href="/kidsinfo/list_view";
 						}else{
 							alert("자녀정보등록에 실패했습니다.");
 						}
