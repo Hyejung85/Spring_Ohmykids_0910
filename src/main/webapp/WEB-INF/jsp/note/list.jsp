@@ -77,7 +77,16 @@
 							<div class="w-50 d-flex align-items-center mx-3">
 								<a href="/note/detail_view?id=${note.id }" class="title-text">
 								<div>
-									<h5><b>원에서 가정으로</b></h5>
+									<h5><b>
+										<c:choose>
+											<c:when test="${userType eq '선생님'}">
+											원에서 가정으로
+											</c:when>
+											<c:otherwise>
+											가정에서 원으로
+											</c:otherwise>
+										</c:choose>
+									</b></h5>
 									<c:set var="content" value="${note.content }" />
 									<div>
 										<c:choose>									

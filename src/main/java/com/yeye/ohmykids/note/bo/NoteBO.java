@@ -25,7 +25,7 @@ public class NoteBO {
 	
 	
 	//알림장 작성
-	public int noteCreate(int userId, String userName,  String type, int kidsId, String kidsClass, String kidsName
+	public int noteCreate(int userId, String userName,  String userType, String type, int kidsId, String kidsClass, String kidsName
 			, String weather, String content, MultipartFile file) {
 
 		
@@ -41,7 +41,7 @@ public class NoteBO {
 			}
 		}
 		
-		return noteDAO.insertNote(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, filePath);
+		return noteDAO.insertNote(userId, userName, userType, type, kidsId, kidsClass, kidsName, weather, content, filePath);
 	}
 	
 	//알림장 목록
@@ -72,7 +72,7 @@ public class NoteBO {
 	}
 	
 	//알림장 수정
-	public int updateNote(int userId, String type, int noteId, int kidsId, String kidsClass, String KidsName, String weather, String content, MultipartFile file) {
+	public int updateNote(int userId, String userType, String type, int noteId, int kidsId, String kidsClass, String KidsName, String weather, String content, MultipartFile file) {
 		
 		//사진이 없는 경우 예외처리
 		String filePath = null;
@@ -86,7 +86,7 @@ public class NoteBO {
 			}
 		}
 		
-		return noteDAO.updateNote(userId, noteId, type, kidsId, kidsClass, KidsName, weather, content, filePath);
+		return noteDAO.updateNote(userId, noteId, userType, type, kidsId, kidsClass, KidsName, weather, content, filePath);
 		
 	}
 	
@@ -112,4 +112,5 @@ public class NoteBO {
 		
 		return true;
 	}
+	
 }

@@ -42,11 +42,12 @@ public class NoteRestController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		String userName = (String) session.getAttribute("userName");
+		String  userType = (String) session.getAttribute("userType");
 	
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.noteCreate(userId, userName, type, kidsId, kidsClass, kidsName, weather, content, file);
+		int count = noteBO.noteCreate(userId, userName, userType, type, kidsId, kidsClass, kidsName, weather, content, file);
 		
 		if(count == 1) {
 			result.put("result", "success");
@@ -72,10 +73,11 @@ public class NoteRestController {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
+		String  userType = (String) session.getAttribute("userType");
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.updateNote(userId, type, noteId, kidsId, kidsClass, kidsName, weather, content, file);
+		int count = noteBO.updateNote(userId, userType, type, noteId, kidsId, kidsClass, kidsName, weather, content, file);
 		
 		if(count == 1) {
 			result.put("result", "success");

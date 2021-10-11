@@ -14,6 +14,7 @@ public interface NoteDAO {
 	public int insertNote(
 			@Param("userId") int userId
 			, @Param("userName") String userName
+			, @Param("userType") String userType
 			, @Param("type") String type
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
@@ -35,6 +36,7 @@ public interface NoteDAO {
 	public int updateNote(
 			@Param("userId") int userId
 			, @Param("id") int id //noteId
+			, @Param("userType") String userType
 			, @Param("type") String type
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
@@ -50,4 +52,6 @@ public interface NoteDAO {
 	
 	//파일삭제
 	public Note selectNote(@Param("id") int id);
+	
+	
 } 

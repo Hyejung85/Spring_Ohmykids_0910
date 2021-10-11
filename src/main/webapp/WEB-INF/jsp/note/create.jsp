@@ -83,7 +83,16 @@
 				    <!-- 알림장 section -->
 				    <div class="note-section my-1">
 					<!-- 알림장 내용  -->
-					<textarea id="contentInput" class="pt-4 px-4 w-100 border-0 non-resize" rows=8 placeholder="원에서 이렇게 지냈어요."></textarea>
+					<textarea id="contentInput" class="pt-4 px-4 w-100 border-0 non-resize" rows=8 placeholder=
+					<c:choose>
+						<c:when test="${userType eq '선생님' }">
+						"원에서 이렇게 지냈어요."
+						</c:when>
+						<c:otherwise>
+						"가정에서 이렇게 지냈어요."
+						</c:otherwise>
+					</c:choose>
+					></textarea>
 					<!-- /알림장 내용-->
 					<!-- 사진 box-->
 					<div class="d-flex mx-3">
