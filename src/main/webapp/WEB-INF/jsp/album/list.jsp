@@ -83,7 +83,7 @@
 							<!-- /일자, 날씨 -->
 							<div class=" w-100">
 							<!-- 사진 -->
-							<div id="picture" class="d-flex align-items-center w-100 mt-3 flex-wrap">
+							<div id="picture" class="d-flex align-items-center w-100 mt-3 flex-wrap ml-2">
 								<c:forEach var= "image" items="${albumWithComment.imageFileList }">
 									<a href="/album/detail_view?id=${albumWithComment.album.id }&targetId=${albumWithComment.album.id}&type=album" class="title-text">
 										<div>
@@ -97,7 +97,7 @@
 							</div>
 							<!-- /사진 -->
 							<!-- 앨범 내용 -->
-							<div id="albumContent" class="w-50 d-flex align-items-center mt-2">
+							<div id="albumContent" class="w-50 d-flex align-items-center mt-2 ml-2">
 								<div>
 									<c:set var="content" value="${albumWithComment.album.content }" />
 									<div>

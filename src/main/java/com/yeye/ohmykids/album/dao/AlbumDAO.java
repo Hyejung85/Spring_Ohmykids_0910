@@ -44,6 +44,7 @@ public interface AlbumDAO {
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
+			, @Param("parentsId") int parentsId
 			, @Param("weather") String weather
 			, @Param("content") String content);
 	

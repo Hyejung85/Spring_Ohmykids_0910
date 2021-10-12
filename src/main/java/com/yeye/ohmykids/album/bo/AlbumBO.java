@@ -102,10 +102,10 @@ public class AlbumBO {
 	
 	//앨범 수정
 	public boolean updateAlbum(int userId, String type, int targetId, int kidsId, String kidsClass
-			, String KidsName, String weather, String content, MultipartFile[] files) {
+			, String KidsName, int parentsId, String weather, String content, MultipartFile[] files) {
 		
 		//앨범 내용 수정
-		int albumCount = albumDAO.updateAlbum(userId, targetId, type, kidsId, kidsClass, KidsName, weather, content);
+		int albumCount = albumDAO.updateAlbum(userId, targetId, type, kidsId, kidsClass, KidsName, parentsId, weather, content);
 		
 		//사진 업데이트가 없는 경우 예외 처리
 		List<String> filePathList = new ArrayList<>();

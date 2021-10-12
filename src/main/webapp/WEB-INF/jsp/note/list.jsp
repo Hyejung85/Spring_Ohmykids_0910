@@ -54,6 +54,8 @@
 					</div>
 				</div>
 				<!-- /submenu-bar -->
+				<c:choose>
+				<c:when test="${userType eq '선생님'}">
 				<!-- page section -->
 				<div class="page-section d-flex justify-content-center">
 					<!-- 알림장 요약 section -->
@@ -127,6 +129,83 @@
 					<!-- /알림장 요약 -->
 				</div>
 				<!-- /page section -->
+				</c:when>
+				<c:otherwise>
+				<!-- page section -->
+				<div class="page-section d-flex justify-content-center">
+					<!-- 알림장 요약 section -->
+					<c:forEach var="note" items="${noteListForParents }">
+					<div>
+						<div class="note-contraction d-flex">
+							<!-- 일자, 날씨 -->
+							<div class="w-25 text-center mt-3 ml-2">
+								<div class="d-flex align-items-center justify-content-center"><h2><b><fmt:formatDate value="${note.createdAt }" pattern="M" /></b></h2>월<h2><b><fmt:formatDate value="${note.createdAt }" pattern="d" /></b></h2>일</div>
+								<div><h5><small><fmt:formatDate value="${note.createdAt }" pattern="E" />요일</small></h5></div>
+								<div><h3>
+									<c:choose>
+									<c:when test="${note.weather eq '맑음' }">
+									<img src="/static/images/sunny.png" width="35" height="35">
+									</c:when>
+									<c:when test="${note.weather eq '흐림' }">
+									<img src="/static/images/cloud.png" width="35" height="35">
+									</c:when>
+									<c:when test="${note.weather eq '비' }">
+									<img src="/static/images/rain.png" width="35" height="35">
+									</c:when>
+									<c:when test="${note.weather eq '눈' }">
+									<img src="/static/images/snow.png" width="35" height="35">
+									</c:when>
+									</c:choose>
+								</h3></div>
+							</div>
+							<!-- /일자, 날씨 -->
+							<!-- 알림장 내용 -->
+							<div class="w-50 d-flex align-items-center mx-3">
+								<a href="/note/detail_view?id=${note.id }" class="title-text">
+								<div class="mb-1"><small><b>♡${note.kidsClass}♡ ${note.kidsName }</b></small></div>
+								<div>
+									<h5><b>
+										<c:choose>
+											<c:when test="${note.userType eq '선생님'}">
+											원에서 가정으로
+											</c:when>
+											<c:otherwise>
+											가정에서 원으로
+											</c:otherwise>
+										</c:choose>
+									</b></h5>
+									<c:set var="content" value="${note.content }" />
+									<div>
+										<c:choose>									
+											<c:when test="${content.length() > 30}">
+											${fn:substring(content,0,30) }...
+											</c:when>
+											<c:otherwise>
+											${note.content }
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+								</a>
+							</div>
+							<!-- /알림장 내용 -->
+							<!-- 사진 -->
+							<div class="d-flex justify-content-center align-items-center w-25 mr-3">
+								<div>
+									<!-- 이미지 출력 -->
+									<div class="picture-square-sm title-text d-flex justify-content-center align-items-center" id="picture">
+									<img src="${note.imagePath }" id="imagePath" class="imagethumbnail">
+									</div>
+								</div>
+							</div>
+							<!-- /사진 -->
+					</div>
+					</c:forEach>
+					<!-- /알림장 요약 -->
+				</div>
+				<!-- /page section -->
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />

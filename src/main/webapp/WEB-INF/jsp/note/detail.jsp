@@ -77,7 +77,7 @@
 				    	<div class="d-flex ml-3 align-items-center h-75" id="kidsClassInput">
 				    		<b>♡${noteWithComment.note.kidsClass }♡</b>
 				    	</div>
-				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${noteWithComment.note.kidsId }>
+				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${noteWithComment.note.kidsId } data-kids-userid="${noteWithComment.note.parentsId }">
 				    		<b>${noteWithComment.note.kidsName }의 알림장</b>
 				    	</div>
 				    </div>
@@ -148,6 +148,7 @@
 				type = "note";
 				var noteId = $("#updateNoteBtn").data("note-id");
 				var kidsId = $("#kidsNameInput").data("kids-id");
+				var parentsId = $("#kidsNameInput").data("kids-userid");
 				var kidsClass = $("#kidsClassInput").val();
 				var kidsName = $("#kidsNameInput").val();
 				var weather = $("#weatherInput").val();
@@ -159,6 +160,7 @@
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
+				formData.append("parentsId", parentsId);
 				formData.append("weather", weather);
 				formData.append("content", content);
 				formData.append("file", $("#fileInput")[0].files[0]);

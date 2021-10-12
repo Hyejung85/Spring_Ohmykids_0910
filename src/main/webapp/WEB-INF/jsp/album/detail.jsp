@@ -77,7 +77,7 @@
 				    	<div class="d-flex ml-3 align-items-center h-75" id="kidsClassInput">
 				    		<b>♡${albumWithComment.album.kidsClass }♡</b>
 				    	</div>
-				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${albumWithComment.album.kidsId }>
+				    	<div class="d-flex ml-2 align-items-center h-75" id="kidsNameInput" data-kids-id=${albumWithComment.album.kidsId } data-kids-userid="${albumWithComment.album.parentsId }">
 				    		<b>${albumWithComment.album.kidsName }의 앨범</b>
 				    	</div>
 				    </div>
@@ -176,6 +176,7 @@
 				type = "album";
 				var targetId = $("#updateAlbumBtn").data("album-id");
 				var kidsId = $("#kidsNameInput").data("kids-id");
+				var parentsId = $("#kidsNameInput").data("kids-userid");
 				var kidsClass = $("#kidsClassInput").val();
 				var kidsName = $("#kidsNameInput").val();
 				var weather = $("#weatherInput").val();
@@ -189,6 +190,7 @@
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
+				formData.append("parentsId", parentsId);
 				formData.append("weather", weather);
 				formData.append("content", content);
 				//formData.append("file", $("#fileInput")[0].files[0]);
@@ -206,7 +208,7 @@
 					success:function(data){
 						if(data.result == "success"){
 							alert("앨범 수정완료");
-							location.reload();
+							location.href="/album/list_view;"
 						}else{
 							alert("앨범 수정실패");
 						}

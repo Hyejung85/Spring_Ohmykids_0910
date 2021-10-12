@@ -19,6 +19,7 @@ public interface NoteDAO {
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
+			, @Param("parentsId") int parentsId
 			, @Param("weather") String weather
 			, @Param("content") String content
 			, @Param("imagePath") String imagePath);
@@ -26,6 +27,9 @@ public interface NoteDAO {
 	
 	//알림장 목록
 	public List<Note> selectNoteList();
+	
+	//알림장 목록(for parents)
+	public List<Note> selectNoteListForParents(@Param("parentsId") int parentsId);
 	
 	//알림장 상세
 	/*
@@ -47,6 +51,7 @@ public interface NoteDAO {
 			, @Param("kidsId") int kidsId
 			, @Param("kidsClass") String kidsClass
 			, @Param("kidsName") String kidsName
+			, @Param("parentsId") int parentsId
 			, @Param("weather") String weather
 			, @Param("content") String content
 			, @Param("imagePath") String imagePath);

@@ -87,13 +87,15 @@ public class NoteController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		
-		//noteList(학부모-본인자녀만, userId는 본인이 작성한것만 보여짐. 선생님이 작성한것도 보여져야함)
-	
-		
-		
 		//noteList(선생님-전체)
 		List<Note> noteList = noteBO.getNoteList();
 		model.addAttribute("noteList", noteList);
+		
+		//noteList(학부모-본인자녀만, userId는 본인이 작성한것만 보여짐. 선생님이 작성한것도 보여져야함)
+		for(Note note:noteList) {
+			List<Note> noteListForParents = noteBO.getNoteListForParents(note.getParentsId());
+			model.addAttribute("noteListForParents", noteListForParents);
+		}
 		
 		//kidsInfoList보여주기(학부모-본인자녀만)
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);

@@ -34,6 +34,7 @@ public class AlbumRestController {
 			 * , @RequestParam("kidsId") int kidsId
 			 * , @RequestParam("kidsClass") String kidsClass 
 			 * , @RequestParam("kidsName") String kidsName 
+			 * , @RequestParam("parentsId") int parentsId
 			 * , @RequestParam(value="weather" , required=false) String weather 
 			 * , @RequestParam(value="content", required=false) String content
 			 */
@@ -68,6 +69,7 @@ public class AlbumRestController {
 			, @RequestParam("kidsId") int kidsId
 			, @RequestParam("kidsClass") String kidsClass
 			, @RequestParam("kidsName") String kidsName
+			, @RequestParam("parentsId") int parentsId
 			, @RequestParam(value="weather" , required=false) String weather
 			, @RequestParam(value="content", required=false) String content
 			, @RequestParam(value="files", required=false) MultipartFile[] files // 사진은 업데이트하지 않을수 있으므로
@@ -78,7 +80,7 @@ public class AlbumRestController {
 		
 		Map<String, String> result = new HashMap<>();
 	
-		if(albumBO.updateAlbum(userId, type, targetId, kidsId, kidsClass, kidsName, weather, content, files)) {
+		if(albumBO.updateAlbum(userId, type, targetId, kidsId, kidsClass, kidsName, parentsId, weather, content, files)) {
 			result.put("result", "success");
 		}else {
 			result.put("result", "fail");

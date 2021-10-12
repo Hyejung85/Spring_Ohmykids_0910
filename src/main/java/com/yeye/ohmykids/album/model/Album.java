@@ -10,6 +10,7 @@ public class Album {
 	private int kidsId;
 	private String kidsClass;
 	private String kidsName;
+	private int parentsId;
 	private String weather;
 	private String content;
 	//private String imagePath;
@@ -89,6 +90,12 @@ public class Album {
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	public int getParentsId() {
+		return parentsId;
+	}
+	public void setParentsId(int parentsId) {
+		this.parentsId = parentsId;
 	}
 	
 	

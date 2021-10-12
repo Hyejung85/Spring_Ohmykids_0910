@@ -11,6 +11,7 @@ public class Note {
 	private int kidsId;
 	private String kidsClass;
 	private String kidsName;
+	private int parentsId;
 	private String weather;
 	private String content;
 	private String imagePath;
@@ -94,6 +95,12 @@ public class Note {
 	}
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+	public int getParentsId() {
+		return parentsId;
+	}
+	public void setParentsId(int parentsId) {
+		this.parentsId = parentsId;
 	}
 	
 

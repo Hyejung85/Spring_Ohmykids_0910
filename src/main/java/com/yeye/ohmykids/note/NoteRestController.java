@@ -34,6 +34,7 @@ public class NoteRestController {
 			, @RequestParam("kidsId") int kidsId
 			, @RequestParam("kidsClass") String kidsClass
 			, @RequestParam("kidsName") String kidsName
+			, @RequestParam("parentsId") int parentsId
 			, @RequestParam(value="weather", required=false) String weather
 			, @RequestParam(value="content", required=false) String content
 			, @RequestParam(value="file", required=false) MultipartFile file
@@ -47,7 +48,7 @@ public class NoteRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.noteCreate(userId, userName, userType, type, kidsId, kidsClass, kidsName, weather, content, file);
+		int count = noteBO.noteCreate(userId, userName, userType, type, kidsId, kidsClass, kidsName, parentsId, weather, content, file);
 		
 		if(count == 1) {
 			result.put("result", "success");
@@ -66,6 +67,7 @@ public class NoteRestController {
 			, @RequestParam("kidsId") int kidsId
 			, @RequestParam("kidsClass") String kidsClass
 			, @RequestParam("kidsName") String kidsName
+			, @RequestParam("parentsId") int parentsId
 			, @RequestParam(value = "weather", required=false) String weather
 			, @RequestParam(value = "content", required=false) String content
 			, @RequestParam(value = "file", required=false) MultipartFile file
@@ -77,7 +79,7 @@ public class NoteRestController {
 		
 		Map<String, String> result = new HashMap<>();
 		
-		int count = noteBO.updateNote(userId, userType, type, noteId, kidsId, kidsClass, kidsName, weather, content, file);
+		int count = noteBO.updateNote(userId, userType, type, noteId, kidsId, kidsClass, kidsName, parentsId, weather, content, file);
 		
 		if(count == 1) {
 			result.put("result", "success");

@@ -75,12 +75,12 @@
 				    		<c:choose>
 				    		<c:when test="${userType eq '학부모' }">
 					    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
-					    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
+					    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id } data-kids-userid="${kid.userId }">${kid.kidsClass }-${kid.kidsName }</option>
 					    		</c:forEach>
 				    		</c:when>
 				    		<c:otherwise>
 				    			<c:forEach var="kid" items="${kidsInfoListForTeacher }" varStatus="state">
-					    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
+					    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id } data-kids-userid="${kid.userId }">${kid.kidsClass }-${kid.kidsName }</option>
 					    		</c:forEach>
 				    		</c:otherwise>
 				    		</c:choose>
@@ -138,6 +138,7 @@
 				type = "album";
 				var kidsId = $("#kidsClassAndNameInput option:selected").data("kids-id");
 				//kidsClass와 kidsClass 쪼개기
+				var parentsId = $("#kidsClassAndNameInput option:selected").data("kids-userid");
 				var options = $("#kidsClassAndNameInput option:selected").val(); //select box
 				var value = options.split("-");
 				var kidsClass = value[0];
@@ -164,6 +165,7 @@
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
+				formData.append("parentsId", parentsId);
 				formData.append("weather", weather);
 				formData.append("content", content);
 				//formData.append("file", $("#fileInput")[0].files[0]); //파일 1개만 업로드시
