@@ -78,6 +78,7 @@ public class UserRestController {
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("userType", user.getType());
 			
+			
 		}else {
 			result.put("result", "fail");
 		}

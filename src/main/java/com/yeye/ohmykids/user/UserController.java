@@ -29,6 +29,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		
 		session.removeAttribute("userId");
+		session.removeAttribute("parentsId");
 		session.removeAttribute("userLoginId");
 		session.removeAttribute("userName");
 		

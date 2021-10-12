@@ -23,7 +23,7 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		String uri = request.getRequestURI();
 		
 		//로그인 안된상태라면
-		if(session.getAttribute("userId") == null || session.getAttribute("userId") == "") {
+		if(session.getAttribute("userId") == null || session.getAttribute("userId") ==  "") {
 			if(uri.startsWith("/note") || uri.startsWith("/album") || uri.startsWith("/kidsinfo")) { // 알림장, 앨범, 자녀정보 접근시
 				//로그인 페이지로 이동 시킨다.
 				response.sendRedirect("/user/signin_view"); 
