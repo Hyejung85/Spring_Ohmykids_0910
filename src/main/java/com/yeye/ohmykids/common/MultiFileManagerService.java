@@ -19,7 +19,8 @@ public class MultiFileManagerService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private final String FILE_UPLOAD_PATH="C:\\Users\\82109\\Desktop\\spring\\spring_test\\upload\\ohmykids\\images/";
+	//private final String FILE_UPLOAD_PATH="C:\\Users\\82109\\Desktop\\spring\\spring_test\\upload\\ohmykids\\images/";
+	private final String FILE_UPLOAD_PATH = "/home/ec2-user/upload_images/";
 	
 	
 	//파일업로드(다중)

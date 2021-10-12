@@ -15,8 +15,9 @@ public class FileManagerService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private final String FILE_UPLOAD_PATH="C:\\Users\\82109\\Desktop\\spring\\spring_test\\upload\\ohmykids\\images/";
-	
+	//private final String FILE_UPLOAD_PATH="C:\\Users\\82109\\Desktop\\spring\\spring_test\\upload\\ohmykids\\images/";
+	private final String FILE_UPLOAD_PATH = "/home/ec2-user/upload_images/";
+			
 	//파일업로드
 	public String saveFile(int userId, MultipartFile file) {
 		//사용자별로 파일이름이 겹치는 것을 방지하기 위해 디렉토리 생성

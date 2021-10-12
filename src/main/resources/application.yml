@@ -6,6 +6,6 @@ spring:
     static-path-pattern: /static/**
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ohmykids_0910?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/yeye?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: root
