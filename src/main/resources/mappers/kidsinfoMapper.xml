@@ -43,7 +43,7 @@
  			, `kidsClass` = #{kidsClass}
  			, `relationship` = #{relationship}
  				<if test = "imagePath != null">
- 			, `imagePath` = '%'||#{imagePath}||'%'
+ 			, `imagePath` = #{imagePath}
  				</if>
  		WHERE
  			`id` = #{id}
