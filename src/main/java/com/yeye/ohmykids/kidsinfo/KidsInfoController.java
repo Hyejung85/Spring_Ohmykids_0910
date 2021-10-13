@@ -37,7 +37,7 @@ public class KidsInfoController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		
-		KidsInfo kidsInfo = kidsInfoBO.getKidsInfo(id, userId);
+		KidsInfo kidsInfo = kidsInfoBO.getKidsInfo(id);
 		model.addAttribute("kidsInfo", kidsInfo);
 		
 		return "user/kidsinfo_detail";
@@ -51,15 +51,12 @@ public class KidsInfoController {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
+		String userType = (String) session.getAttribute("userType");
 		
-		//for parents
-		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
-		//for teacher
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		
+		//리팩토링
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId,userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
-		
+	
 		return "user/kidsinfo_list";
 	}
 	

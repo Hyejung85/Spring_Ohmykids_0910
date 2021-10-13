@@ -36,14 +36,11 @@ public class NoteController {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
+		String userType = (String)session.getAttribute("userType");
 		
-		//kidsInfoList보여주기(학부모-본인자녀만)
-		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		//kidsInfoList보여주기(리팩토링)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId, userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
-	
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "note/create";
 	}
@@ -57,18 +54,15 @@ public class NoteController {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
+		String userType = (String)session.getAttribute("userType");
 		
-		//note + comment(선생님-전체)
+		//note + comment(전체)
 		List<NoteWithComment> noteDetailListForTeacher = noteBO.getNoteForTeacher(id);
 		model.addAttribute("noteDetailListForTeacher", noteDetailListForTeacher);
 		
-		//kidsInfoList보여주기(학부모-본인자녀만)
-		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		//kidsInfoList보여주기(리팩토링)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId, userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
-			
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "note/detail";
 	}
@@ -86,13 +80,9 @@ public class NoteController {
 		List<Note> noteList = noteBO.getNoteList(userId, userType);
 		model.addAttribute("noteList", noteList);
 		
-		//kidsInfoList보여주기(학부모-본인자녀만)
-		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		//kidsInfoList보여주기(리팩토링)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId, userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
-			
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "note/list";
 	}

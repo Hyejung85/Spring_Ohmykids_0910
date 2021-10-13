@@ -35,18 +35,9 @@
 							<div class="mx-3">
 								<select id="kidsNameInput" class="form-control btn-yellow">
 									<option value="">--자녀 선택--</option>
-									<c:choose>
-						    		<c:when test="${userType eq '학부모' }">
-							    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
-							    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
-							    		</c:forEach>
-						    		</c:when>
-						    		<c:otherwise>
-						    			<c:forEach var="kid" items="${kidsInfoListForTeacher }" varStatus="state">
-							    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
-							    		</c:forEach>
-						    		</c:otherwise>
-						    		</c:choose>
+						    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
+						    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
+						    		</c:forEach>
 								</select>
 							</div>
 						</div>

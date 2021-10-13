@@ -42,12 +42,8 @@ public class AlbumConroller {
 		int userId = (Integer)session.getAttribute("userId");
 		String userType = (String)session.getAttribute("userType");
 		
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
-		
-		//kidsInfoList보여주기(학부모-본인자녀만)
-		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		//kidsInfoList보여주기(리팩토링)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId, userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
 		
 		return "album/create";
@@ -63,12 +59,8 @@ public class AlbumConroller {
 		int userId = (Integer)session.getAttribute("userId");
 		String userType = (String)session.getAttribute("userType");
 		
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
-		
-		//kidsInfoList보여주기(학부모-본인자녀만)
-		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		//kidsInfoList보여주기(리팩토링)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId, userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
 			
 		
@@ -89,14 +81,11 @@ public class AlbumConroller {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
+		String userType = (String)session.getAttribute("userType");
 		
-		//kidsInfoList보여주기(학부모-본인자녀만)
-		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
+		//kidsInfoList보여주기(리팩토링)
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId, userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
-			
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		//album + comment
 		List<AlbumWithComment> albumDetailList = albumBO.getAlbum(id, userId, type);

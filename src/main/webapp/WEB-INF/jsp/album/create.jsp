@@ -66,27 +66,20 @@
 				    <div class="studentInfo-secton d-flex align-items-center py-4">
 				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
 				    	<b>학생선택</b>
-				    	<button type="button" class="btn btn-green ml-4"><b>전체원아보기</b></button>
+				    	<c:if test="${userType eq '선생님' }">
+				    	<a href="/kidsinfo/list_view" class="btn btn-green ml-4"><b>전체원아보기</b></a>
+				    	</c:if>
 				    	</div>
+				
 				    	<!-- 반정보 -->
 				    	<div class="w-50 d-flex justify-content-center align-items-center title-text h-75 mx-3">
 				    	<select class="form-control text-center" id="kidsClassAndNameInput">
 				    		<option value="">--반 & 이름--</option>
-				    		<c:choose>
-				    		<c:when test="${userType eq '학부모' }">
-					    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
-					    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id } data-kids-userid="${kid.userId }">${kid.kidsClass }-${kid.kidsName }</option>
-					    		</c:forEach>
-				    		</c:when>
-				    		<c:otherwise>
-				    			<c:forEach var="kid" items="${kidsInfoListForTeacher }" varStatus="state">
-					    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id } data-kids-userid="${kid.userId }">${kid.kidsClass }-${kid.kidsName }</option>
-					    		</c:forEach>
-				    		</c:otherwise>
-				    		</c:choose>
+				    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
+				    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id } data-kids-userid="${kid.userId }">${kid.kidsClass }-${kid.kidsName }</option>
+				    		</c:forEach>
 				    	</select>
 				    	</div>
-				    	
 				    </div>
 				    <!-- 학생선택 section -->
 				    <!-- 앨범 section -->

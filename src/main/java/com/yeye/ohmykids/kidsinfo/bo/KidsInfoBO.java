@@ -53,14 +53,22 @@ public class KidsInfoBO {
 	}
 	
 	//자녀정보리스트
-	public List<KidsInfo> getKidsInfoList(int userId){
-		return kidsInfoDAO.selectKidsInfoList(userId);
+	public List<KidsInfo> getKidsInfoList(int userId, String userType){
+		
+		List<KidsInfo> kidsInfoList = null;
+		if(userType.equals("선생님")) {
+			kidsInfoList = kidsInfoDAO.selectKidsInfoListForTeacher();
+		}else {
+			kidsInfoList = kidsInfoDAO.selectKidsInfoList(userId);
+		}
+			
+		return kidsInfoList;
 	}
 	
 	//자녀정보리스트(for Teacher)
-	public List<KidsInfo> getKidsInfoListForTeacher(){
-		return kidsInfoDAO.selectKidsInfoListForTeacher();
-		}
+	//public List<KidsInfo> getKidsInfoListForTeacher(){
+	//	return kidsInfoDAO.selectKidsInfoListForTeacher();
+	//	}
 	
 //	//자녀정보리스트(반정보 중복없이 보기)
 //	public List<KidsInfo> getKidsInfoListGroupByClass(int userId){
@@ -73,8 +81,8 @@ public class KidsInfoBO {
 //	}
 	
 	//자녀정보상세
-	public KidsInfo getKidsInfo(int id, int userId) {
-		return kidsInfoDAO.selectKidsInfo(id, userId);
+	public KidsInfo getKidsInfo(int id) {
+		return kidsInfoDAO.selectKidsInfo(id);
 	}
 
 	

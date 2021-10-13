@@ -30,7 +30,9 @@
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5>My Kids List</h5></div> 
 					<!-- 자녀정보 등록 -->
+					<c:if test="${userType eq '학부모' }">
 					<div class="mx-3"><a href="/kidsinfo/create_view" class="btn btn-yellow btn-sm" id="kidsinfoCreateBtn"><b>자녀등록</b></a></div>
+					</c:if>
 				</div>
 			</div>
 			<!-- page section -->

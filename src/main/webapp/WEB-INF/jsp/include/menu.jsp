@@ -13,9 +13,16 @@
 		        </a>
 		        <!-- 자녀관리 submenu dropdown-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <c:if test="${userType eq '학부모' }">
 		          <a class="dropdown-item title-text" href="/kidsinfo/create_view">자녀정보등록</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item title-text" href="/kidsinfo/list_view">자녀목록</a>
+		          </c:if>
+		          <a class="dropdown-item title-text" href="/kidsinfo/list_view">
+		          	<c:choose>
+			          	<c:when test="${userType eq '선생님'}">학생목록</c:when>
+			          	<c:otherwise>자녀목록</c:otherwise>
+		          	</c:choose>
+		          	</a>
 		        </div>
 		        <!-- /자녀관리 submenu dropdown-->
 		      </li>

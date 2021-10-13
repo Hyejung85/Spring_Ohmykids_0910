@@ -47,7 +47,6 @@ public interface KidsInfoDAO {
 	 
 	 //자녀정보상세
 	 public KidsInfo selectKidsInfo(
-			 @Param("id") int id
-			 , @Param("userId") int userId);
+			 @Param("id") int id);
 	
 }

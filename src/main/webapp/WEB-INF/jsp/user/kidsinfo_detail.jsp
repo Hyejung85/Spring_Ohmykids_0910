@@ -184,8 +184,8 @@
 					data:formData,
 					success:function(data){
 						if(data.result == "success"){
-							alert("자녀정보 수정 성공");
-							location.reload();
+							//alert("자녀정보 수정 성공");
+							location.href="/kidsinfo/list_view";
 						}else{
 							alert("자녀정보수정에 실패했습니다.");
 						}
