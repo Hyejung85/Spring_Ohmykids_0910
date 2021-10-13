@@ -20,7 +20,7 @@ public class LikeBO {
 	public boolean existLike(int userId, String type, int targetId) {
 		int count = likeDAO.selectCountLike(userId, type, targetId);
 		
-		if(count > 1) {
+		if(count >= 1) {
 			return true;
 		}else {
 			return false;
