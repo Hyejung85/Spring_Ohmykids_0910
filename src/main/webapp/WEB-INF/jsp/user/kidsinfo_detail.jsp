@@ -25,8 +25,8 @@
 		<section class="d-flex justify-content-center align-items-center">
 			<div>
 			<!-- submenu-bar -->
-			<div class="submenu-bar d-flex justify-content-center w-100">
-				<div class="d-flex justify-content-between align-items-center w-100">
+			<div class="submenu-bar d-flex justify-content-center w-100 mt-3">
+				<div class="d-flex justify-content-between align-items-center w-100 ">
 					<!--  title -->
 					<div class="mx-3 mt-2"><h5>My Kids 상세</h5></div> 
 					<div class="d-flex">
@@ -178,7 +178,7 @@
 				$.ajax({
 					enctype:"multipart/form-data", //파일업로드 필수
 					type:"POST",
-					url:"kidsinfo/update",
+					url:"/kidsinfo/update",
 					processData:false, //파일업로드 필수
 					contentType:false, //파일업로드 필수
 					data:formData,
