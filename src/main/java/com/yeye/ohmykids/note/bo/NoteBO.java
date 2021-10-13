@@ -45,16 +45,22 @@ public class NoteBO {
 	}
 	
 	//알림장 목록
-	public List<Note> getNoteList(){
-		List<Note> noteList = noteDAO.selectNoteList();
+	public List<Note> getNoteList(int parentsId, String userType){
+		
+		List<Note> noteList = null;
+		if(userType == "선생님") {
+			noteList = noteDAO.selectNoteList(); //선생님
+		}else {
+			noteList = noteDAO.selectNoteListForParents(parentsId); //학부모
+		}
 		return noteList;
 	}
 	
 	//알림장 목록(for parents)
-		public List<Note> getNoteListForParents(int parentsId){
-			List<Note> noteList = noteDAO.selectNoteListForParents(parentsId);
-			return noteList;
-		}
+	//	public List<Note> getNoteListForParents(int parentsId){
+	//		List<Note> noteList = noteDAO.selectNoteListForParents(parentsId);
+	//		return noteList;
+	//	}
 	
 	//알림장 상세
 	/*

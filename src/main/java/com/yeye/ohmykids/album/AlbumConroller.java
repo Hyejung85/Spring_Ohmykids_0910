@@ -40,14 +40,15 @@ public class AlbumConroller {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
+		String userType = (String)session.getAttribute("userType");
+		
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		//kidsInfoList보여주기(학부모-본인자녀만)
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
-			
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		return "album/create";
 	}
@@ -60,17 +61,19 @@ public class AlbumConroller {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
+		String userType = (String)session.getAttribute("userType");
+		
+		//kidsInfoList보여주기(선생님-전체)
+		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
+		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
 		//kidsInfoList보여주기(학부모-본인자녀만)
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		model.addAttribute("kidsInfoList", kidsInfoList);
 			
-		//kidsInfoList보여주기(선생님-전체)
-		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();
-		model.addAttribute("kidsInfoListForTeacher", kidsInfoListForTeacher);
 		
-		//albumList(+이미지 리스트)
-		List<AlbumWithComment> albumList = albumBO.getAlbumList(userId);			
+		//albumList(+이미지 리스트) > 리팩토링
+		List<AlbumWithComment> albumList = albumBO.getAlbumList(userId, userType);			
 		model.addAttribute("albumList", albumList);
 		
 		return "album/list";

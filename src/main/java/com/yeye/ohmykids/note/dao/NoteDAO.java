@@ -25,7 +25,7 @@ public interface NoteDAO {
 			, @Param("imagePath") String imagePath);
 	
 	
-	//알림장 목록
+	//알림장 목록(for teacher)
 	public List<Note> selectNoteList();
 	
 	//알림장 목록(for parents)

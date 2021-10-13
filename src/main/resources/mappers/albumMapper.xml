@@ -55,6 +55,26 @@
  			`album`
  		ORDER BY `id` DESC
  	</select>
+ 	<!-- 앨범리스트 for parents-->
+ 	<select id="selectAlbumListForParents" resultType="com.yeye.ohmykids.album.model.Album">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `type`
+ 			, `kidsId`
+ 			, `kidsClass`
+ 			, `kidsName`
+ 			, `parentsId`
+ 			, `weather`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`album`
+ 		WHERE `parentsId` = #{parentsId}
+ 		ORDER BY `id` DESC
+ 	</select>
  	<!-- 앨범상세 -->
  	<select id="selectAlbumById" parameterType="map" resultType="com.yeye.ohmykids.album.model.Album">
  		SELECT

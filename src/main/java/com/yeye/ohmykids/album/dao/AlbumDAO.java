@@ -19,6 +19,7 @@ public interface AlbumDAO {
 			 , @Param("type") String type 
 			 , @Param("kidsId") int kidsId
 			 , @Param("kidsClass") String kidsClass 
+			 , @Param("parentsId) int parentsId
 			 , @Param("kidsName") String kidsName
 			 , @Param("weather") String weather 
 			 , @Param("content") String content
@@ -27,6 +28,9 @@ public interface AlbumDAO {
 	
 	//앨범 리스트
 	public List<Album> selectAlbumList();
+	
+	//앨범 리스트
+	public List<Album> selectAlbumListForParents(@Param("parentsId") int parentsId);
 	
 	//앨범 셀렉트
 	public Album selectAlbumByUserId(

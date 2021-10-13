@@ -46,12 +46,18 @@ public class AlbumBO {
 	}
 	
 	//앨범 목록
-	public List<AlbumWithComment> getAlbumList(int userId){
+	public List<AlbumWithComment> getAlbumList(int userId, String userType){
 		
 		List<AlbumWithComment> albumWithCommentList = new ArrayList<>();
 		
 		//앨범 리스트
-		List<Album> albumList = albumDAO.selectAlbumList();
+		List<Album> albumList = null;
+		if(userType == "선생님") {
+			albumList = albumDAO.selectAlbumList(); //선생님
+		}else {
+			albumList = albumDAO.selectAlbumListForParents(userId); //학부모
+		}
+			
 		
 		for(Album album : albumList) {
 			//이미지 파일(앨범에 해당하는 이미지 파일 리스트)
