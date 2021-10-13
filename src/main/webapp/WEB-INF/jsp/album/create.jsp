@@ -73,7 +73,7 @@
 				    	<select class="form-control text-center" id="kidsClassAndNameInput">
 				    		<option value="">--반 & 이름--</option>
 				    		<c:choose>
-				    		<c:when test="${userType eq '학부모' }">-->
+				    		<c:when test="${userType eq '학부모' }">
 					    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
 					    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id } data-kids-userid="${kid.userId }">${kid.kidsClass }-${kid.kidsName }</option>
 					    		</c:forEach>

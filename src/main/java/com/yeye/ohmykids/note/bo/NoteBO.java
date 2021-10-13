@@ -48,7 +48,7 @@ public class NoteBO {
 	public List<Note> getNoteList(int parentsId, String userType){
 		
 		List<Note> noteList = null;
-		if(userType == "선생님") {
+		if(userType.equals("선생님")) {
 			noteList = noteDAO.selectNoteList(); //선생님
 		}else {
 			noteList = noteDAO.selectNoteListForParents(parentsId); //학부모

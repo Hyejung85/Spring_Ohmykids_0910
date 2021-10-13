@@ -51,6 +51,8 @@ public class KidsInfoController {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
+		
+		//for parents
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId);
 		//for teacher
 		List<KidsInfo> kidsInfoListForTeacher = kidsInfoBO.getKidsInfoListForTeacher();

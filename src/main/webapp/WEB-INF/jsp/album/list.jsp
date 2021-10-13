@@ -82,8 +82,9 @@
 							</div>
 							<!-- /일자, 날씨 -->
 							<div class=" w-100">
+							<div class="mb-1 ml-2 mt-1"><small><b>♡${albumWithComment.album.kidsClass}♡ ${albumWithComment.album.kidsName }</b></small></div>
 							<!-- 사진 -->
-							<div id="picture" class="d-flex align-items-center w-100 mt-3 flex-wrap ml-2">
+							<div id="picture" class="d-flex align-items-center w-100 mt-1 flex-wrap ml-2">
 								<c:forEach var= "image" items="${albumWithComment.imageFileList }">
 									<a href="/album/detail_view?id=${albumWithComment.album.id }&targetId=${albumWithComment.album.id}&type=album" class="title-text">
 										<div>

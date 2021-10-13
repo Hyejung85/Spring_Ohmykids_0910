@@ -73,7 +73,7 @@
  		FROM
  			`album`
  		WHERE `parentsId` = #{parentsId}
- 		ORDER BY `id` DESC
+ 		ORDER BY `kidsName`, `id` DESC 
  	</select>
  	<!-- 앨범상세 -->
  	<select id="selectAlbumById" parameterType="map" resultType="com.yeye.ohmykids.album.model.Album">

@@ -81,7 +81,7 @@
  		FROM
  			`note`
  		WHERE `parentsId` = #{parentsId}
- 		ORDER BY `id` DESC
+ 		ORDER BY `kidsName`, `id` DESC 
  	</select>
  	<!-- 알림장 상세 -->
  	<!-- <select id="selectNoteById" parameterType = "map" resultType="com.yeye.ohmykids.note.model.Note">

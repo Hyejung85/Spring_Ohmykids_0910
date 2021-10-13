@@ -52,7 +52,7 @@ public class AlbumBO {
 		
 		//앨범 리스트
 		List<Album> albumList = null;
-		if(userType == "선생님") {
+		if(userType.equals("선생님")) {
 			albumList = albumDAO.selectAlbumList(); //선생님
 		}else {
 			albumList = albumDAO.selectAlbumListForParents(userId); //학부모

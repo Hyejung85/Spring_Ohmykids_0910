@@ -58,8 +58,8 @@ public class KidsInfoBO {
 	}
 	
 	//자녀정보리스트(for Teacher)
-		public List<KidsInfo> getKidsInfoListForTeacher(){
-			return kidsInfoDAO.selectKidsInfoListForTeacher();
+	public List<KidsInfo> getKidsInfoListForTeacher(){
+		return kidsInfoDAO.selectKidsInfoListForTeacher();
 		}
 	
 //	//자녀정보리스트(반정보 중복없이 보기)
