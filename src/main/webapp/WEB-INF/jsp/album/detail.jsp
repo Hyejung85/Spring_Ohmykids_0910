@@ -207,7 +207,7 @@
 					data:formData, 
 					success:function(data){
 						if(data.result == "success"){
-							alert("앨범 수정완료");
+							//alert("앨범 수정완료");
 							location.href="/album/list_view;"
 						}else{
 							alert("앨범 수정실패");
@@ -235,7 +235,7 @@
 					data:{"targetId": targetId, "type":type},
 					success:function(data){
 						if(data.result == "success"){
-							alert("앨범 삭제 성공");
+							//alert("앨범 삭제 성공");
 							location.href="/album/list_view";
 						}else{
 							alert("앨범 삭제 실패");
@@ -322,7 +322,7 @@
 					data:{"type":type, "targetId": targetId, "content":content},
 					success:function(data){
 						if(data.result == "success"){
-							alert("댓글입력 성공");
+							//alert("댓글입력 성공");
 							location.reload();
 						}else{
 							alert("댓글입력 실패");
@@ -347,7 +347,7 @@
 					data:{"id":id},
 					success:function(data){
 						if(data.result == "success"){
-							alert("댓글 삭제 성공");
+							//alert("댓글 삭제 성공");
 							location.reload();
 						}else{
 							alert("댓글 삭제 실패");

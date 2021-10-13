@@ -129,7 +129,7 @@
 					data:{"type":type, "loginId":loginId, "password":password, "name":name, "email":email},
 					success:function(data){
 						if(data.result == "success"){
-							alert("회원가입 성공! 로그인 화면으로 이동합니다.");
+							//alert("회원가입 성공! 로그인 화면으로 이동합니다.");
 							location.href="/user/signin_view";
 						}else{
 							alert("회원가입 실패");

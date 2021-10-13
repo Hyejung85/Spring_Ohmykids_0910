@@ -170,7 +170,7 @@
 					data:formData, 
 					success:function(data){
 						if(data.result == "success"){
-							alert("알림장 작성완료");
+							//alert("알림장 작성완료");
 							location.href="/note/list_view";
 							//location.href="/note/detail_view?id=${result.id}"; --> 보류
 						}else{
