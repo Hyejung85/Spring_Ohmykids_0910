@@ -8,7 +8,7 @@
 
 
 ### 🎨포트폴리오🎨
- - 링크
+ - [포트폴리오](https://github.com/Hyejung85/Spring_Ohmykids_0910/blob/develope/portfolio.pdf/)
  
 ### 📃설계📃
  - UI 기획
