@@ -1,7 +1,7 @@
 # Oh My Kids
 
 ### 👓AWS👓
-- http://3.35.222.49:8080/kidsinfo/list_view
+- http://3.35.222.49:8080/user/signin_view
   - 테스트 계정 [선생님] ID: blue / PW: asdf
   - 테스트 계정 [학부모] ID: hyejung / PW: asdf
 
@@ -15,7 +15,7 @@
 
 
 ### 🎨포트폴리오🎨
- - [포트폴리오](https://github.com/Hyejung85/Spring_Ohmykids_0910/blob/develope/portfolio.pdf/)
+ - [포트폴리오](https://github.com/Hyejung85/Spring_Ohmykids_0910/blob/develope/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4.pdf/)
  
 ### 📃설계📃
  - UI 기획
