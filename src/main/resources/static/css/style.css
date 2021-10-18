@@ -40,6 +40,7 @@
 
 .navbar{
 	border-bottom :1px solid #088A29;
+	width: 100%
 }
 
 hr{
@@ -52,6 +53,7 @@ hr{
 
 header{
 	height : 80px;
+	width: 100%
 }
 
 nav{
