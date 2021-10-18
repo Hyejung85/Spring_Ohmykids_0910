@@ -62,7 +62,7 @@
  - Mybatis [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
  - Bootstrap [MIT License](https://opensource.org/licenses/MIT)
  - jQuery [MIT License](https://opensource.org/licenses/MIT)
- - 이미지 출처 : [pixabay](https://pixabay.com/ko/)
+ - 이미지 출처 [pixabay](https://pixabay.com/ko/)
  
  ### 🎁향후 계획🎁
   - 선생님을 위한 반관리기능 추가
