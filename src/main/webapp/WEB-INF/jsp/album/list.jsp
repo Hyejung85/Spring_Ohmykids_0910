@@ -34,7 +34,7 @@
 							<!-- 자녀선택 -->
 							<div class="mx-3">
 								<select id="kidsNameInput" class="form-control btn-yellow">
-									<option value="">--자녀 선택--</option>
+									<option value="">--[준비중]자녀 선택--</option>
 						    		<c:forEach var="kid" items="${kidsInfoList }" varStatus="state">
 						    		<option value="${kid.kidsClass }-${kid.kidsName }" data-kids-id=${kid.id }>${kid.kidsClass }-${kid.kidsName }</option>
 						    		</c:forEach>

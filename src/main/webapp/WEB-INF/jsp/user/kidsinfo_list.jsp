@@ -28,7 +28,12 @@
 			<div class="submenu-bar d-flex justify-content-center w-100">
 				<div class="d-flex justify-content-between align-items-center w-100">
 					<!--  title -->
-					<div class="mx-3 mt-2"><h5>My Kids List</h5></div> 
+					<div class="mx-3 mt-2">
+						<h5><c:choose>
+							<c:when test="${userType eq '학부모' }">My Kids List</c:when>
+							<c:otherwise>Students List</c:otherwise>
+						</c:choose></h5>
+					</div> 
 					<!-- 자녀정보 등록 -->
 					<c:if test="${userType eq '학부모' }">
 					<div class="mx-3"><a href="/kidsinfo/create_view" class="btn btn-yellow btn-sm" id="kidsinfoCreateBtn"><b>자녀등록</b></a></div>
