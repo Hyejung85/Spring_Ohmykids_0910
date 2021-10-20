@@ -86,7 +86,7 @@
  			`kidsinfo`
  		ORDER BY `kidsClass`, `kidsName` 
  	</select>
- 	<!-- 자녀목록(반정보 중복없이 보기) -->
+ 	<!-- 자녀목록(선생님 반정보 중복없이 보기) -->
  	<select id="selectKidsInfoListByClass" parameterType="int" resultType="com.yeye.ohmykids.kidsinfo.model.KidsInfo" >
  		SELECT
  			`id`
@@ -102,8 +102,6 @@
  			, `updatedAt`
  		FROM
  			`kidsinfo`
- 		WHERE
- 			`userId` = #{userId}
  		GROUP BY `kidsClass`
  	</select>
  	

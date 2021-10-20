@@ -57,6 +57,22 @@
 		        <!-- /앨범 submenu dropdown-->
 		      </li>
 		      <!-- /앨범 -->
+		      <!-- 공지 -->
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle title-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          공지
+		        </a>
+		        <!-- 앨범 submenu dropdown-->
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <c:if test="${userType eq '선생님' }">
+		          <a class="dropdown-item title-text" href="/notice/create_view">공지작성</a>
+		          <div class="dropdown-divider"></div>
+		          </c:if>
+		          <a class="dropdown-item title-text" href="/notice/list_view">공지목록</a>
+		        </div>
+		        <!-- /공지 submenu dropdown-->
+		      </li>
+		      <!-- /공지 -->
 		    </ul>
 		   </div>
 		</nav>

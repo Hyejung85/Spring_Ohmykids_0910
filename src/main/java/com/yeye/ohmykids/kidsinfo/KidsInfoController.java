@@ -53,9 +53,13 @@ public class KidsInfoController {
 		int userId = (Integer)session.getAttribute("userId");
 		String userType = (String) session.getAttribute("userType");
 		
-		//리팩토링
+		//반-이름
 		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId,userType);
 		model.addAttribute("kidsInfoList", kidsInfoList);
+		
+		//반정보 중복없이
+		List<KidsInfo> kidsClassList = kidsInfoBO.getKidsInfoListGroupByClass();
+		model.addAttribute("kidsClassList", kidsClassList);
 	
 		return "user/kidsinfo_list";
 	}

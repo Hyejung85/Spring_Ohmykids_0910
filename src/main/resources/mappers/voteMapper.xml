@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.yeye.ohmykids.notice.dao.VoteDAO">
+ 	<insert id="insertVote" parameterType="map">
+ 		INSERT INTO 
+ 			`notice_type_vote`
+ 		(
+ 			`postType`
+ 			, `userId`
+ 			, `userName`
+ 			, `userType`
+ 			, `kidsClass`
+ 			, `noticeType`
+ 			, `weather`
+ 			, `title`
+ 			, `description`
+ 			, `endDate`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{postType}
+ 			, #{userId}
+ 			, #{userName}
+ 			, #{userType}
+ 			, #{kidsClass}
+ 			, #{noticeType}
+ 			, #{weather}
+ 			, #{title}
+ 			, #{description}
+ 			, #{endDate}
+ 			, now()
+ 			, now()
+ 		)
+ 	</insert>
+ 
+ </mapper>

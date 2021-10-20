@@ -40,7 +40,7 @@
 					<!-- 작성자 section -->
 					<div class="writerInfo-secton d-flex my-1">
 						<div class="w-50 d-flex justify-content-start ml-3 align-items-center" id="userNameInput">
-							<h4><b><i class="bi bi-person-square"></i> ${userName }</b></h4>
+							<h4><b><i class="bi bi-person-square"></i> ${userName } ${userType }</b></h4>
 						</div>
 						<div class="w-25 d-flex justify-content-end align-items-center" id="createdAtInput">
 							<c:set var="today" value="<%=new java.util.Date()%>" />
