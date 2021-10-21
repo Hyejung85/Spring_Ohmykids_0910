@@ -73,7 +73,7 @@
  			, `updatedAt`
  		FROM
  			`notice_type_notice`
- 		ORDER BY `createdAt` DESC
+ 		ORDER BY `id` DESC
  	</select>
  
  

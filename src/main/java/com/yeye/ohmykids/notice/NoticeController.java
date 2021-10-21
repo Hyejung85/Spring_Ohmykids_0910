@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
 import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
 import com.yeye.ohmykids.notice.bo.NoticeBO;
+import com.yeye.ohmykids.notice.bo.VoteBO;
 import com.yeye.ohmykids.notice.model.Notice;
 import com.yeye.ohmykids.notice.model.NoticeWithComment;
+import com.yeye.ohmykids.notice.model.Vote;
 
 @Controller
 @RequestMapping("/notice")
@@ -26,6 +28,9 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeBO noticeBO;
+	
+	@Autowired
+	private VoteBO voteBO;
 	
 	//입력화면
 	@RequestMapping("/create_view")
@@ -85,9 +90,14 @@ public class NoticeController {
 		List<KidsInfo> kidsClassList = kidsInfoBO.getKidsInfoListGroupByClass();
 		model.addAttribute("kidsClassList", kidsClassList);
 				
-		//notice(+vote) List
+		//vote List
+		List<Vote> voteList = voteBO.getVoteList();
+		model.addAttribute("voteList", voteList);
+		
+		//notice List
 		List<Notice> noticeList = noticeBO.getNoticeList();
 		model.addAttribute("noticeList", noticeList);
+				
 		
 		return "notice/list";
 	}

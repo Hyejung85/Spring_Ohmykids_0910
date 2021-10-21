@@ -7,6 +7,8 @@ import com.yeye.ohmykids.comment.model.Comment;
 public class NoticeWithComment {
 	private Notice notice;
 	private List<Comment> commentList;
+	
+	
 	public Notice getNotice() {
 		return notice;
 	}

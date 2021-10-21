@@ -47,7 +47,7 @@
 				<!-- page section -->
 				<div class="page-section d-flex justify-content-center">
 					<!-- 공지 요약 section -->
-					<c:forEach var="notice" items="${noticeList }">
+					<c:forEach var="notice" items="${noticeList}">
 					<div>
 						<div class="note-contraction d-flex">
 							<!-- 일자, 날씨 -->
@@ -85,8 +85,8 @@
 									<h5><b>
 									<c:set var="title" value="${notice.title }" />
 										<c:choose>
-											<c:when test = "${title.length() > 12 }">
-												${fn:substring(title,0,11) }...
+											<c:when test = "${title.length() > 14 }">
+												${fn:substring(title,0,13) }...
 											</c:when>
 											<c:otherwise>
 											${notice.title }
@@ -124,6 +124,72 @@
 					</div>
 					</c:forEach>
 					<!-- /공지 요약 -->
+					
+					<!-- 투표 요약 section -->
+					<c:forEach var="vote" items="${voteList}">
+					<div>
+						<div class="note-contraction d-flex">
+							<!-- 일자, 날씨 -->
+							<div class="w-25 text-center mt-3 ml-2">
+								<div class="d-flex align-items-center justify-content-center"><h2><b><fmt:formatDate value="${vote.createdAt }" pattern="M" /></b></h2>월<h2><b><fmt:formatDate value="${vote.createdAt }" pattern="d" /></b></h2>일</div>
+								<div><h5><small><fmt:formatDate value="${vote.createdAt }" pattern="E" />요일</small></h5></div>
+								<div><h3>
+									<c:choose>
+										<c:when test="${vote.weather eq '맑음' }">
+											<img src="/static/images/sunny.png" width="35" height="35">
+										</c:when>
+										<c:when test="${vote.weather eq '흐림' }">
+											<img src="/static/images/cloud.png" width="35" height="35">
+										</c:when>
+										<c:when test="${vote.weather eq '비' }">
+											<img src="/static/images/rain.png" width="35" height="35">
+										</c:when>
+											<c:when test="${vote.weather eq '눈' }">
+										<img src="/static/images/snow.png" width="35" height="35">
+										</c:when>
+									</c:choose>
+								</h3></div>
+							</div>
+							<!-- /일자, 날씨 -->
+							<!-- 공지 내용 -->
+							<div class="w-50 d-flex align-items-center mx-2">
+								<!-- 공지/투표인지, 반정보 -->
+								<a href="/notice/detail_view/typeisvote?id=${vote.id }" class="title-text">
+								<div class="d-flex">
+								<div class="btn-green my-1"><small><b>&nbsp;&nbsp;&nbsp;${vote.noticeType }&nbsp;&nbsp;&nbsp;</b></small></div>
+								<div class="my-1 ml-1"><small><b>♡${vote.kidsClass}♡</b></small></div>
+								</div>
+								<!-- 공지제목&내용 -->
+								<div>
+									<h5><b>
+									<c:set var="title" value="${vote.title }" />
+										<c:choose>
+											<c:when test = "${title.length() > 14 }">
+												${fn:substring(title,0,13) }...
+											</c:when>
+											<c:otherwise>
+											${vote.title }
+											</c:otherwise>
+										</c:choose>
+									</b></h5>
+									<c:set var="description" value="${vote.description }" />
+									<div>
+										<c:choose>									
+											<c:when test="${description.length() > 30}">
+											${fn:substring(description,0,30) }...
+											</c:when>
+											<c:otherwise>
+											${vote.description }
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+								</a>
+							</div>
+							<!-- /공지 내용 -->
+					</div>
+					</c:forEach>
+					<!-- /투표 요약 -->
 				</div>
 				<!-- /page section -->
 		

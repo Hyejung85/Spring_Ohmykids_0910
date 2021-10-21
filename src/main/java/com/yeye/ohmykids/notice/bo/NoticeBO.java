@@ -13,6 +13,7 @@ import com.yeye.ohmykids.common.FileManagerService;
 import com.yeye.ohmykids.notice.dao.NoticeDAO;
 import com.yeye.ohmykids.notice.model.Notice;
 import com.yeye.ohmykids.notice.model.NoticeWithComment;
+import com.yeye.ohmykids.notice.model.Vote;
 
 @Service
 public class NoticeBO {
@@ -70,6 +71,5 @@ public class NoticeBO {
 	//공지목록
 	public List<Notice> getNoticeList(){
 		return noticeDAO.selectNoticeList();
-		
 	}
 }
