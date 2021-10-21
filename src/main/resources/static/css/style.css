@@ -17,6 +17,7 @@
 .btn-green{
 	background-color:#088A29;
 	color:white;
+	border-radius: 3px;
 }
 
 .btn-white{
@@ -27,6 +28,7 @@
 .btn-yellow{
 	color: #088A29;
 	background-color:#F3F781;
+	
 }
 
 .btn-info{
@@ -128,12 +130,18 @@ section{
 	color:#088A29;
 }
 
+.title-section{
+	width : 500px;
+	border :1px solid #088A29;
+	color:#088A29;
+}
+
 .note-section{
 	width : 500px;
 	height : auto;
 	border :1px solid #088A29;
 	border-radius: 0px 0px 10px 10px ;
-	overflow: auto;
+	
 }
 
 .note-detail-section{

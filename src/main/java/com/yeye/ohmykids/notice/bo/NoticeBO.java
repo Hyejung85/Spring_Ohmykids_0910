@@ -1,17 +1,27 @@
 package com.yeye.ohmykids.notice.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yeye.ohmykids.comment.bo.CommentBO;
+import com.yeye.ohmykids.comment.model.Comment;
 import com.yeye.ohmykids.common.FileManagerService;
 import com.yeye.ohmykids.notice.dao.NoticeDAO;
+import com.yeye.ohmykids.notice.model.Notice;
+import com.yeye.ohmykids.notice.model.NoticeWithComment;
 
 @Service
 public class NoticeBO {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
+	
+	@Autowired
+	private CommentBO commentBO;
 	
 	//공지 입력
 	public int addNotice(String postType, int userId, String userName, String userType, String kidsClass
@@ -29,5 +39,37 @@ public class NoticeBO {
 			}					
 		}
 		return noticeDAO.insertNotice(postType, userId, userName, userType, kidsClass, noticeType, weather, title, description, filePath);
+	}
+	
+	//공지 상세 (+comment)
+	public List<NoticeWithComment> getNotice(int id) {
+				
+		//공지 한개
+		Notice notice = noticeDAO.selectNoticeById(id);
+		
+		//리스트 생성
+		List<NoticeWithComment> noticeWithCommentList = new ArrayList<>();
+		
+		//코멘트 리스트
+		List<Comment> commentList = commentBO.getCommentList(notice.getPostType(), notice.getId());
+		
+		//객체 생성
+		NoticeWithComment noticeWithComment = new NoticeWithComment();
+		
+		//객체에 공지 하나 담는다.
+		noticeWithComment.setNotice(notice);
+		//객체에 코멘트 리스트 담는다.
+		noticeWithComment.setCommentList(commentList);
+		
+		//객체를 리스트에 담는다.
+		noticeWithCommentList.add(noticeWithComment);
+		
+		return noticeWithCommentList;	
+	}
+	
+	//공지목록
+	public List<Notice> getNoticeList(){
+		return noticeDAO.selectNoticeList();
+		
 	}
 }

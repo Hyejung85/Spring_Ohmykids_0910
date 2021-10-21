@@ -37,6 +37,44 @@
  			, now()
  		)
  	</insert>
+ 	<select id="selectNoticeById" parameterType="int" resultType="com.yeye.ohmykids.notice.model.Notice">
+ 		SELECT
+ 			`id`
+ 			, `postType`
+ 			, `userId`
+ 			, `userName`
+ 			, `userType`
+ 			, `kidsClass`
+ 			, `noticeType`
+ 			, `weather`
+ 			, `title`
+ 			, `description`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`notice_type_notice`
+ 		WHERE `id` = #{id}
+ 	</select>
+ 	<select id="selectNoticeList" resultType="com.yeye.ohmykids.notice.model.Notice">
+ 		SELECT
+ 			`id`
+ 			, `postType`
+ 			, `userId`
+ 			, `userName`
+ 			, `userType`
+ 			, `kidsClass`
+ 			, `noticeType`
+ 			, `weather`
+ 			, `title`
+ 			, `description`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`notice_type_notice`
+ 		ORDER BY `createdAt` DESC
+ 	</select>
  
  
  

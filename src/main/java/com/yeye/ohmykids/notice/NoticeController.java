@@ -9,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
 import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
+import com.yeye.ohmykids.notice.bo.NoticeBO;
+import com.yeye.ohmykids.notice.model.Notice;
+import com.yeye.ohmykids.notice.model.NoticeWithComment;
 
 @Controller
 @RequestMapping("/notice")
@@ -19,6 +23,10 @@ public class NoticeController {
 
 	@Autowired
 	private KidsInfoBO kidsInfoBO;
+	
+	@Autowired
+	private NoticeBO noticeBO;
+	
 	//입력화면
 	@RequestMapping("/create_view")
 	public String createView(
@@ -28,6 +36,7 @@ public class NoticeController {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		String userType = (String) session.getAttribute("userType");
+		
 		//반정보 중복없이
 		List<KidsInfo> kidsClassList = kidsInfoBO.getKidsInfoListGroupByClass();
 		model.addAttribute("kidsClassList", kidsClassList);
@@ -37,7 +46,23 @@ public class NoticeController {
 	
 	//상세보기/수정화면_공지
 	@RequestMapping("/detail_view/typeisnotice")
-	public String detailViewNotice() {
+	public String detailViewNotice(
+			@RequestParam("id") int id
+			, Model model
+			, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		String userType = (String) session.getAttribute("userType");
+		
+		//반정보 중복없이
+		List<KidsInfo> kidsClassList = kidsInfoBO.getKidsInfoListGroupByClass();
+		model.addAttribute("kidsClassList", kidsClassList);
+		
+		//공지&코멘트 리스트
+		List<NoticeWithComment> noticeWithCommentList = noticeBO.getNotice(id);
+		model.addAttribute(noticeWithCommentList);
+		
 		return "notice/detail_notice";
 	}
 	
@@ -49,7 +74,21 @@ public class NoticeController {
 	
 	//리스트화면
 	@RequestMapping("/list_view")
-	public String listView() {
+	public String listView(Model model
+			, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		String userType = (String) session.getAttribute("userType");
+		
+		//반정보 중복없이
+		List<KidsInfo> kidsClassList = kidsInfoBO.getKidsInfoListGroupByClass();
+		model.addAttribute("kidsClassList", kidsClassList);
+				
+		//notice(+vote) List
+		List<Notice> noticeList = noticeBO.getNoticeList();
+		model.addAttribute("noticeList", noticeList);
+		
 		return "notice/list";
 	}
 }

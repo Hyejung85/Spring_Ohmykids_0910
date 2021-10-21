@@ -243,8 +243,8 @@
 					data:formData, 
 					success:function(data){
 						if(data.result == "success"){
-							alert("공지 작성완료");
-							//location.href="/notice/list_view";
+							//alert("공지 작성완료");
+							location.href="/notice/list_view";
 						}else{
 							alert("공지 작성을 실패했습니다.");
 						}
