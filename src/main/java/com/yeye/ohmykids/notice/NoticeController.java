@@ -73,7 +73,23 @@ public class NoticeController {
 	
 	//상세보기/수정화면_투표
 	@RequestMapping("/detail_view/typeisvote")
-	public String detailViewVote() {
+	public String detailViewVote(
+			@RequestParam("id") int id
+			, Model model
+			, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		String userType = (String) session.getAttribute("userType");
+		
+		//반정보 중복없이
+		List<KidsInfo> kidsClassList = kidsInfoBO.getKidsInfoListGroupByClass();
+		model.addAttribute("kidsClassList", kidsClassList);
+		
+		//투표&코멘트 리스트
+		List<NoticeWithComment> voteWithCommentList = voteBO.getVote(id);
+		model.addAttribute("voteWithCommentList",voteWithCommentList);
+		
 		return "notice/detail_vote";
 	}
 	

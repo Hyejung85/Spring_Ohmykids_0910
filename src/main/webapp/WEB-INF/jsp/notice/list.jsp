@@ -85,8 +85,8 @@
 									<h5><b>
 									<c:set var="title" value="${notice.title }" />
 										<c:choose>
-											<c:when test = "${title.length() > 14 }">
-												${fn:substring(title,0,13) }...
+											<c:when test = "${title.length() > 22 }">
+												${fn:substring(title,0,22) }...
 											</c:when>
 											<c:otherwise>
 											${notice.title }
@@ -156,7 +156,7 @@
 								<!-- 공지/투표인지, 반정보 -->
 								<a href="/notice/detail_view/typeisvote?id=${vote.id }" class="title-text">
 								<div class="d-flex">
-								<div class="btn-green my-1"><small><b>&nbsp;&nbsp;&nbsp;${vote.noticeType }&nbsp;&nbsp;&nbsp;</b></small></div>
+								<div class="btn-yellow my-1"><small><b>&nbsp;&nbsp;&nbsp;${vote.noticeType }&nbsp;&nbsp;&nbsp;</b></small></div>
 								<div class="my-1 ml-1"><small><b>♡${vote.kidsClass}♡</b></small></div>
 								</div>
 								<!-- 공지제목&내용 -->
@@ -164,8 +164,8 @@
 									<h5><b>
 									<c:set var="title" value="${vote.title }" />
 										<c:choose>
-											<c:when test = "${title.length() > 14 }">
-												${fn:substring(title,0,13) }...
+											<c:when test = "${title.length() > 22 }">
+												${fn:substring(title,0,22) }...
 											</c:when>
 											<c:otherwise>
 											${vote.title }

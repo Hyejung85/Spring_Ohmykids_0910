@@ -6,6 +6,7 @@ import com.yeye.ohmykids.comment.model.Comment;
 
 public class NoticeWithComment {
 	private Notice notice;
+	private Vote vote;
 	private List<Comment> commentList;
 	
 	
@@ -20,6 +21,12 @@ public class NoticeWithComment {
 	}
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
+	}
+	public Vote getVote() {
+		return vote;
+	}
+	public void setVote(Vote vote) {
+		this.vote = vote;
 	}
 	
 	

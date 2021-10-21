@@ -96,7 +96,7 @@
 				    <!-- 공지 title -->
 				    <div class="title-section d-flex  mt-1 py-2 px-3"> 
 				    	<div class ="mt-2"><b>Title</b></div>
-				    	<textarea class="form-control ml-2 title-text border-0 font-weight-bold" id="titleInput"> ${noticeWithComment.notice.title }</textarea>
+				    	<textarea class="form-control ml-2 mt-1 title-text border-0 font-weight-bold" id="titleInput"> ${noticeWithComment.notice.title }</textarea>
 				    </div>
 				    <!-- 공지 section -->
 				    <div class="note-section my-1">

@@ -26,4 +26,7 @@ public interface VoteDAO {
 	
 	//공지 목록
 	public List<Vote> selectVoteList();
+	
+	//공지 상세
+	public Vote selectVote(@Param("id") int id);
 }

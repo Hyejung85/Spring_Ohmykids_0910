@@ -56,5 +56,24 @@
  			`notice_type_vote`
  		ORDER BY `id` DESC
  	</select>
+ 	<select id="selectVote" resultType="com.yeye.ohmykids.notice.model.Vote">
+ 		SELECT
+ 			`id`
+ 			, `postType`
+ 			, `userId`
+ 			, `userName`
+ 			, `userType`
+ 			, `kidsClass`
+ 			, `noticeType`
+ 			, `weather`
+ 			, `title`
+ 			, `description`
+ 			, `endDate`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`notice_type_vote`
+ 		WHERE `id` = #{id}
+ 	</select>
  
  </mapper>
