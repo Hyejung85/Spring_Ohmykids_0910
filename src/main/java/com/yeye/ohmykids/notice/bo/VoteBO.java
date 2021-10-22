@@ -56,4 +56,10 @@ public class VoteBO {
 		
 		return voteWithCommentList;
 	}
+	
+	//공지 수정
+	public int updateVote(String postType, int voteId, int userId, String userName, String userType, String kidsClass
+			, String noticeType, String weather, String title, String description, String endDate) {
+		return voteDAO.updateVote(postType, voteId, userId, userName, userType, kidsClass, noticeType, weather, title, description, endDate);
+	}
 }

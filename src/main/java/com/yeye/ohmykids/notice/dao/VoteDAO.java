@@ -30,4 +30,18 @@ public interface VoteDAO {
 	
 	//공지 상세
 	public Vote selectVote(@Param("id") int id);
+	
+	//공지 수정
+	public int updateVote(
+			@Param("postType") String postType
+			, @Param("id") int id //voteId
+			, @Param("userId") int userId
+			, @Param("userName") String userName
+			, @Param("userType") String userType
+			, @Param("kidsClass") String kidsClass
+			, @Param("noticeType") String noticeType
+			, @Param("weather") String weather
+			, @Param("title") String tilte
+			, @Param("description") String description
+			, @Param("endDate") String endDate);
 }

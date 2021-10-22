@@ -268,7 +268,7 @@
 					data:formData, 
 					success:function(data){
 						if(data.result == "success"){
-							alert("공지 수정완료");
+							//alert("공지 수정완료");
 							location.href="/notice/list_view";
 						}else{
 							alert("공지 수정실패");

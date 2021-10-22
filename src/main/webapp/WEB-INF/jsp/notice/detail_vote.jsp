@@ -159,6 +159,18 @@
 	</div>
 	<script>
 		$(document).ready(function(){
+			
+			//datepicker
+			$("#endDateInput").datepicker({
+				dateFormat:"yy-mm-dd"
+				, showMonthAfterYear:true
+				, yearRange: '1950:2030'
+				, changeYear: true
+				, changeMonth: true
+				, monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+				, dayNamesMin: ['일','월','화','수','목','금','토']
+			});
+			
 			//코멘트 입력
 			$("#commentSaveBtn").on("click", function(){
 
@@ -216,6 +228,51 @@
 					}
 					
 				});
+			});
+			
+			//공지 수정
+			$("#updateVoteBtn").on("click", function(){
+				var postType = $("typeInput").val();
+				postType = "notice";
+				var voteId = $("#updateVoteBtn").data("vote-id");
+				var kidsClass = $("#kidsClassInput option:selected").val();
+				var noticeType = $("#noticeTypeInput option:selected").val();
+				var weather = $("#weatherInput option:selected").val();
+				var title = $("#titleInput").val();
+				var description = $("#descriptionInput").val();
+				var endDate = $("#endDateInput").val();
+				
+				var formData = new FormData();
+				formData.append("postType", postType);
+				formData.append("voteId", voteId);
+				formData.append("kidsClass", kidsClass);
+				formData.append("noticeType", noticeType);
+				formData.append("weather", weather);
+				formData.append("title", title);
+				formData.append("description", description);
+				formData.append("endDate", endDate);
+				
+				$.ajax({
+					enctype:"multipart/form-data", //파일업로드 필수
+					type:"POST",
+					url:"/notice/vote/update",
+					processData:false, //파일업로드 필수
+					contentType: false, //파일업로드 필수
+					data:formData, 
+					success:function(data){
+						if(data.result == "success"){
+							alert("투표 수정완료");
+							location.href="/notice/list_view";
+						}else{
+							alert("투표 수정실패");
+						}
+						
+					},
+					error:function(e){
+						alert("error");
+					}
+				});
+				
 			});
 		});
 		

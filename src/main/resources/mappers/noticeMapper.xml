@@ -83,7 +83,7 @@
  			, `title` = #{title}
  			, `description` = #{description}
  				<if test = "imagePath != null">
- 			, imagePath` = #{imagePath}
+ 			, `imagePath` = #{imagePath}
  				</if>
  		WHERE
  			`id` = #{id}

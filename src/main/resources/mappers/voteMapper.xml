@@ -75,5 +75,16 @@
  			`notice_type_vote`
  		WHERE `id` = #{id}
  	</select>
+ 	<update id="updateVote" parameterType="map">
+ 		UPDATE
+ 			`notice_type_vote`
+ 		SET
+ 			`kidsClass` = #{kidsClass}
+ 			, `title` = #{title}
+			, `description` = #{description}
+			, `endDate` = #{endDate} 			 
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  
  </mapper>
