@@ -88,6 +88,13 @@
  		WHERE
  			`id` = #{id}
  	</update>
+ 	<delete id="deleteNotice" parameterType="map">
+ 		DELETE FROM
+ 			`notice_type_notice`
+ 		WHERE `id` = #{id}
+ 		AND
+ 			`userId` = #{userId}
+ 	</delete>
  
  
  

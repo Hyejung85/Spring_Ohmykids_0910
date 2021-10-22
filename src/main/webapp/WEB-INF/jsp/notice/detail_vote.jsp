@@ -274,6 +274,29 @@
 				});
 				
 			});
+			
+			//투표 삭제
+			$("#deleteVoteBtn").on("click",function(){
+				var voteId = $("#updateVoteBtn").data("vote-id");
+				var noticeType = $("#noticeTypeInput option:selected").val();
+				
+				$.ajax({
+					type:"GET",
+					url:"/notice/vote/delete",
+					data:{"id": voteId, "noticeType":noticeType},
+					success:function(data){
+						if(data.result == "success"){
+							alert("삭제성공");
+							location.href="/notice/list_view";
+						}
+					},
+					error:function(e){
+						alert("error");
+					}
+				});
+				
+			});
+			
 		});
 		
 	</script>

@@ -263,7 +263,7 @@
 					return;
 				}
 				
-				//공지에  저장 
+				//투표에  저장 
 				var formData = new FormData();
 				formData.append("postType", postType);
 				formData.append("kidsClass", kidsClass);
@@ -282,8 +282,8 @@
 					data:formData, 
 					success:function(data){
 						if(data.result == "success"){
-							alert("투표 작성완료");
-							//location.href="/notice/list_view";
+							//alert("투표 작성완료");
+							location.href="/notice/list_view";
 						}else{
 							alert("투표 작성을 실패했습니다.");
 						}

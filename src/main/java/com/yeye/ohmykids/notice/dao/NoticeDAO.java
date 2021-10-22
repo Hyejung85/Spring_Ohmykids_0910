@@ -43,4 +43,10 @@ public interface NoticeDAO {
 			, @Param("description") String description
 			, @Param("imagePath") String imagePath);
 	
+	//공지 삭제
+	public int deleteNotice(
+			@Param("id") int id
+			, @Param("userId") Integer userId
+			, @Param("noticeType") String noticeType );
+	
 }

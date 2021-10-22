@@ -90,4 +90,27 @@ public class NoticeBO {
 		}
 		return noticeDAO.updateNotice(postType, userId, noticeId, userName, userType, kidsClass, noticeType, weather, title, description, filePath);
 	}
+	
+	//공지 삭제
+	public boolean deleteNotice(int id, Integer userId, String noticeType) {
+		//삭제대상 선택
+		Notice notice = noticeDAO.selectNoticeById(id);
+		//공지 삭제
+		int count = noticeDAO.deleteNotice(id, userId, noticeType);
+		//삭제 실패하는지 확인
+		if(count != 1) {
+			return false;
+		}
+		//삭제할 파일이 없을대 예외 처리
+		String filePath = null;
+		if(filePath != null) {
+			FileManagerService fileManagerService = new FileManagerService();
+			fileManagerService.removeFile(filePath);
+		}
+		
+		//코멘트 삭제
+		int commentCount = commentBO.deleteCommentWithNote(id, noticeType);
+		
+		return true;
+	}
 }

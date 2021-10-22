@@ -83,8 +83,25 @@ public class NoticeRestController {
 	}
 	
 	//공지 삭제
-//	@GetMapping("/delete")
-//	public int deleteNotice(@RequestParam("id") int id) {
-//		
-//	}
+	@GetMapping("/delete")
+	public Map<String, String>  deleteNotice(
+			@RequestParam("id") int id
+			, @RequestParam("noticeType") String noticeTpye
+			, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(noticeBO.deleteNotice(id, userId, noticeTpye)) {
+			result.put("result", "success");
+		}else {
+			result.put("result", "fail");
+		}
+		
+		return result;	
+		
+	}
 }

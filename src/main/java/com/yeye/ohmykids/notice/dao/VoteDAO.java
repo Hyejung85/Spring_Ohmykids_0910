@@ -44,4 +44,10 @@ public interface VoteDAO {
 			, @Param("title") String tilte
 			, @Param("description") String description
 			, @Param("endDate") String endDate);
+	
+	//공지 삭제
+	public int deleteVote(
+			@Param("id") int id
+			, @Param("noticeType") String noticeType
+			, @Param("userId") int userId);
 }

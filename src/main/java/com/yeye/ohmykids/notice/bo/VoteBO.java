@@ -62,4 +62,22 @@ public class VoteBO {
 			, String noticeType, String weather, String title, String description, String endDate) {
 		return voteDAO.updateVote(postType, voteId, userId, userName, userType, kidsClass, noticeType, weather, title, description, endDate);
 	}
+	
+	//공지 삭제
+	public boolean deleteVote(int id, String noticeType, int userId) {
+		//삭제 대상 선택
+		Vote vote = voteDAO.selectVote(id);
+		
+		//투표 삭제
+		int count = voteDAO.deleteVote(id, noticeType, userId);
+		
+		//투표부터 삭제 확인
+		if (count != 1) {
+			return false;
+		}
+		//코멘트 삭제
+		int commentList = commentBO.deleteCommentWithNote(id, noticeType);
+		
+		return true;
+	}
 }

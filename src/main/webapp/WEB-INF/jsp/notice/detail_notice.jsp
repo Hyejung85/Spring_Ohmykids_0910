@@ -281,6 +281,27 @@
 				});
 			});
 			
+			//공지 삭제
+			$("#deleteNoticeBtn").on("click", function(){
+				var noticeId = $("#updateNoticeBtn").data("notice-id");
+				var noticeType = $("#noticeTypeInput option:selected").val();
+				
+				$.ajax({
+					type:"GET",
+					url:"/notice/notice/delete",
+					data:{"id": noticeId, "noticeType":noticeType},
+					success:function(data){
+						if(data.result == "success"){
+							alert("삭제성공");
+							location.href="/notice/list_view";
+						}
+					},
+					error:function(e){
+						alert("error");
+					}
+				});
+			});
+			
 		});
 	
 	</script>
