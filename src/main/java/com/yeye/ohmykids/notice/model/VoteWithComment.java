@@ -4,16 +4,16 @@ import java.util.List;
 
 import com.yeye.ohmykids.comment.model.Comment;
 
-public class NoticeWithComment {
-	private Notice notice;
+public class VoteWithComment {
+	
+	private Vote vote;
 	private List<Comment> commentList;
 	
-	
-	public Notice getNotice() {
-		return notice;
+	public Vote getVote() {
+		return vote;
 	}
-	public void setNotice(Notice notice) {
-		this.notice = notice;
+	public void setVote(Vote vote) {
+		this.vote = vote;
 	}
 	public List<Comment> getCommentList() {
 		return commentList;
@@ -21,5 +21,9 @@ public class NoticeWithComment {
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
+	
+	
+	
 
 }
+

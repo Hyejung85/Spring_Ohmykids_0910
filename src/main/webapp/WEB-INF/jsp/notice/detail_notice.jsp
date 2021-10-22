@@ -78,7 +78,11 @@
 				    	<!-- 공지타입 -->
 				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
 				    	<select class="form-control text-center" id="noticeTypeInput">
-				    		<option value="">-- ${noticeWithComment.notice.noticeType } --</option>
+				    		<option value="${noticeWithComment.notice.noticeType}">-- 
+					    		<c:if test="${noticeWithComment.notice.noticeType eq 'notice'}">
+					    			공지
+					    		</c:if>
+				    		 --</option>
 				    		<option value="공지">공지</option>
 				    		<option value="투표">투표</option>
 				    	</select>
@@ -118,7 +122,7 @@
 					</div>
 					<!-- /사진 -->
 					<!-- 공지 내용  -->
-					<textarea id="descriptionInput" class="note-textarea pt-4 px-4 w-100 border-0" rows=5>${noticeWithComment.notice.description }</textarea>
+					<textarea id="descriptionInput" class="note-textarea pt-4 px-4 w-100 border-0">${noticeWithComment.notice.description }</textarea>
 					<!-- /공지 내용-->
 					<!-- 댓글 -->
 					<c:forEach var="comment" items="${noticeWithComment.commentList }">

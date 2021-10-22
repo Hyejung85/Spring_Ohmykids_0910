@@ -77,7 +77,7 @@
 								<!-- 공지/투표인지, 반정보 -->
 								<a href="/notice/detail_view/typeisnotice?id=${notice.id }" class="title-text">
 								<div class="d-flex">
-								<div class="btn-green my-1"><small><b>&nbsp;&nbsp;&nbsp;${notice.noticeType }&nbsp;&nbsp;&nbsp;</b></small></div>
+								<div class="btn-green my-1"><small><b>&nbsp;&nbsp;&nbsp;공지&nbsp;&nbsp;&nbsp;</b></small></div>
 								<div class="my-1 ml-1"><small><b>♡${notice.kidsClass}♡</b></small></div>
 								</div>
 								<!-- 공지제목&내용 -->
@@ -156,7 +156,7 @@
 								<!-- 공지/투표인지, 반정보 -->
 								<a href="/notice/detail_view/typeisvote?id=${vote.id }" class="title-text">
 								<div class="d-flex">
-								<div class="btn-yellow my-1"><small><b>&nbsp;&nbsp;&nbsp;${vote.noticeType }&nbsp;&nbsp;&nbsp;</b></small></div>
+								<div class="btn-yellow my-1"><small><b>&nbsp;&nbsp;&nbsp;투표&nbsp;&nbsp;&nbsp;</b></small></div>
 								<div class="my-1 ml-1"><small><b>♡${vote.kidsClass}♡</b></small></div>
 								</div>
 								<!-- 공지제목&내용 -->

@@ -68,8 +68,8 @@
 				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
 				    	<select class="form-control text-center" id="noticeTypeInput">
 				    		<option value="">-- 공지 유형 --</option>
-				    		<option value="공지">공지</option>
-				    		<option value="투표">투표</option>
+				    		<option value="notice">공지</option>
+				    		<option value="vote">투표</option>
 				    	</select>
 				    	</div>
 				    	<!-- 반정보 -->

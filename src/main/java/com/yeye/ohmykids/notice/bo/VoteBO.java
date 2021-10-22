@@ -11,6 +11,7 @@ import com.yeye.ohmykids.comment.model.Comment;
 import com.yeye.ohmykids.notice.dao.VoteDAO;
 import com.yeye.ohmykids.notice.model.NoticeWithComment;
 import com.yeye.ohmykids.notice.model.Vote;
+import com.yeye.ohmykids.notice.model.VoteWithComment;
 
 @Service
 public class VoteBO {
@@ -33,22 +34,25 @@ public class VoteBO {
 	}
 	
 	//공지 상세(+코멘트)
-	public List<NoticeWithComment> getVote(int id){
+	public List<VoteWithComment> getVote(int id){
 		//공지 한개
 		Vote vote = voteDAO.selectVote(id);
-		//코멘트 리스트
-		List<Comment> commentList = commentBO.getCommentList(vote.getPostType(), vote.getId());
+		
 		//리스트 생성
-		List<NoticeWithComment> voteWithCommentList = new ArrayList<>();
+		List<VoteWithComment> voteWithCommentList = new ArrayList<>();
+		
+		//코멘트 리스트
+		List<Comment> commentList = commentBO.getCommentList(vote.getNoticeType(), vote.getId());
+		
 		//객체 생성
-		NoticeWithComment noticeWithComment = new NoticeWithComment();
+		VoteWithComment voteWithComment = new VoteWithComment();
 		//객체에 공지 담는다.
-		noticeWithComment.setVote(vote);
+		voteWithComment.setVote(vote);
 		//객체에 코멘트리스트 담는다.
-		noticeWithComment.setCommentList(commentList);
+		voteWithComment.setCommentList(commentList);
 		
 		//객체를 리스트에 담는다.
-		voteWithCommentList.add(noticeWithComment);
+		voteWithCommentList.add(voteWithComment);
 		
 		return voteWithCommentList;
 	}

@@ -18,6 +18,7 @@ import com.yeye.ohmykids.notice.bo.VoteBO;
 import com.yeye.ohmykids.notice.model.Notice;
 import com.yeye.ohmykids.notice.model.NoticeWithComment;
 import com.yeye.ohmykids.notice.model.Vote;
+import com.yeye.ohmykids.notice.model.VoteWithComment;
 
 @Controller
 @RequestMapping("/notice")
@@ -66,7 +67,7 @@ public class NoticeController {
 		
 		//공지&코멘트 리스트
 		List<NoticeWithComment> noticeWithCommentList = noticeBO.getNotice(id);
-		model.addAttribute(noticeWithCommentList);
+		model.addAttribute("noticeWithCommentList", noticeWithCommentList);
 		
 		return "notice/detail_notice";
 	}
@@ -87,7 +88,7 @@ public class NoticeController {
 		model.addAttribute("kidsClassList", kidsClassList);
 		
 		//투표&코멘트 리스트
-		List<NoticeWithComment> voteWithCommentList = voteBO.getVote(id);
+		List<VoteWithComment> voteWithCommentList = voteBO.getVote(id);
 		model.addAttribute("voteWithCommentList",voteWithCommentList);
 		
 		return "notice/detail_vote";

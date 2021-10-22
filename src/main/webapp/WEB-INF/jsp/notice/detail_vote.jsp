@@ -78,7 +78,11 @@
 				    	<!-- 공지타입 -->
 				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
 				    	<select class="form-control text-center" id="noticeTypeInput">
-				    		<option value="">-- ${voteWithComment.vote.noticeType } --</option>
+				    		<option value="${voteWithComment.vote.noticeType}">-- 
+					    		<c:if test="${voteWithComment.vote.noticeType eq 'vote'}">
+					    			투표
+					    		</c:if>
+				    		 --</option>
 				    		<option value="공지">공지</option>
 				    		<option value="투표">투표</option>
 				    	</select>
@@ -101,10 +105,10 @@
 				    <!-- 공지 section -->
 				    <div class="note-section my-1">
 					<!-- 공지 내용  -->
-					<textarea id="descriptionInput" class="title-text pt-4 px-4 w-100 border-0" rows=5>${voteWithComment.vote.description }</textarea>
+					<textarea id="descriptionInput" class="title-text pt-4 px-4 w-100 border-0" >${voteWithComment.vote.description }</textarea>
 					<!-- /공지 내용-->
 					<!-- 투표 box -->
-					<div class="m-3" id="selectVoteBox">
+					<div class="m-3 mb-5" id="selectVoteBox">
 						<!-- 찬성 -->
 						<div class="green-border title-text pt-2 d-flex justify-content-between">
 							<div><input type="radio" checked name="vote" value="찬성" class="ml-3 mr-2"><b>찬성</b></div> 
@@ -123,7 +127,7 @@
 					</div>
 					<!-- /투표 box -->
 					<!-- 댓글 -->
-					<c:forEach var="comment" items="${voteWithComment.commentList }">
+					<c:forEach var="comment" items="${voteWithComment.commentList}">
 						<div class="d-flex">
 							<!-- 댓글 작성자, 내용 -->
 							<div class="mx-3 title-text"><b class="mr-2">${comment.userName }</b> ${comment.content }</div>

@@ -52,7 +52,7 @@ public class NoticeBO {
 		List<NoticeWithComment> noticeWithCommentList = new ArrayList<>();
 		
 		//코멘트 리스트
-		List<Comment> commentList = commentBO.getCommentList(notice.getPostType(), notice.getId());
+		List<Comment> commentList = commentBO.getCommentList(notice.getNoticeType(), notice.getId());
 		
 		//객체 생성
 		NoticeWithComment noticeWithComment = new NoticeWithComment();
