@@ -28,4 +28,19 @@ public interface NoticeDAO {
 	
 	//공지 목록
 	public List<Notice> selectNoticeList();
+	
+	//공지 업데이트
+	public int updateNotice(
+			 @Param("postType") String postType
+			, @Param("id") int id //noticeId
+			, @Param("userId") int userId
+			, @Param("userName") String userName
+			, @Param("userType") String userType
+			, @Param("kidsClass") String kidsClass
+			, @Param("noticeType") String noticeType
+			, @Param("weather") String weather
+			, @Param("title") String tilte
+			, @Param("description") String description
+			, @Param("imagePath") String imagePath);
+	
 }

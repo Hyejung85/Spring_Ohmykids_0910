@@ -72,4 +72,22 @@ public class NoticeBO {
 	public List<Notice> getNoticeList(){
 		return noticeDAO.selectNoticeList();
 	}
+	
+	//공지 수정
+	public int updateNotice(String postType, int noticeId, int userId, String userName, String userType, String kidsClass
+			, String noticeType, String weather, String title, String description, MultipartFile file) {
+		
+		//사진이 없는 경우 예외처리
+		String filePath = null;
+		
+		if(file != null) {
+			FileManagerService fileManager = new FileManagerService();
+			filePath = fileManager.saveFile(userId, file);
+			
+			if(filePath == null) {
+				return -1;
+			}
+		}
+		return noticeDAO.updateNotice(postType, userId, noticeId, userName, userType, kidsClass, noticeType, weather, title, description, filePath);
+	}
 }

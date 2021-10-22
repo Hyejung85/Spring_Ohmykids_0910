@@ -74,17 +74,15 @@
 				    </div>
 				    <!-- /작성자 section -->
 				    <!-- 공지 타입, 반선택 section -->
-				    <div class="studentInfo-secton d-flex align-items-center py-4">
+				    <div class="studentInfo-secton d-flex align-items-center py-4 ">
 				    	<!-- 공지타입 -->
-				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
-				    	<select class="form-control text-center" id="noticeTypeInput">
-				    		<option value="${noticeWithComment.notice.noticeType}">-- 
+				    	<div class="w-50 d-flex ml-3 align-items-center h-75 ">
+				    	<select class="form-control text-center btn-yellow" id="noticeTypeInput">
+				    		<option value="${noticeWithComment.notice.noticeType}">
 					    		<c:if test="${noticeWithComment.notice.noticeType eq 'notice'}">
 					    			공지
 					    		</c:if>
-				    		 --</option>
-				    		<option value="공지">공지</option>
-				    		<option value="투표">투표</option>
+				    		 </option>
 				    	</select>
 				    	</div>
 				    	<!-- 반정보 -->
@@ -105,7 +103,7 @@
 				    <!-- 공지 section -->
 				    <div class="note-section my-1">
 				    <!-- 사진 box-->
-					<div class="d-flex justify-content-center mt-1">
+					<div class="d-flex justify-content-center">
 						<div class="d-flex justify-content-center">
 							<div>
 								<!-- 이미지 출력 -->
@@ -239,6 +237,50 @@
 					
 				});
 			});
+			
+			//공지 수정
+			$("#updateNoticeBtn").on("click", function(){
+				var postType = $("typeInput").val();
+				postType = "notice";
+				var noticeId = $("#updateNoticeBtn").data("notice-id");
+				var kidsClass = $("#kidsClassInput option:selected").val();
+				var noticeType = $("#noticeTypeInput option:selected").val();
+				var weather = $("#weatherInput option:selected").val();
+				var title = $("#titleInput").val();
+				var description = $("#descriptionInput").val();
+				
+				var formData = new FormData();
+				formData.append("postType", postType);
+				formData.append("noticeId", noticeId);
+				formData.append("kidsClass", kidsClass);
+				formData.append("noticeType", noticeType);
+				formData.append("weather", weather);
+				formData.append("title", title);
+				formData.append("description", description);
+				formData.append("file", $("#fileInput")[0].files[0]);
+				
+				$.ajax({
+					enctype:"multipart/form-data", //파일업로드 필수
+					type:"POST",
+					url:"/notice/notice/update",
+					processData:false, //파일업로드 필수
+					contentType: false, //파일업로드 필수
+					data:formData, 
+					success:function(data){
+						if(data.result == "success"){
+							alert("공지 수정완료");
+							location.href="/notice/list_view";
+						}else{
+							alert("공지 수정실패");
+						}
+						
+					},
+					error:function(e){
+						alert("error");
+					}
+				});
+			});
+			
 		});
 	
 	</script>

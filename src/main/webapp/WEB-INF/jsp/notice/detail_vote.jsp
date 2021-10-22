@@ -77,14 +77,12 @@
 				    <div class="studentInfo-secton d-flex align-items-center py-4">
 				    	<!-- 공지타입 -->
 				    	<div class="w-50 d-flex ml-3 align-items-center h-75">
-				    	<select class="form-control text-center" id="noticeTypeInput">
-				    		<option value="${voteWithComment.vote.noticeType}">-- 
+				    	<select class="form-control text-center btn-yellow" id="noticeTypeInput">
+				    		<option value="${voteWithComment.vote.noticeType}">
 					    		<c:if test="${voteWithComment.vote.noticeType eq 'vote'}">
 					    			투표
 					    		</c:if>
-				    		 --</option>
-				    		<option value="공지">공지</option>
-				    		<option value="투표">투표</option>
+				    		 </option>
 				    	</select>
 				    	</div>
 				    	<!-- 반정보 -->

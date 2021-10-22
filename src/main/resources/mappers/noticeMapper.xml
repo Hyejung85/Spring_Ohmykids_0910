@@ -75,6 +75,19 @@
  			`notice_type_notice`
  		ORDER BY `id` DESC
  	</select>
+ 	<update id="updateNotice" parameterType="map">
+ 		UPDATE
+ 			`notice_type_notice`
+ 		SET
+ 			`kidsClass` = #{kidsClass}
+ 			, `title` = #{title}
+ 			, `description` = #{description}
+ 				<if test = "imagePath != null">
+ 			, imagePath` = #{imagePath}
+ 				</if>
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
  
  
  
