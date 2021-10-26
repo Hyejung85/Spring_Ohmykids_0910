@@ -13,7 +13,8 @@ public interface ScheduleDAO {
 			, @Param("userType") String userType
 			, @Param("kidsClass") String kidsClass
 			, @Param("title") String title
+			, @Param("description") String description
 			, @Param("start") String start
 			, @Param("end") String end
-			, @Param("description") String description);
+			);
 }

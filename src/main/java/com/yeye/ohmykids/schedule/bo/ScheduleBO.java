@@ -15,8 +15,8 @@ public class ScheduleBO {
 	
 	
 	public int create(int userId, String userName, String userType, String kidsClass, String title,
-			String start, String end, String description) {
-		return scheduleDAO.insertSchedule(userId, userName, userType, kidsClass, title, kidsClass, title, description);
+			 String description, String  start, String  end) {
+		return scheduleDAO.insertSchedule(userId, userName, userType, kidsClass, title, description, start, end);
 	}
 	
 }

@@ -23,13 +23,13 @@ public class ScheduleRestController {
 	private ScheduleBO scheduleBO;
 	
 	//이벤트 생성
-	@GetMapping("/create")
+	@RequestMapping("/create")
 	public Map<String, String> scheduleCreate(
 			@RequestParam("kidsClass") String kidsClass
 			, @RequestParam("title") String title
 			, @RequestParam("description") String description
 			, @RequestParam("start") String start
-			, @RequestParam("end") String end
+			, @RequestParam("end") String  end
 			, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -37,7 +37,7 @@ public class ScheduleRestController {
 		String userName = (String) session.getAttribute("userName");
 		String userType = (String) session.getAttribute("userType");
 		
-		int count = scheduleBO.create(userId, userName, userType, kidsClass, title, start, end, description);
+		int count = scheduleBO.create(userId, userName, userType, kidsClass, title, description, start, end);
 		
 		Map<String, String> result = new HashMap<>();
 		

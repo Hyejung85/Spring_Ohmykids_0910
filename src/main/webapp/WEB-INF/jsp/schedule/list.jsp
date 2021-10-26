@@ -57,14 +57,14 @@
 			            	<option value="평화반">평화반</option>
 			            </select>
 			          </div>
-			          <%-- <div class="form-group">
+			          <!-- <div class="form-group">
 			            <label for="recipient-name" class="col-form-label title-text">시작날짜</label>
-			            <input type="text" class="form-control" id="startInput" value="${start}">
+			            <input type="text" class="form-control" id="startInput" value="">
 			          </div>
 			          <div class="form-group">
 			            <label for="recipient-name" class="col-form-label title-text">종료날짜</label>
-			            <input type="text" class="form-control" id="endInput" value="날짜">
-			          </div> --%>
+			            <input type="text" class="form-control" id="endInput" value="">
+			          </div> -->
 			          <div class="form-group">
 			            <label for="recipient-name" class="col-form-label title-text">Title</label>
 			            <input type="text" class="form-control" id="titleInput">
@@ -146,20 +146,16 @@
 					//저장 버튼 클릭
 				 	$("#eventSaveBtn").on("click", function(){
 						//객체 생성
-						var start = arg.start.getFullYear() + "-" + arg.start.getMonth() + "-" + arg.start.getDate();
-						var end = arg.end.getFullYear() + "-" + arg.end.getMonth() + "-" + arg.end.getDate();
-						/* var startDate = $("#startInput").val();
-						var endDate = $("#endInput").val();
-						startDate = start;
-						endDate = end; */
 						
 						var kidsClass = $("#kidsClassInput option:selected").val();
 						var title = $("#titleInput").val();
 						var description = $("#descriptionInput").val();
-		
+						var start = arg.start.getFullYear() + "-" + arg.start.getMonth() + "-" + arg.start.getDate();
+						var end = arg.end.getFullYear() + "-" + arg.end.getMonth() + "-" + arg.end.getDate();
+				
 						//모달(eventSaveBtn)에 날짜를 주입한다.
 						//$("#eventSaveBtn").data("start", start);
-						
+					
 						var formData = new FormData();
 						formData.append("start", start);
 						formData.append("end", end);
@@ -168,8 +164,10 @@
 						formData.append("description", description);
 						
 				 		$.ajax({
-				 			type:"GET",
+				 			type:"POST",
 							url:"/schedule/create",
+							processData:false,
+							contentType:false,
 							data:formData,
 							success:function(data){
 								if(data.result == "success"){
@@ -186,6 +184,7 @@
 				 }
 				
 			},
+			// 인서트 후 모달 안의 내용 클린 필요
 			
 			//DB에 일정을 저장한다.
 			

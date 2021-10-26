@@ -13,9 +13,10 @@
  			, `userType`
  			, `kidsClass`
  			, `title`
+ 			, `description`
  			, `start`
  			, `end`
- 			, `description`
+ 			
  			, `createdAt`
  			, `updatedAt`
  		)
@@ -26,9 +27,9 @@
  			, #{userType}
  			, #{kidsClass}
  			, #{title}
+ 			, #{description}
  			, #{start}
  			, #{end}
- 			, #{description}
  			, now()
  			, now() 
  		)
