@@ -156,7 +156,7 @@
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
-				formData.append("parentsId", parentsId);
+				formData.append("parentsId", parentstId);
 				formData.append("weather", weather);
 				formData.append("content", content);
 				formData.append("file", $("#fileInput")[0].files[0]);

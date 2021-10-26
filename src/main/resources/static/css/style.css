@@ -230,9 +230,32 @@ section{
 }
 
 .note-textarea{
+	min-height: 50px;
 	background-color: #088A29;
 	color: white;
 }
+#calendar-container{
+	width: 800px;
+}
+
+
+.fc-daygrid-day-number{
+	color: black;
+}
+
+.fc-toolbar-title{
+	color: #088A29;
+}
+
+.fc-scrollgrid-sync-inner{
+	color: #088A29;
+}
+
+/* .fc-event-title-container{
+	color:#088A29;
+	background-color: #F3F781;
+	border :0px solid #088A29;
+} */
 
 footer{
 	height : 80px;

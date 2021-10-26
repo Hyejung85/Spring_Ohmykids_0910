@@ -176,7 +176,7 @@
 			var noticeType = $("#noticeTypeInput option:selected").text();
 			
 			if(noticeType == "투표"){
-				$("#selectPictureBox").addClass("d-none"); //d-none이 안먹힘
+				$("#selectPictureBox").addClass("d-none"); 
 				$("#selectVoteBox").removeClass("d-none");
 			}
 			if(noticeType == "공지"){ //공지

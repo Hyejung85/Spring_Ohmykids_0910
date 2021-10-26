@@ -120,7 +120,7 @@
 					</div>
 					<!-- /사진 -->
 					<!-- 공지 내용  -->
-					<textarea id="descriptionInput" class="note-textarea pt-4 px-4 w-100 border-0">${noticeWithComment.notice.description }</textarea>
+					<textarea id="descriptionInput" class="note-textarea pt-4 px-4 w-100 border-0" rows=5 onkeydown="resize(this)" onkeyup="resize(this)" >${noticeWithComment.notice.description }</textarea>
 					<!-- /공지 내용-->
 					<!-- 댓글 -->
 					<c:forEach var="comment" items="${noticeWithComment.commentList }">
@@ -301,6 +301,12 @@
 					}
 				});
 			});
+			
+			//textarea 높이 조정
+			function resize(obj){
+				obj.style.height="1px";
+				obj.style.heigth=(12+scrollHeight)+"px";
+			}
 			
 		});
 	

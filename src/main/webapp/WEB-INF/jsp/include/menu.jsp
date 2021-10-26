@@ -62,7 +62,7 @@
 		        <a class="nav-link dropdown-toggle title-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          공지
 		        </a>
-		        <!-- 앨범 submenu dropdown-->
+		        <!-- 공지 submenu dropdown-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		          <c:if test="${userType eq '선생님' }">
 		          <a class="dropdown-item title-text" href="/notice/create_view">공지작성</a>
@@ -73,6 +73,22 @@
 		        <!-- /공지 submenu dropdown-->
 		      </li>
 		      <!-- /공지 -->
+		      <!-- 스케줄 -->
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle title-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          스케줄
+		        </a>
+		        <!-- 스케줄 submenu dropdown-->
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <c:if test="${userType eq '선생님' }">
+		          <a class="dropdown-item title-text" href="/schedule/create_view">스케줄작성</a>
+		          <div class="dropdown-divider"></div>
+		          </c:if>
+		          <a class="dropdown-item title-text" href="/schedule/list_view">스케줄목록</a>
+		        </div>
+		        <!-- /스케줄 submenu dropdown-->
+		      </li>
+		      <!-- /스케줄 -->
 		    </ul>
 		   </div>
 		</nav>
