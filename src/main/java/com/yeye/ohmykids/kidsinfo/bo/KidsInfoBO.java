@@ -80,6 +80,11 @@ public class KidsInfoBO {
 	public KidsInfo getKidsInfo(int id) {
 		return kidsInfoDAO.selectKidsInfo(id);
 	}
+	
+	//자녀정보 리스트(생일활용)
+	public List<KidsInfo> useKidsBirth(){
+		return kidsInfoDAO.selectKidsInfoListForTeacher();
+	}
 
 	
 }

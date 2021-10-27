@@ -16,7 +16,6 @@
  			, `description`
  			, `start`
  			, `end`
- 			
  			, `createdAt`
  			, `updatedAt`
  		)
@@ -34,6 +33,20 @@
  			, now() 
  		)
  	</insert>
- 
- 
+ 	<select id="selectSchedule" resultType="com.yeye.ohmykids.schedule.model.Schedule">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `userType`
+ 			, `kidsClass`
+ 			, `title`
+ 			, `description`
+ 			, `start`
+ 			, `end`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 		 `schedule`
+ 	</select>
  </mapper>

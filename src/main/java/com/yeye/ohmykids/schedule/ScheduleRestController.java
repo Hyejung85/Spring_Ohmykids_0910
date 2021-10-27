@@ -2,6 +2,7 @@ package com.yeye.ohmykids.schedule;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yeye.ohmykids.schedule.bo.ScheduleBO;
+import com.yeye.ohmykids.schedule.model.Schedule;
 
 @RestController
 @RequestMapping("/schedule")
@@ -28,8 +30,8 @@ public class ScheduleRestController {
 			@RequestParam("kidsClass") String kidsClass
 			, @RequestParam("title") String title
 			, @RequestParam("description") String description
-			, @RequestParam("start") String start
-			, @RequestParam("end") String  end
+			, @RequestParam("start") Date start
+			, @RequestParam("end") Date  end
 			, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -48,4 +50,5 @@ public class ScheduleRestController {
 		}
 		return result;
 	}
+	
 }
