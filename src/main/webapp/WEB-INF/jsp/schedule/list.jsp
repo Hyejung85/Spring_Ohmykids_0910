@@ -42,7 +42,7 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <h5 class="modal-title title-text" id="exampleModalLabel"><b>스케줄 입력</b></h5>
-			        <button type="button" class="close title-text" data-dismiss="modal" aria-label="Close">
+			        <button type="button" class="closeBtn close title-text" data-dismiss="modal" aria-label="Close" id="closeBtn">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
@@ -76,7 +76,7 @@
 			        </form>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
+			        <button type="button" class="closeBtn btn btn-white" id="closeBtn" data-dismiss="modal">닫기</button>
 			        <button type="button" class="btn btn-green" id="eventSaveBtn">저장</button>
 			      </div>
 			    </div>
@@ -88,10 +88,9 @@
 	</div>
 	<script>
 	$("document").ready(function(){
-		
 			
 		$(function(){
-			
+			<!--캘린더 기본 셋팅-->
 			// calendar element 취득
 			var calendarEl = $('#calendar')[0];
 			// full-calendar 생성하기
@@ -116,6 +115,7 @@
 			dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 			firstDay: 1, //월요일이 먼저 오게
 			locale: 'ko', // 한국어 설정
+			<!--/캘린더 기본 셋팅-->
 			/* eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
 				console.log(obj);
 			},
@@ -139,7 +139,7 @@
 			calendar.unselect() //달력 선택 취소
 			}, */
 			
-			//일정 생성
+			<!--일정 생성-->
 			select: function(arg) {
 				
 				//날짜셀을 클릭하면 선생님만 모달창이 뜬다.
@@ -147,12 +147,14 @@
 					//모달을 클릭한다.
 				 	$(".inputModal").click();	
 					
-					// 모달 창 닫기 버튼 클릭 시 !! not working
-				    $(".inputModal").on("hidden.bs.modal", function (e) {
-				    	alert("");
-						$(this).find('form')[0].reset()
+					// 모달 창 닫기 버튼 클릭 시 내용 초기화
+					$(".closeBtn").on("click", function(){
+						$("#inputModal").find('form')[0].reset() //모달 클리어
+						$("#eventSaveBtn").unbind() //저장 버튼에 기 선택된 날짜가 바인딩되지 않도록 함
 					});
-					 
+					
+					calendar.unselect();//달력 선택 취소
+					
 					//저장 버튼 클릭
 				 	$("#eventSaveBtn").on("click", function(){
 						//객체 생성
@@ -198,17 +200,22 @@
 					});
 				 }
 			},
+			<!--/일정 생성-->
 			
-			// 일정 상세
-			//fc-event-title-container
+			<!--일정 상세 보기 -->
+			eventClick: function(obj){
+				alert();
+			},
+			
+			<!--/일정 상세 보기 -->
+			
+			<!--일정 수정 -->
 			eventChange: function(obj) { 
-				//선생님만 가능하다.
-				if(${userType == "선생님"}){
-					
-				}
+				
 			
 			},
-			//DB에 일정을 불러온다.
+			<!--/일정 수정 -->
+			<!--일정 목록 : DB에서 가져오기 -->
 			events: [
 				
 				<!--생일정보 : 매년 반복 작업 필요-->
@@ -229,11 +236,15 @@
 				</c:forEach>
 				
 			]
+			<!--/일정 목록 : DB에서 가져오기 -->
+			
 			
 			
 			});
 				
-			// 캘린더 랜더링
+			
+		
+			<!-- 캘린더 랜더링 -->
 			calendar.render();
 		});
 		

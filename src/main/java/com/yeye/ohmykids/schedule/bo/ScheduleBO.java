@@ -17,7 +17,7 @@ public class ScheduleBO {
 	
 	//스케줄 입력
 	public int create(int userId, String userName, String userType, String kidsClass, String title,
-			 String description, Date  start, Date  end) {
+			 String description, Date start, Date end) {
 		return scheduleDAO.insertSchedule(userId, userName, userType, kidsClass, title, description, start, end);
 	}
 	
