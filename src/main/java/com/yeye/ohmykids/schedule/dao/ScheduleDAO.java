@@ -27,4 +27,21 @@ public interface ScheduleDAO {
 	//리스트
 	public List<Schedule> selectSchedule();
 	
+	//상세
+	public Schedule selectScheduleById(@Param("id") int id);
+	
+	//수정
+	public int updatedSchedule(
+			@Param("userId") int userId
+			, @Param("userName") String userName
+			, @Param("userType") String userType
+			, @Param("kidsClass") String kidsClass
+			, @Param("title") String title
+			, @Param("description") String description
+			, @Param("start") Date start
+			, @Param("end") Date end);
+	
+	//스케줄 삭제
+	public int deleteSchedule(@Param("id") int id);
+	
 }

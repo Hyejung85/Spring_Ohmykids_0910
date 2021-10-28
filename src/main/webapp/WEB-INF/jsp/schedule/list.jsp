@@ -32,11 +32,23 @@
 		<section class="d-flex justify-content-center align-items-top mt-3">
 			<!-- 캘린더 -->
 			<div id='calendar-container' class="mt-3">
-			<div id='calendar'></div>
+				<div id='calendar'></div>
 			</div>
-			<!-- 모달 버튼(숨김) -->
+			<!-- /캘린더 -->
+			
+			<!-- 이벤트 입력 모달 버튼(숨김) -->
 			<input type="button" class="inputModal d-none" data-toggle="modal" data-target="#inputModal"></button>
-			<!-- 모달 상세 -->
+			<!-- /이벤트 입력 모달 버튼(숨김) -->
+			
+			<!-- 이벤트 상세 모달 버튼(숨김) -->
+			<input type="button" class="detailModal d-none" data-toggle="modal" data-target="#detailModal"></button>
+			<!-- /이벤트 상세 모달 버튼(숨김) -->
+			
+		</section>
+		<!-- 풋터 -->
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+		
+			<!-- 이벤트 입력 모달 상세 -->
 			<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -57,14 +69,6 @@
 			            	<option value="평화반">평화반</option>
 			            </select>
 			          </div>
-			          <!--  <div class="form-group">
-			            <label for="recipient-name" class="col-form-label title-text">시작날짜</label>
-			            <input type="text" class="form-control" id="startInput" value="">
-			          </div>
-			          <div class="form-group">
-			            <label for="recipient-name" class="col-form-label title-text">종료날짜</label>
-			            <input type="text" class="form-control" id="endInput" value="">
-			          </div>-->
 			          <div class="form-group">
 			            <label for="recipient-name" class="col-form-label title-text">Title</label>
 			            <input type="text" class="form-control" id="titleInput">
@@ -81,10 +85,54 @@
 			      </div>
 			    </div>
 			  </div>
-			</div>
-		</section>
-		<!-- 풋터 -->
-		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+			 </div>
+		    <!-- /이벤트 입력 모달 상세 -->
+			 
+		  	<!-- 이벤트 상세 모달 상세 -->
+			 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title title-text" id="exampleModalLabel"><b>스케줄 상세</b></h5>
+			        <button type="button" class="closeBtn close title-text" data-dismiss="modal" aria-label="Close" id="closeBtn">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form>
+		          <div class="form-group">
+		            <label for="recipient-name" class="col-form-label title-text">반선택</label>
+		            <select class="form-control" id="kidsClassInput">
+		            	<option value="${schedule.kidsClass }">--${schedule.kidsClass } --</option>
+		            	<option value="전체">전체</option>
+		            	<option value="기쁨반">기쁨반</option>
+		            	<option value="사랑반">사랑반</option>
+		            	<option value="평화반">평화반</option>
+		            </select>
+		          </div>
+		          <div class="form-group">
+		            <label for="recipient-name" class="col-form-label title-text">Title</label>
+		            <input type="text" class="form-control" id="titleInput" value="${schedule.title }">
+		          </div>
+		          <div class="form-group">
+		            <label for="message-text" class="col-form-label title-text">Description</label>
+		            <textarea class="form-control" id="descriptionInput">${schedule.description }</textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="closeBtn btn btn-white" id="closeBtn" data-dismiss="modal">닫기</button>
+		        <c:if test="${userType eq '선생님' }">
+		        <button type="button" class="btn btn-green eventUpdateBtn" id="eventUpdateBtn" data-schedule-id="${schedule.id }">수정</button>
+		        <button type="button" class="btn btn-green eventDeleteBtn" id="eventDeleteBtn" data-schedule-id="${schedule.id }">삭제</button>
+		        </c:if>
+		      </div>
+		    </div>
+		  </div>
+		 </div>
+		 <!-- /이벤트 상세 모달 상세 -->
+			  
+			  
 	</div>
 	<script>
 	$("document").ready(function(){
@@ -116,28 +164,6 @@
 			firstDay: 1, //월요일이 먼저 오게
 			locale: 'ko', // 한국어 설정
 			<!--/캘린더 기본 셋팅-->
-			/* eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
-				console.log(obj);
-			},
-			eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
-				console.log(obj);
-			},
-			eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
-				console.log(obj);
-			},
-			select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-			var title = prompt('Event Title');
-			if (title) {
-				calendar.addEvent({
-					title: title,
-					start: arg.start,
-					end: arg.end,
-					allDay: arg.allDay
-				});
-			} 
-			
-			calendar.unselect() //달력 선택 취소
-			}, */
 			
 			<!--일정 생성-->
 			select: function(arg) {
@@ -164,9 +190,6 @@
 						var description = $("#descriptionInput").val();
 						var start = arg.start//.getFullYear() + "-" + arg.start.getMonth() + "-" + arg.start.getDate();
 						var end = arg.end//.getFullYear() + "-" + arg.end.getMonth() + "-" + arg.end.getDate();
-				
-						//모달(eventSaveBtn)에 날짜를 주입한다.
-						//$("#eventSaveBtn").data("start", start);
 						
 						if(title == null || title ==""){
 							alert("스케줄 Title을 입력해 주세요.");
@@ -204,7 +227,7 @@
 			
 			<!--일정 상세 보기 -->
 			eventClick: function(obj){
-				alert();
+				$(".detailModal").click();
 			},
 			
 			<!--/일정 상세 보기 -->
@@ -212,9 +235,64 @@
 			<!--일정 수정 -->
 			eventChange: function(obj) { 
 				
+				$(".eventUpdateBtn").on("click",function(){
+					alert();
+					var id = $(this).data("schedule-id");
+					
+					//모달(eventUpdateBtn)에 날짜를 주입한다.
+					 $("#eventUpdateBtn").data("id", id);
+					
+						$.ajax({
+							type:"GET",
+							url:"/schedule/update",
+							data:{"kidsClass":kidsClass, "title":title, "description":description},
+							success:function(data){
+								if(data.result == "success"){
+									alert("일정 수정 성공");
+									location.reload();
+								}else{
+									alert("일정 수정 실패");
+								}
+							},
+							error:function(e){
+								alert(error);
+							}
+							
+						});
+				});
 			
 			},
 			<!--/일정 수정 -->
+			
+			<!--일정 삭제 -->
+			eventRemove: function(obj){
+				$(".eventDeleteBtn").on("click",function(){
+					var id = $(this).data("schedule-id");
+					//모달(eventDeleteBtn)에 날짜를 주입한다.
+					$(".eventDeleteBtn").data("id", id);
+					
+						$.ajax({
+							type:"GET",
+							url:"/schedule/delete",
+							data:{"id": id},
+							success:function(data){
+								if(data.result == "success"){
+									alert("일정 삭제 성공");
+									location.reload();
+								}else{
+									alert("일정 삭제 실패");
+								}
+							},
+							error:function(e){
+								alert(error);
+							}
+							
+						});
+				});
+			},
+			
+			<!--/일정 삭제 -->
+			
 			<!--일정 목록 : DB에서 가져오기 -->
 			events: [
 				
@@ -237,17 +315,12 @@
 				
 			]
 			<!--/일정 목록 : DB에서 가져오기 -->
-			
-			
-			
+
 			});
 				
-			
-		
-			<!-- 캘린더 랜더링 -->
+		<!-- 캘린더 랜더링 -->
 			calendar.render();
 		});
-		
 		
 	});
 

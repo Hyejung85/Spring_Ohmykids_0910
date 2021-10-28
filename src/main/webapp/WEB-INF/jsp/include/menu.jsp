@@ -80,10 +80,6 @@
 		        </a>
 		        <!-- 스케줄 submenu dropdown-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <c:if test="${userType eq '선생님' }">
-		          <a class="dropdown-item title-text" href="/schedule/create_view">스케줄작성</a>
-		          <div class="dropdown-divider"></div>
-		          </c:if>
 		          <a class="dropdown-item title-text" href="/schedule/list_view">스케줄목록</a>
 		        </div>
 		        <!-- /스케줄 submenu dropdown-->

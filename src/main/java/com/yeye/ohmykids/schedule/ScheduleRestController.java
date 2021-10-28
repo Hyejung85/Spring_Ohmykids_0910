@@ -51,4 +51,52 @@ public class ScheduleRestController {
 		return result;
 	}
 	
+	//이벤트 수정
+	public Map<String, String> scheduleUpdate(
+			@RequestParam("kidsClass") String kidsClass
+			, @RequestParam("title") String title
+			, @RequestParam("description") String description
+			, @RequestParam("start") Date start
+			, @RequestParam("end") Date  end
+			, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		String userName = (String) session.getAttribute("userName");
+		String userType = (String) session.getAttribute("userType");
+		
+		int count = scheduleBO.updateSchedule(userId, userName, userType, kidsClass, title, description, start, end);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(count == 1) {
+			result.put("result", "success");
+		}else {
+			result.put("result", "fail");
+		}
+		return result;
+	}
+	
+	//스케줄 삭제
+	public Map<String, String> scheduleDelete(
+			@RequestParam("id") int id
+			, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		String userType = (String) session.getAttribute("userType");
+		
+		int count = scheduleBO.deleteSchedule(userId);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(count == 1) {
+			result.put("result", "success");
+		}else {
+			result.put("result", "fail");
+		}
+		return result;
+		
+	}
+	
 }

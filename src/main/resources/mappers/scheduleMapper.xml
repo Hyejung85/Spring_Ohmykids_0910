@@ -49,4 +49,37 @@
  		FROM
  		 `schedule`
  	</select>
+ 	<select id="selectScheduleById" parameterType="int" resultType="com.yeye.ohmykids.schedule.model.Schedule">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `userName`
+ 			, `userType`
+ 			, `kidsClass`
+ 			, `title`
+ 			, `description`
+ 			, `start`
+ 			, `end`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 		 `schedule`
+ 		WHERE `id` = #{id}
+ 	</select>
+ 	<update id="updatedSchedule" parameterType = "map">
+ 		UPDATE 
+ 			`schedule`
+ 		SET
+ 			`kidsClass` = #{kidsClass}
+ 			, `title` = #{title}
+ 			, `description` = #{description}
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
+ 	<delete id="deleteSchedule" parameterType = "int">
+ 		DELETE FROM
+ 			`schedule`
+ 		WHERE `id` = #{id}
+ 	</delete>
+ 	
  </mapper>
