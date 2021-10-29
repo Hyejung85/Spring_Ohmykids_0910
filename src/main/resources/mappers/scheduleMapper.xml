@@ -16,6 +16,7 @@
  			, `description`
  			, `start`
  			, `end`
+ 			, `color`
  			, `createdAt`
  			, `updatedAt`
  		)
@@ -29,6 +30,7 @@
  			, #{description}
  			, #{start}
  			, #{end}
+ 			, #{color}
  			, now()
  			, now() 
  		)
@@ -44,6 +46,7 @@
  			, `description`
  			, `start`
  			, `end`
+ 			, `color`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -60,6 +63,7 @@
  			, `description`
  			, `start`
  			, `end`
+ 			, `color`
  			, `createdAt`
  			, `updatedAt`
  		FROM
@@ -73,6 +77,7 @@
  			`kidsClass` = #{kidsClass}
  			, `title` = #{title}
  			, `description` = #{description}
+ 			, `color` = #{color}
  		WHERE
  			`id` = #{id}
  	</update>

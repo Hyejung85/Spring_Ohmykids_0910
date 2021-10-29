@@ -12,6 +12,7 @@ public class Schedule {
 	private String description;
 	private Date start;
 	private Date end;
+	private String color;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -62,6 +63,12 @@ public class Schedule {
 	public void setEnd(Date end) {
 		this.end = end;
 	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -74,7 +81,7 @@ public class Schedule {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
+	
 	
 	
 	

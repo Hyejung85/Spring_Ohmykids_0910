@@ -22,6 +22,7 @@ public interface ScheduleDAO {
 			, @Param("description") String description
 			, @Param("start") Date start
 			, @Param("end") Date end
+			, @Param("color") String color
 			);
 	
 	//리스트
@@ -39,7 +40,8 @@ public interface ScheduleDAO {
 			, @Param("title") String title
 			, @Param("description") String description
 			, @Param("start") Date start
-			, @Param("end") Date end);
+			, @Param("end") Date end
+			, @Param("color") String color);
 	
 	//스케줄 삭제
 	public int deleteSchedule(@Param("id") int id);

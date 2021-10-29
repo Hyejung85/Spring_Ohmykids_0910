@@ -77,6 +77,19 @@
 			            <label for="message-text" class="col-form-label title-text">Description</label>
 			            <textarea class="form-control" id="descriptionInput"></textarea>
 			          </div>
+			          <div class="form-group">
+			            <label for="edit-color" class="col-form-label title-text">Schedule Color</label>
+			              <select class="inputModal form-control" name="color" id="colorInput">
+	                          <option value="#D25565" style="color:#D25565;">빨간색</option>
+	                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
+	                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+	                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+	                          <option value="#f06595" style="color:#f06595;">핑크색</option>
+	                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
+	                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+	                          <option value="#4d638c" style="color:#4d638c;">남색</option>
+                           </select>
+			          </div>
 			        </form>
 			      </div>
 			      <div class="modal-footer">
@@ -118,6 +131,47 @@
 		            <label for="message-text" class="col-form-label title-text">Description</label>
 		            <textarea class="form-control" id="descriptionInput">${schedule.description }</textarea>
 		          </div>
+		          <div class="form-group">
+			            <label for="edit-color" class="col-form-label title-text">Schedule Color</label>
+			              <select class="inputModal form-control" name="color" id="colorInput">
+			              	  <option value="${schedule.color}" style="color:"${schedule.color}">--
+			              	  	<c:choose>
+				              	  <c:when test="${schedule.color eq '#D25565'}">
+				              	  	빨강색
+				              	  </c:when>
+				              	  <c:when test="${schedule.color eq '#9775fa'}">
+				              	  	보라색
+				              	  </c:when>
+				              	  <c:when test="${schedule.color eq '#ffa94d'}">
+				              	  	주황색
+				              	  </c:when>
+				              	  <c:when test="${schedule.color eq '#74c0fc'}">
+				              	  	파란색
+				              	  </c:when>
+				              	  <c:when test="${schedule.color eq '#f06595'}">
+				              	  	핑크색
+				              	  </c:when>
+				              	  <c:when test="${schedule.color eq '#63e6be'}">
+				              	  	연두색
+				              	  </c:when>
+				              	  <c:when test="${schedule.color eq '#a9e34b'}">
+				              	  	초록색
+				              	  </c:when>
+				              	  <c:when test="${schedule.color eq '#4d638c'}">
+				              	  	남색
+				              	  </c:when>
+				              	</c:choose>
+			              	  --</option>
+	                          <option value="#D25565" style="color:#D25565;">빨간색</option>
+	                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
+	                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+	                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+	                          <option value="#f06595" style="color:#f06595;">핑크색</option>
+	                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
+	                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+	                          <option value="#4d638c" style="color:#4d638c;">남색</option>
+                           </select>
+			          </div>
 		        </form>
 		      </div>
 		      <div class="modal-footer">
@@ -190,6 +244,8 @@
 						var description = $("#descriptionInput").val();
 						var start = arg.start//.getFullYear() + "-" + arg.start.getMonth() + "-" + arg.start.getDate();
 						var end = arg.end//.getFullYear() + "-" + arg.end.getMonth() + "-" + arg.end.getDate();
+						var color = $("#colorInput option:selected").val();
+						
 						
 						if(title == null || title ==""){
 							alert("스케줄 Title을 입력해 주세요.");
@@ -202,6 +258,8 @@
 						formData.append("kidsClass", kidsClass);
 						formData.append("title", title);
 						formData.append("description", description);
+						formData.append("color", color);
+				
 						
 				 		$.ajax({
 				 			type:"POST",
@@ -234,10 +292,13 @@
 			
 			<!--일정 수정 -->
 			eventChange: function(obj) { 
-				
-				$(".eventUpdateBtn").on("click",function(){
-					alert();
+				$("#eventUpdateBtn").on("click",function(){
+					alert("안녕");
 					var id = $(this).data("schedule-id");
+					var kidsClass = $("#kidsClassInput option:selected").val();
+					var title = $("#titleInput").val();
+					var description = $("#descriptionInput").val();
+					var color = $("#colorInput option:selected").val();
 					
 					//모달(eventUpdateBtn)에 날짜를 주입한다.
 					 $("#eventUpdateBtn").data("id", id);
@@ -245,7 +306,7 @@
 						$.ajax({
 							type:"GET",
 							url:"/schedule/update",
-							data:{"kidsClass":kidsClass, "title":title, "description":description},
+							data:{"kidsClass":kidsClass, "title":title, "description":description, "color":color},
 							success:function(data){
 								if(data.result == "success"){
 									alert("일정 수정 성공");
@@ -301,7 +362,8 @@
 				{
 					title : "${kid.kidsName} 생일",
 					start : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
-					end : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>"
+					end : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
+					color : "#63e6be"
 				},
 				</c:forEach>
 				<!-- 저장된 이벤트 정보-->
@@ -309,7 +371,8 @@
 				{
 					title : "${plan.title}",
 					start : "<fmt:formatDate value="${plan.start}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
-					end : "<fmt:formatDate value="${plan.end}" pattern="YYYY-MM-dd" timeZone = "KST"/>"
+					end : "<fmt:formatDate value="${plan.end}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
+					color : "${plan.color}"
 				},
 				</c:forEach>
 				
@@ -321,6 +384,12 @@
 		<!-- 캘린더 랜더링 -->
 			calendar.render();
 		});
+		
+		//SELECT 색상 변경
+		$("#colorInput").change(function(){
+			$(this).css("color", $(this).val());
+		});
+		
 		
 	});
 

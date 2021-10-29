@@ -257,6 +257,11 @@ section{
 	border :0px solid #088A29;
 } */
 
+
+#colorInput {
+  color: #d25565;
+}
+
 footer{
 	height : 80px;
 }

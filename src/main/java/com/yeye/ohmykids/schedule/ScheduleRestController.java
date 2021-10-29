@@ -32,6 +32,7 @@ public class ScheduleRestController {
 			, @RequestParam("description") String description
 			, @RequestParam("start") Date start
 			, @RequestParam("end") Date  end
+			, @RequestParam("color") String color
 			, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -39,7 +40,7 @@ public class ScheduleRestController {
 		String userName = (String) session.getAttribute("userName");
 		String userType = (String) session.getAttribute("userType");
 		
-		int count = scheduleBO.create(userId, userName, userType, kidsClass, title, description, start, end);
+		int count = scheduleBO.create(userId, userName, userType, kidsClass, title, description, start, end, color);
 		
 		Map<String, String> result = new HashMap<>();
 		
@@ -58,6 +59,7 @@ public class ScheduleRestController {
 			, @RequestParam("description") String description
 			, @RequestParam("start") Date start
 			, @RequestParam("end") Date  end
+			, @RequestParam("color") String color
 			, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -65,7 +67,7 @@ public class ScheduleRestController {
 		String userName = (String) session.getAttribute("userName");
 		String userType = (String) session.getAttribute("userType");
 		
-		int count = scheduleBO.updateSchedule(userId, userName, userType, kidsClass, title, description, start, end);
+		int count = scheduleBO.updateSchedule(userId, userName, userType, kidsClass, title, description, start, end, color);
 		
 		Map<String, String> result = new HashMap<>();
 		

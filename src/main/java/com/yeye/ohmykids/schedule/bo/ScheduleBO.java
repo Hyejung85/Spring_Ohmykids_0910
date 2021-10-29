@@ -17,8 +17,8 @@ public class ScheduleBO {
 	
 	//스케줄 입력
 	public int create(int userId, String userName, String userType, String kidsClass, String title,
-			 String description, Date start, Date end) {
-		return scheduleDAO.insertSchedule(userId, userName, userType, kidsClass, title, description, start, end);
+			 String description, Date start, Date end, String color) {
+		return scheduleDAO.insertSchedule(userId, userName, userType, kidsClass, title, description, start, end, color);
 	}
 	
 	//스케줄 리스트
@@ -34,8 +34,8 @@ public class ScheduleBO {
 	 
 	 //스케줄 수정
 	 public int updateSchedule(int userId, String userName, String userType, String kidsClass, String title,
-			 String description, Date start, Date end) {
-		 return scheduleDAO.updatedSchedule(userId, userName, userType, kidsClass, title, description, start, end);
+			 String description, Date start, Date end, String color) {
+		 return scheduleDAO.updatedSchedule(userId, userName, userType, kidsClass, title, description, start, end, color);
 	 }
 	 
 	 //스케줄 삭제
