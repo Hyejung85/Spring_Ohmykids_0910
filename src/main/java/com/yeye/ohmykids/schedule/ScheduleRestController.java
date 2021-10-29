@@ -2,7 +2,6 @@ package com.yeye.ohmykids.schedule;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yeye.ohmykids.schedule.bo.ScheduleBO;
-import com.yeye.ohmykids.schedule.model.Schedule;
 
 @RestController
 @RequestMapping("/schedule")
@@ -53,12 +52,12 @@ public class ScheduleRestController {
 	}
 	
 	//이벤트 수정
+	@RequestMapping("/update")
 	public Map<String, String> scheduleUpdate(
-			@RequestParam("kidsClass") String kidsClass
+			@RequestParam("id") int id
+			, @RequestParam("kidsClass") String kidsClass
 			, @RequestParam("title") String title
 			, @RequestParam("description") String description
-			, @RequestParam("start") Date start
-			, @RequestParam("end") Date  end
 			, @RequestParam("color") String color
 			, HttpServletRequest request){
 		
@@ -67,7 +66,7 @@ public class ScheduleRestController {
 		String userName = (String) session.getAttribute("userName");
 		String userType = (String) session.getAttribute("userType");
 		
-		int count = scheduleBO.updateSchedule(userId, userName, userType, kidsClass, title, description, start, end, color);
+		int count = scheduleBO.updateSchedule(id, userId, userName, userType, kidsClass, title, description, color);
 		
 		Map<String, String> result = new HashMap<>();
 		
@@ -80,6 +79,7 @@ public class ScheduleRestController {
 	}
 	
 	//스케줄 삭제
+	@GetMapping("/delete")
 	public Map<String, String> scheduleDelete(
 			@RequestParam("id") int id
 			, HttpServletRequest request){
@@ -88,7 +88,7 @@ public class ScheduleRestController {
 		int userId = (Integer) session.getAttribute("userId");
 		String userType = (String) session.getAttribute("userType");
 		
-		int count = scheduleBO.deleteSchedule(userId);
+		int count = scheduleBO.deleteSchedule(id);
 		
 		Map<String, String> result = new HashMap<>();
 		

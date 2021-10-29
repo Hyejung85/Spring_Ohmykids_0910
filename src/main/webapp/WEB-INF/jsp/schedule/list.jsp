@@ -93,7 +93,7 @@
 			        </form>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="closeBtn btn btn-white" id="closeBtn" data-dismiss="modal">닫기</button>
+			        <button type="button" class="closeBtn btn btn-white border-success" id="closeBtn" data-dismiss="modal">닫기</button>
 			        <button type="button" class="btn btn-green" id="eventSaveBtn">저장</button>
 			      </div>
 			    </div>
@@ -115,7 +115,7 @@
 		        <form>
 		          <div class="form-group">
 		            <label for="recipient-name" class="col-form-label title-text">반선택</label>
-		            <select class="form-control" id="kidsClassInput">
+		            <select class="form-control" id="kidsClassUpdateInput">
 		            	<option value="${schedule.kidsClass }">--${schedule.kidsClass } --</option>
 		            	<option value="전체">전체</option>
 		            	<option value="기쁨반">기쁨반</option>
@@ -125,15 +125,15 @@
 		          </div>
 		          <div class="form-group">
 		            <label for="recipient-name" class="col-form-label title-text">Title</label>
-		            <input type="text" class="form-control" id="titleInput" value="${schedule.title }">
+		            <input type="text" class="form-control" id="titleUpdateInput" value="${schedule.title }">
 		          </div>
 		          <div class="form-group">
 		            <label for="message-text" class="col-form-label title-text">Description</label>
-		            <textarea class="form-control" id="descriptionInput">${schedule.description }</textarea>
+		            <textarea class="form-control" id="descriptionUpdateInput">${schedule.description }</textarea>
 		          </div>
 		          <div class="form-group">
 			            <label for="edit-color" class="col-form-label title-text">Schedule Color</label>
-			              <select class="inputModal form-control" name="color" id="colorInput">
+			              <select class="inputModal form-control" name="color" id="colorUpdateInput">
 			              	  <option value="${schedule.color}" style="color:"${schedule.color}">--
 			              	  	<c:choose>
 				              	  <c:when test="${schedule.color eq '#D25565'}">
@@ -175,10 +175,10 @@
 		        </form>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="closeBtn btn btn-white" id="closeBtn" data-dismiss="modal">닫기</button>
+		        <button type="button" class="closeBtn btn btn-white border-success" id="closeBtn" data-dismiss="modal">닫기</button>
 		        <c:if test="${userType eq '선생님' }">
-		        <button type="button" class="btn btn-green eventUpdateBtn" id="eventUpdateBtn" data-schedule-id="${schedule.id }">수정</button>
-		        <button type="button" class="btn btn-green eventDeleteBtn" id="eventDeleteBtn" data-schedule-id="${schedule.id }">삭제</button>
+		        <button type="button" class="eventUpdateBtn btn btn-green" id="eventUpdateBtn" data-schedule-id="${schedule.id }">수정</button>
+		        <button type="button" class="eventDeleteBtn btn btn-danger text-white" id="eventDeleteBtn" data-schedule-id="${schedule.id }">삭제</button>
 		        </c:if>
 		      </div>
 		    </div>
@@ -285,74 +285,69 @@
 			
 			<!--일정 상세 보기 -->
 			eventClick: function(obj){
-				$(".detailModal").click();
+			 		//모달 클릭
+					$(".detailModal").click();
+					
+					<!--일정 수정 -->
+					$("#eventUpdateBtn").on("click",function(){
+				
+						var id = $(this).data("schedule-id");
+						var kidsClass = $("#kidsClassUpdateInput option:selected").val();
+						var title = $("#titleUpdateInput").val();
+						var description = $("#descriptionUpdateInput").val();
+						var color = $("#colorUpdateInput option:selected").val();
+						
+						//모달(eventUpdateBtn)에 날짜를 주입한다.
+						 $(".eventUpdateBtn").data("id", id);
+						
+							$.ajax({
+								type:"POST",
+								url:"/schedule/update",
+								data:{"id": id, "kidsClass":kidsClass, "title":title, "description":description, "color":color},
+								success:function(data){
+									if(data.result == "success"){
+										$(".detailModal").close();
+										location.reload();
+									}else{
+										alert("일정 수정 실패");
+									}
+								},
+								error:function(e){
+									alert(error);
+								}
+								
+							});
+					});
+					<!--/일정 수정 -->
+					
+					<!--일정 삭제 -->
+					$("#eventDeleteBtn").on("click",function(){
+				
+						var id = $(this).data("schedule-id");
+						//모달(eventDeleteBtn)에 날짜를 주입한다.
+						$(".eventDeleteBtn").data("id", id);
+						
+							$.ajax({
+								type:"GET",
+								url:"/schedule/delete",
+								data:{"id": id},
+								success:function(data){
+									if(data.result == "success"){
+										location.reload();
+									}else{
+										alert("일정 삭제 실패");
+									}
+								},
+								error:function(e){
+									alert(error);
+								}
+								
+							});
+					});
+					<!--일정 삭제 -->
+					
 			},
-			
 			<!--/일정 상세 보기 -->
-			
-			<!--일정 수정 -->
-			eventChange: function(obj) { 
-				$("#eventUpdateBtn").on("click",function(){
-					alert("안녕");
-					var id = $(this).data("schedule-id");
-					var kidsClass = $("#kidsClassInput option:selected").val();
-					var title = $("#titleInput").val();
-					var description = $("#descriptionInput").val();
-					var color = $("#colorInput option:selected").val();
-					
-					//모달(eventUpdateBtn)에 날짜를 주입한다.
-					 $("#eventUpdateBtn").data("id", id);
-					
-						$.ajax({
-							type:"GET",
-							url:"/schedule/update",
-							data:{"kidsClass":kidsClass, "title":title, "description":description, "color":color},
-							success:function(data){
-								if(data.result == "success"){
-									alert("일정 수정 성공");
-									location.reload();
-								}else{
-									alert("일정 수정 실패");
-								}
-							},
-							error:function(e){
-								alert(error);
-							}
-							
-						});
-				});
-			
-			},
-			<!--/일정 수정 -->
-			
-			<!--일정 삭제 -->
-			eventRemove: function(obj){
-				$(".eventDeleteBtn").on("click",function(){
-					var id = $(this).data("schedule-id");
-					//모달(eventDeleteBtn)에 날짜를 주입한다.
-					$(".eventDeleteBtn").data("id", id);
-					
-						$.ajax({
-							type:"GET",
-							url:"/schedule/delete",
-							data:{"id": id},
-							success:function(data){
-								if(data.result == "success"){
-									alert("일정 삭제 성공");
-									location.reload();
-								}else{
-									alert("일정 삭제 실패");
-								}
-							},
-							error:function(e){
-								alert(error);
-							}
-							
-						});
-				});
-			},
-			
-			<!--/일정 삭제 -->
 			
 			<!--일정 목록 : DB에서 가져오기 -->
 			events: [
@@ -360,10 +355,15 @@
 				<!--생일정보 : 매년 반복 작업 필요-->
 				<c:forEach var="kid" items="${kidsBirthList}">
 				{
-					title : "${kid.kidsName} 생일",
+					title : "♡ ${kid.kidsName} 생일 ♡",
 					start : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
 					end : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
-					color : "#63e6be"
+					color : "#63e6be",
+					rrule : {
+						freq : 'weekly',
+						dtstart : "2021-01-01",
+						until : "2025-12-31"
+					}
 				},
 				</c:forEach>
 				<!-- 저장된 이벤트 정보-->
@@ -373,12 +373,14 @@
 					start : "<fmt:formatDate value="${plan.start}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
 					end : "<fmt:formatDate value="${plan.end}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
 					color : "${plan.color}"
+
 				},
 				</c:forEach>
 				
+				
 			]
 			<!--/일정 목록 : DB에서 가져오기 -->
-
+		
 			});
 				
 		<!-- 캘린더 랜더링 -->

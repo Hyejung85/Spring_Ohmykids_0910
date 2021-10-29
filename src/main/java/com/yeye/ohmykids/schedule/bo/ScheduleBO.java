@@ -33,9 +33,9 @@ public class ScheduleBO {
 	 }
 	 
 	 //스케줄 수정
-	 public int updateSchedule(int userId, String userName, String userType, String kidsClass, String title,
-			 String description, Date start, Date end, String color) {
-		 return scheduleDAO.updatedSchedule(userId, userName, userType, kidsClass, title, description, start, end, color);
+	 public int updateSchedule(int id, int userId, String userName, String userType, String kidsClass, String title,
+			 String description, String color) {
+		 return scheduleDAO.updatedSchedule(id, userId, userName, userType, kidsClass, title, description, color);
 	 }
 	 
 	 //스케줄 삭제

@@ -74,9 +74,12 @@
  		UPDATE 
  			`schedule`
  		SET
+ 			
  			`kidsClass` = #{kidsClass}
  			, `title` = #{title}
+ 			<if test = "description != null">
  			, `description` = #{description}
+ 			</if>
  			, `color` = #{color}
  		WHERE
  			`id` = #{id}

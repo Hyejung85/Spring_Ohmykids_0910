@@ -33,14 +33,13 @@ public interface ScheduleDAO {
 	
 	//수정
 	public int updatedSchedule(
-			@Param("userId") int userId
+			@Param("id") int id
+			, @Param("userId") int userId
 			, @Param("userName") String userName
 			, @Param("userType") String userType
 			, @Param("kidsClass") String kidsClass
 			, @Param("title") String title
 			, @Param("description") String description
-			, @Param("start") Date start
-			, @Param("end") Date end
 			, @Param("color") String color);
 	
 	//스케줄 삭제
