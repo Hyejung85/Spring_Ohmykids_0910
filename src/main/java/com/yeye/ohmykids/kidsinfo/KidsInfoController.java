@@ -64,4 +64,20 @@ public class KidsInfoController {
 		return "user/kidsinfo_list";
 	}
 	
+	//학생목록 리스트
+	@RequestMapping("/studentsinfo/list_view")
+	public String studentList(
+			Model model
+			, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		String userType = (String) session.getAttribute("userType");
+		
+		List<KidsInfo> kidsInfoList = kidsInfoBO.getKidsInfoList(userId,userType);
+		model.addAttribute("kidsInfoList", kidsInfoList);
+		
+		return "user/studentinfo_list";
+	}
+	
 }

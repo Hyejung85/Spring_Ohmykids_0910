@@ -9,7 +9,10 @@
 		      <!-- 자녀관리 -->
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle title-text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          My Kids 관리
+		          <c:choose>
+			          	<c:when test="${userType eq '선생님'}">My students 관리</c:when>
+			          	<c:otherwise>My Kids 관리</c:otherwise>
+		          	</c:choose>
 		        </a>
 		        <!-- 자녀관리 submenu dropdown-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -17,12 +20,14 @@
 		          <a class="dropdown-item title-text" href="/kidsinfo/create_view">자녀정보등록</a>
 		          <div class="dropdown-divider"></div>
 		          </c:if>
-		          <a class="dropdown-item title-text" href="/kidsinfo/list_view">
-		          	<c:choose>
-			          	<c:when test="${userType eq '선생님'}">학생목록</c:when>
-			          	<c:otherwise>자녀목록</c:otherwise>
+		          <c:choose>
+			          <c:when test="${userType eq '선생님'}">
+		          		<a class="dropdown-item title-text" href="/kidsinfo/studentsinfo/list_view">학생목록</a>
+		          	  </c:when>
+		          	  <c:otherwise>
+		          	  	<a class="dropdown-item title-text" href="/kidsinfo/list_view">자녀목록</a>
+		          	  </c:otherwise>
 		          	</c:choose>
-		          	</a>
 		        </div>
 		        <!-- /자녀관리 submenu dropdown-->
 		      </li>

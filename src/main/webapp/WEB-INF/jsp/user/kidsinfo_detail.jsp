@@ -31,7 +31,16 @@
 					<div class="mx-3 mt-2"><h5>My Kids 상세</h5></div> 
 					<div class="d-flex">
 					<!-- 목록 버튼 -->
-					<div class="ml-3"><a href="/kidsinfo/list_view" class="btn btn-yellow btn-sm" id="kidsinfoListBtn"><b>목록으로</b></a></div>
+					<div class="ml-3">
+						<c:choose>
+							<c:when test="${userType eq '학부모' }">
+								<a href="/kidsinfo/list_view" class="btn btn-yellow btn-sm" id="kidsinfoListBtn">
+							</c:when>
+							<c:otherwise>
+								<a href="/kidsinfo/studentsinfo/list_view" class="btn btn-yellow btn-sm" id="kidsinfoListBtn">
+							</c:otherwise>
+						</c:choose>
+						<b>목록으로</b></a></div>
 					<!-- 저장 버튼 -->
 					<div class="ml-2 mr-3"><button type="submit" class="btn btn-yellow btn-sm" id="kidsinfoUpdateBtn" data-kidsinfo-id="${kidsInfo.id }"><b>수정</b></button></div>
 					</div>

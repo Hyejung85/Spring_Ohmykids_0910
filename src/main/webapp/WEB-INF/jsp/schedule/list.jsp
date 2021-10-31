@@ -97,7 +97,7 @@
 			        <button type="button" class="btn btn-green" id="eventSaveBtn">저장</button>
 			      </div>
 			    </div>
-			  </div>
+			 
 			 </div>
 		    <!-- /이벤트 입력 모달 상세 -->
 			 
