@@ -328,7 +328,8 @@
 						$("#kidsClassAndNameInput").val(result).prop("selected", true);
 						
 						//모달창 닫기
-						$("#kidsInfoModal").modal('hide');
+						$("#kidsInfoModal").hide();
+						$(".modal-backdrop").remove(); //모달창을 호출할대 발생한 레이어가 남아있어 삭제처리하여 보이지 않게 함
 						
 					}
 				

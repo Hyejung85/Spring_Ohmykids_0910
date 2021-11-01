@@ -125,7 +125,7 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
 		<!-- 전체원아보기 모달 상세 -->
-		<div class="modal kidsInfoModal-lg" id="kidsInfoModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal fade kidsInfoModal-lg" id="kidsInfoModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -196,7 +196,7 @@
 				var kidsName = value[1];
 				var weather = $("#weatherInput option:selected").val();  //select box
 				var content = $("#contentInput").val();
-			
+				
 				if(options == null || options == "" || options == "--반 & 이름--"){
 					alert("학생을 선택해주세요");
 					return;
@@ -207,7 +207,7 @@
 				formData.append("kidsId", kidsId);
 				formData.append("kidsClass", kidsClass);
 				formData.append("kidsName", kidsName);
-				formData.append("parentsId", parentstId);
+				formData.append("parentsId", parentsId);
 				formData.append("weather", weather);
 				formData.append("content", content);
 				formData.append("file", $("#fileInput")[0].files[0]);
@@ -261,29 +261,33 @@
 			//모달 열기
 			$("#kidsInfoForTeacher").on("click",function(){
 				$(".kidsInfoModal").click();
+				
+				// 모달에서 학생 선택완료 > 셀렉트 박스 해당 학생으로 변경 
+				$("#kidsIdSaveBtn").on("click", function(){
+					//체크값 가져오기 (반-이름)
+					var obj_length = document.getElementsByName("choice").length;
+					
+					for(var i=0; i < obj_length; i++){
+						if(document.getElementsByName("choice")[i].checked == true){
+							var result = document.getElementsByName("choice")[i].value
+							
+							//셀렉트 박스 값 변경하기
+							$("#kidsClassAndNameInput").val(result).prop("selected", true);
+							
+							//모달창 닫기
+							$("#kidsInfoModal").hide();
+							$(".modal-backdrop").remove(); //모달창을 호출할대 발생한 레이어가 남아있어 삭제처리하여 보이지 않게 함
+							
+							
+						}
+					
+					}
+					
+				});
 			});
 			
 
-			// 모달에서 학생 선택완료 > 셀렉트 박스 해당 학생으로 변경 
-			$("#kidsIdSaveBtn").on("click", function(){
-				//체크값 가져오기 (반-이름)
-				var obj_length = document.getElementsByName("choice").length;
-				
-				for(var i=0; i < obj_length; i++){
-					if(document.getElementsByName("choice")[i].checked == true){
-						var result = document.getElementsByName("choice")[i].value
-						
-						//셀렉트 박스 값 변경하기
-						$("#kidsClassAndNameInput").val(result).prop("selected", true);
-						
-						//모달창 닫기
-						$("#kidsInfoModal").modal('hide');
-						
-					}
-				
-				}
-				
-			});
+			
 			
 			
 		});
