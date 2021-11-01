@@ -50,4 +50,46 @@ public interface VoteDAO {
 			@Param("id") int id
 			, @Param("noticeType") String noticeType
 			, @Param("userId") int userId);
+	
+	//투표(찬성)했는지
+	public int selectCountAgree(
+		@Param("userId") int userId
+		, @Param("voteId") int voteId);
+	
+	//투표(반대)했는지
+	public int selectCountDisagree(
+		@Param("userId") int userId
+		, @Param("voteId") int voteId);
+	
+	//찬성입력
+	public int insertAgree(
+		@Param("userId") int userId
+		, @Param("voteId") int voteId);
+	
+	//반대입력
+	public int insertDisagree(
+		@Param("userId") int userId
+		, @Param("voteId") int voteId);
+	
+	//찬성갯수
+	public int countAgree(@Param("voteId") int voteId);
+	
+	//반대갯수
+	public int countDisagree(@Param("voteId") int voteId);
+	
+	//찬성취소
+	public int deleteAgree(
+		@Param("userId") int userId
+		, @Param("voteId") int voteId);
+	
+	//반대취소
+	public int deleteDisagree(
+		@Param("userId") int userId
+		, @Param("voteId") int voteId);
+	
+	//투표 공지 삭제 + 투표 찬성 내용 삭제
+	public int deleteVoteAgree(@Param("voteId") int voteId);
+	
+	//투표 공지 삭제 + 투표 반대 내용 삭제
+	public int deleteVoteDisagree(@Param("voteId") int voteId);
 }

@@ -46,9 +46,10 @@
 			
 		</section>
 		<!-- 풋터 -->
-		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
-		
-			<!-- 이벤트 입력 모달 상세 -->
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />  
+	</div>
+	
+				<!-- 이벤트 입력 모달 상세 -->
 			<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -97,8 +98,8 @@
 			        <button type="button" class="btn btn-green" id="eventSaveBtn">저장</button>
 			      </div>
 			    </div>
-			 
 			 </div>
+			</div>
 		    <!-- /이벤트 입력 모달 상세 -->
 			 
 		  	<!-- 이벤트 상세 모달 상세 -->
@@ -131,6 +132,7 @@
 		            <label for="message-text" class="col-form-label title-text">Description</label>
 		            <textarea class="form-control" id="descriptionUpdateInput">${schedule.description }</textarea>
 		          </div>
+		          <c:if test="${userType eq '선생님' }">
 		          <div class="form-group">
 			            <label for="edit-color" class="col-form-label title-text">Schedule Color</label>
 			              <select class="inputModal form-control" name="color" id="colorUpdateInput">
@@ -172,6 +174,7 @@
 	                          <option value="#4d638c" style="color:#4d638c;">남색</option>
                            </select>
 			          </div>
+			          </c:if>
 		        </form>
 		      </div>
 		      <div class="modal-footer">
@@ -185,9 +188,6 @@
 		  </div>
 		 </div>
 		 <!-- /이벤트 상세 모달 상세 -->
-			  
-			  
-	</div>
 	<script>
 	$("document").ready(function(){
 			
@@ -287,6 +287,7 @@
 			eventClick: function(obj){
 			 		//모달 클릭
 					$(".detailModal").click();
+			 		
 					
 					<!--일정 수정 -->
 					$("#eventUpdateBtn").on("click",function(){

@@ -102,4 +102,50 @@ public class VoteRestController {
 		return result;
 	}
 	
+	//투표 찬성 입력
+	@GetMapping("/agree/create")
+	public Map<String, Object> createAgree(
+			@RequestParam("voteId") int voteId
+			, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		int agree = voteBO.createAgree(userId, voteId);
+		int agreeCount = voteBO.countAgree(voteId);
+		
+		if(agree == 1) {
+			result.put("agree", "success");
+			result.put("agreeCount", agreeCount);
+		}else {
+			result.put("agree", "fail");
+		}
+		return result;
+	}
+	
+	//투표 반대 입력
+		@GetMapping("/disagree/create")
+		public Map<String, Object> createDisagree(
+				@RequestParam("voteId") int voteId
+				, HttpServletRequest request){
+			
+			HttpSession session = request.getSession();
+			int userId = (Integer) session.getAttribute("userId");
+			
+			Map<String, Object> result = new HashMap<>();
+			
+			int disagree = voteBO.createDisagree(userId, voteId);
+			int disagreeCount = voteBO.countDisagree(voteId);
+			
+			if(disagree == 1) {
+				result.put("disagree", "success");
+				result.put("disagreeCount", disagreeCount);
+			}else {
+				result.put("agree", "fail");
+			}
+			return result;
+		}
+	
 }

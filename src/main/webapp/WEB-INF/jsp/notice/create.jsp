@@ -97,12 +97,12 @@
 						<!-- 찬성 -->
 						<div class="green-border title-text pt-2 d-flex justify-content-between">
 							<div><input type="radio" name="vote" value="찬성" class="ml-3 mr-2"><b>찬성</b></div> 
-							<div class="mr-3"><i class="bi bi-person-fill title-text"></i><small>11명</small></div>
+							<div class="mr-3"><i class="bi bi-person-fill title-text"></i><small>0명</small></div>
 						</div>
 						<!-- 반대 -->
 						<div class="green-border title-text pt-2 my-2 d-flex justify-content-between">
 							<div><input type="radio" name="vote" value="반대" class="ml-3 mr-2"><b>반대</b></div> 
-							<div class="mr-3"><i class="bi bi-person-fill title-text"></i><small>11명</small></div>
+							<div class="mr-3"><i class="bi bi-person-fill title-text"></i><small>0명</small></div>
 						</div>
 						<!-- 종료 -->
 						<div class="title-text ml-2 d-flex align-items-center">

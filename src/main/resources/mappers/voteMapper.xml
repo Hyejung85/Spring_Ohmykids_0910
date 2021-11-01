@@ -94,5 +94,100 @@
  			AND
  			`userId` = #{userId}
  	</delete>
- 
+ 	<!-- 투표(찬성)했는지 -->
+ 	<select id="selectCountAgree" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`vote_agree`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`voteId` = #{voteId}
+ 	</select>
+ 	<!-- 투표(반대)했는지 -->
+ 	<select id="selectCountDisagree" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`vote_disagree`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND
+ 			`voteId` = #{voteId}
+ 	</select>
+ 	<!-- 찬성입력 -->
+ 	<insert id="insertAgree" parameterType="map">
+ 		INSERT INTO
+ 			`vote_agree`
+ 		(
+ 			`userId`
+ 			, `voteId`
+ 			, `createdAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{voteId}
+ 			, now() 
+ 		)
+ 	</insert>
+ 	<!-- 반대입력 -->
+ 	<insert id="insertDisagree" parameterType="map">
+ 		INSERT INTO
+ 			`vote_disagree`
+ 		(
+ 			`userId`
+ 			, `voteId`
+ 			, `createdAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{voteId}
+ 			, now() 
+ 		)
+ 	</insert>
+ 	<!-- 찬성갯수 -->
+ 	<select id="countAgree" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`vote_agree`
+ 		WHERE
+ 			`voteId` = #{voteId}
+ 	</select>
+ 	<!-- 반대갯수 -->
+ 	<select id="countDisagree" parameterType="map" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`vote_disagree`
+ 		WHERE
+ 			`voteId` = #{voteId}
+ 	</select>
+ 	<!-- 찬성 취소 -->
+ 	<delete id="deleteAgree" parameterType="map">
+ 		DELETE FROM `vote_agree`
+ 		WHERE
+ 			`voteId` = #{voteId}
+ 	</delete>
+ 	<!-- 반대 취소 -->
+ 	<delete id="deleteDisagree" parameterType="map">
+ 		DELETE FROM `vote_disagree`
+ 		WHERE
+ 			`voteId` = #{voteId}
+ 	</delete>
+ 	<!-- 투표 공지 삭제 + 투표 찬성 내용 삭제 -->
+ 	<delete id="deleteVoteAgree" parameterType="map">
+	DELETE FROM `vote_agree`
+	WHERE
+		`voteId` = #{voteId}
+ 	</delete>
+ 	 	<!-- 투표 공지 삭제 + 투표 찬성 내용 삭제 -->
+ 	<delete id="deleteVoteDisagree" parameterType="map">
+	DELETE FROM `vote_disagree`
+	WHERE
+		`voteId` = #{voteId}
+ 	</delete>
  </mapper>

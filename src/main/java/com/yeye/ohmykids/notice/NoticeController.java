@@ -88,7 +88,7 @@ public class NoticeController {
 		model.addAttribute("kidsClassList", kidsClassList);
 		
 		//투표&코멘트 리스트
-		List<VoteWithComment> voteWithCommentList = voteBO.getVote(id);
+		List<VoteWithComment> voteWithCommentList = voteBO.getVote(userId, id);
 		model.addAttribute("voteWithCommentList",voteWithCommentList);
 		
 		return "notice/detail_vote";
