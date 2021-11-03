@@ -27,10 +27,10 @@ public class ScheduleBO {
 	 
 	 }
 	 
-	 //스케줄 상세
-	 public Schedule getSchedule(int id) {
-		 return scheduleDAO.selectScheduleById(id);
-	 }
+		/*
+		 * //스케줄 상세 public Schedule getSchedule(int id) { return
+		 * scheduleDAO.selectScheduleById(id); }
+		 */
 	 
 	 //스케줄 수정
 	 public int updateSchedule(int id, int userId, String userName, String userType, String kidsClass, String title,

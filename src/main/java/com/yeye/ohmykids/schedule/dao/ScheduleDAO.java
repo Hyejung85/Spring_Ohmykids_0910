@@ -28,8 +28,9 @@ public interface ScheduleDAO {
 	//리스트
 	public List<Schedule> selectSchedule();
 	
-	//상세
-	public Schedule selectScheduleById(@Param("id") int id);
+	/*
+	 * //상세 public Schedule selectScheduleById(@Param("id") int id);
+	 */
 	
 	//수정
 	public int updatedSchedule(

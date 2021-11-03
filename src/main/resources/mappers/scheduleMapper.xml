@@ -52,7 +52,7 @@
  		FROM
  		 `schedule`
  	</select>
- 	<select id="selectScheduleById" parameterType="int" resultType="com.yeye.ohmykids.schedule.model.Schedule">
+ 	<!--<select id="selectScheduleById" parameterType="int" resultType="com.yeye.ohmykids.schedule.model.Schedule">
  		SELECT
  			`id`
  			, `userId`
@@ -69,7 +69,7 @@
  		FROM
  		 `schedule`
  		WHERE `id` = #{id}
- 	</select>
+ 	</select>  -->
  	<update id="updatedSchedule" parameterType = "map">
  		UPDATE 
  			`schedule`

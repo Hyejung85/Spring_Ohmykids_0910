@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yeye.ohmykids.kidsinfo.bo.KidsInfoBO;
 import com.yeye.ohmykids.kidsinfo.model.KidsInfo;
@@ -39,18 +40,15 @@ public class ScheduleController {
 		List<Schedule> scheduleList = scheduleBO.getList();
 		model.addAttribute("scheduleList", scheduleList);
 		
-		//스케줄 상세
-		//List<Schedule> oneScheduleList = new ArrayList<>();
-		Schedule schedule = null;
-		for(Schedule target : scheduleList) {
-			
-			schedule = scheduleBO.getSchedule(target.getId());
-			//oneScheduleList.add(schedule);
-		}
-		model.addAttribute("schedule", schedule);
-		//Schedule schedule = scheduleBO.getSchedule();
-		//model.addAttribute("oneScheduleList", oneScheduleList);
-		
+		/*
+		 * //스케줄 상세 //List<Schedule> oneScheduleList = new ArrayList<>(); Schedule
+		 * schedule = null; for(Schedule target : scheduleList) {
+		 * 
+		 * schedule = scheduleBO.getSchedule(target.getId()); //
+		 * oneScheduleList.add(schedule); } model.addAttribute("schedule", schedule);
+		 * 
+		 * //model.addAttribute("oneScheduleList", oneScheduleList);
+		 */		
 		
 		//kidsInfo 생일정보
 		List<KidsInfo> kidsBirthList = kidsInfoBO.useKidsBirth();

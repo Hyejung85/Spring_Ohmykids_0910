@@ -40,16 +40,13 @@
 			<input type="button" class="inputModal d-none" data-toggle="modal" data-target="#inputModal"></button>
 			<!-- /이벤트 입력 모달 버튼(숨김) -->
 			
-			<!-- 이벤트 상세 모달 버튼(숨김) -->
-			<input type="button" class="detailModal d-none" data-toggle="modal" data-target="#detailModal"></button>
-			<!-- /이벤트 상세 모달 버튼(숨김) -->
 			
 		</section>
 		<!-- 풋터 -->
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />  
 	</div>
 	
-				<!-- 이벤트 입력 모달 상세 -->
+			<!-- 이벤트 입력 모달 상세 -->
 			<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -63,7 +60,7 @@
 			        <form>
 			          <div class="form-group">
 			            <label for="recipient-name" class="col-form-label title-text">반선택</label>
-			            <select class="form-control" id="kidsClassInput">
+			            <select class="form-control" id="kidsClassInput" name="kidsClassInput">
 			            	<option value="전체">전체</option>
 			            	<option value="기쁨반">기쁨반</option>
 			            	<option value="사랑반">사랑반</option>
@@ -72,15 +69,15 @@
 			          </div>
 			          <div class="form-group">
 			            <label for="recipient-name" class="col-form-label title-text">Title</label>
-			            <input type="text" class="form-control" id="titleInput">
+			            <input type="text" class="form-control" id="titleInput"  name="titleInput">
 			          </div>
 			          <div class="form-group">
 			            <label for="message-text" class="col-form-label title-text">Description</label>
-			            <textarea class="form-control" id="descriptionInput"></textarea>
+			            <textarea class="form-control" id="descriptionInput" name="descriptionInput"></textarea>
 			          </div>
 			          <div class="form-group">
 			            <label for="edit-color" class="col-form-label title-text">Schedule Color</label>
-			              <select class="inputModal form-control" name="color" id="colorInput">
+			              <select class="inputModal form-control" name="color" id="colorInput" name="colorInput"> 
 	                          <option value="#D25565" style="color:#D25565;">빨간색</option>
 	                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
 	                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
@@ -91,103 +88,25 @@
 	                          <option value="#4d638c" style="color:#4d638c;">남색</option>
                            </select>
 			          </div>
+			           <div class="form-group d-none">
+			            <label for="recipient-name" class="col-form-label title-text">id</label>
+			            <input type="text" class="form-control" id="idInput"  name="idInput">
+			          </div>
 			        </form>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="closeBtn btn btn-white border-success" id="closeBtn" data-dismiss="modal">닫기</button>
-			        <button type="button" class="btn btn-green" id="eventSaveBtn">저장</button>
+			        <c:if test="${userType eq '선생님' }">
+		        		<button type="button" class="eventDeleteBtn btn btn-danger text-white" id="eventDeleteBtn">삭제</button>
+			        	<button type="button" class="btn btn-green" id="eventSaveBtn">저장/수정</button>
+			        </c:if>
 			      </div>
 			    </div>
 			 </div>
 			</div>
 		    <!-- /이벤트 입력 모달 상세 -->
 			 
-		  	<!-- 이벤트 상세 모달 상세 -->
-			 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title title-text" id="exampleModalLabel"><b>스케줄 상세</b></h5>
-			        <button type="button" class="closeBtn close title-text" data-dismiss="modal" aria-label="Close" id="closeBtn">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-		      </div>
-		      <div class="modal-body">
-		        <form>
-		          <div class="form-group">
-		            <label for="recipient-name" class="col-form-label title-text">반선택</label>
-		            <select class="form-control" id="kidsClassUpdateInput">
-		            	<option value="${schedule.kidsClass }">--${schedule.kidsClass } --</option>
-		            	<option value="전체">전체</option>
-		            	<option value="기쁨반">기쁨반</option>
-		            	<option value="사랑반">사랑반</option>
-		            	<option value="평화반">평화반</option>
-		            </select>
-		          </div>
-		          <div class="form-group">
-		            <label for="recipient-name" class="col-form-label title-text">Title</label>
-		            <input type="text" class="form-control" id="titleUpdateInput" value="${schedule.title }">
-		          </div>
-		          <div class="form-group">
-		            <label for="message-text" class="col-form-label title-text">Description</label>
-		            <textarea class="form-control" id="descriptionUpdateInput">${schedule.description }</textarea>
-		          </div>
-		          <c:if test="${userType eq '선생님' }">
-		          <div class="form-group">
-			            <label for="edit-color" class="col-form-label title-text">Schedule Color</label>
-			              <select class="inputModal form-control" name="color" id="colorUpdateInput">
-			              	  <option value="${schedule.color}" style="color:"${schedule.color}">--
-			              	  	<c:choose>
-				              	  <c:when test="${schedule.color eq '#D25565'}">
-				              	  	빨강색
-				              	  </c:when>
-				              	  <c:when test="${schedule.color eq '#9775fa'}">
-				              	  	보라색
-				              	  </c:when>
-				              	  <c:when test="${schedule.color eq '#ffa94d'}">
-				              	  	주황색
-				              	  </c:when>
-				              	  <c:when test="${schedule.color eq '#74c0fc'}">
-				              	  	파란색
-				              	  </c:when>
-				              	  <c:when test="${schedule.color eq '#f06595'}">
-				              	  	핑크색
-				              	  </c:when>
-				              	  <c:when test="${schedule.color eq '#63e6be'}">
-				              	  	연두색
-				              	  </c:when>
-				              	  <c:when test="${schedule.color eq '#a9e34b'}">
-				              	  	초록색
-				              	  </c:when>
-				              	  <c:when test="${schedule.color eq '#4d638c'}">
-				              	  	남색
-				              	  </c:when>
-				              	</c:choose>
-			              	  --</option>
-	                          <option value="#D25565" style="color:#D25565;">빨간색</option>
-	                          <option value="#9775fa" style="color:#9775fa;">보라색</option>
-	                          <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
-	                          <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
-	                          <option value="#f06595" style="color:#f06595;">핑크색</option>
-	                          <option value="#63e6be" style="color:#63e6be;">연두색</option>
-	                          <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
-	                          <option value="#4d638c" style="color:#4d638c;">남색</option>
-                           </select>
-			          </div>
-			          </c:if>
-		        </form>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="closeBtn btn btn-white border-success" id="closeBtn" data-dismiss="modal">닫기</button>
-		        <c:if test="${userType eq '선생님' }">
-		        <button type="button" class="eventUpdateBtn btn btn-green" id="eventUpdateBtn" data-schedule-id="${schedule.id }">수정</button>
-		        <button type="button" class="eventDeleteBtn btn btn-danger text-white" id="eventDeleteBtn" data-schedule-id="${schedule.id }">삭제</button>
-		        </c:if>
-		      </div>
-		    </div>
-		  </div>
-		 </div>
-		 <!-- /이벤트 상세 모달 상세 -->
+		  	
 	<script>
 	$("document").ready(function(){
 			
@@ -220,7 +139,7 @@
 			<!--/캘린더 기본 셋팅-->
 			
 			<!--일정 생성-->
-			select: function(arg) {
+			select: function(event) {
 				
 				//날짜셀을 클릭하면 선생님만 모달창이 뜬다.
 				if(${userType == "선생님"}){
@@ -242,10 +161,9 @@
 						var kidsClass = $("#kidsClassInput option:selected").val();
 						var title = $("#titleInput").val();
 						var description = $("#descriptionInput").val();
-						var start = arg.start//.getFullYear() + "-" + arg.start.getMonth() + "-" + arg.start.getDate();
-						var end = arg.end//.getFullYear() + "-" + arg.end.getMonth() + "-" + arg.end.getDate();
+						var start = event.start//.getFullYear() + "-" + arg.start.getMonth() + "-" + arg.start.getDate();
+						var end = event.end//.getFullYear() + "-" + arg.end.getMonth() + "-" + arg.end.getDate();
 						var color = $("#colorInput option:selected").val();
-						
 						
 						if(title == null || title ==""){
 							alert("스케줄 Title을 입력해 주세요.");
@@ -283,38 +201,89 @@
 			},
 			<!--/일정 생성-->
 			
+			<!--일정 목록 : DB에서 가져오기 -->
+			events: [
+				
+				<!--생일정보 : 매년 반복 작업 필요-->
+				<c:forEach var="kid" items="${kidsBirthList}">
+				{
+					id : ${kid.id},
+					title : "♡ ${kid.kidsName} 생일 ♡",
+					start : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
+					end : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
+					backgroundColor  : "#63e6be"
+				},
+				</c:forEach>
+				<!-- 저장된 이벤트 정보-->
+				<c:forEach var="plan" items="${scheduleList}">
+				{
+					id : ${plan.id},
+					title : "${plan.title}",
+					start : "<fmt:formatDate value="${plan.start}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
+					end : "<fmt:formatDate value="${plan.end}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
+					display : "${plan.kidsClass}", //반정보
+					overlap : "${plan.description}",
+					backgroundColor : "${plan.color}"
+
+				},
+				</c:forEach>
+	
+			],
+			
+			<!--/일정 목록 : DB에서 가져오기 -->
+			
 			<!--일정 상세 보기 -->
-			eventClick: function(obj){
+			eventClick: function(event, element){
 			 		//모달 클릭
-					$(".detailModal").click();
-			 		
+			
+					$(".inputModal").click();
+					$("#inputModal").find("#kidsClassInput").val(event.event.display); // kidsClass는 undefined로 event object에 있는것으로 대체 사용
+					$("#inputModal").find("#titleInput").val(event.event.title);
+					$("#inputModal").find("#colorInput").val(event.event.backgroundColor);
+					$("#inputModal").find("#descriptionInput").val(event.event.overlap); // description는 undefined로 event object에 있는것으로 대체 사용
+					$("#inputModal").find("#idInput").val(event.event.id); // event object의 id는 String으로 int로 변환 사용 필요
 					
 					<!--일정 수정 -->
-					$("#eventUpdateBtn").on("click",function(){
+					$("#eventSaveBtn").on("click",function(){
 				
-						var id = $(this).data("schedule-id");
-						var kidsClass = $("#kidsClassUpdateInput option:selected").val();
-						var title = $("#titleUpdateInput").val();
-						var description = $("#descriptionUpdateInput").val();
-						var color = $("#colorUpdateInput option:selected").val();
-						
 						//모달(eventUpdateBtn)에 날짜를 주입한다.
-						 $(".eventUpdateBtn").data("id", id);
+						//$(".eventSaveBtn").data("id", id);
 						
+						var idString = $("#idInput").val();
+						var id = parseInt(idString);
+						var kidsClass = $("#kidsClassInput option:selected").val();
+						var title = $("#titleInput").val();
+						var description = $("#descriptionInput").val();
+						var color = $("#colorInput option:selected").val();
+						var start = event.start//.getFullYear() + "-" + arg.start.getMonth() + "-" + arg.start.getDate();
+						var end = event.end//.getFullYear() + "-" + arg.end.getMonth() + "-" + arg.end.getDate();
+							
+						var formData = new FormData();
+						formData.append("id", id);
+						formData.append("start", start);
+						formData.append("end", end);
+						formData.append("kidsClass", kidsClass);
+						formData.append("title", title);
+						formData.append("description", description);
+						formData.append("color", color);
+						
+					
 							$.ajax({
 								type:"POST",
 								url:"/schedule/update",
-								data:{"id": id, "kidsClass":kidsClass, "title":title, "description":description, "color":color},
+								processData:false,
+								contentType:false,
+								data:formData,
 								success:function(data){
 									if(data.result == "success"){
-										$(".detailModal").close();
+										$(".inputModal").hide();
 										location.reload();
 									}else{
 										alert("일정 수정 실패");
 									}
 								},
 								error:function(e){
-									alert(error);
+									alert("error");
 								}
 								
 							});
@@ -324,9 +293,11 @@
 					<!--일정 삭제 -->
 					$("#eventDeleteBtn").on("click",function(){
 				
-						var id = $(this).data("schedule-id");
+						//var id = $(this).data("schedule-id");
 						//모달(eventDeleteBtn)에 날짜를 주입한다.
-						$(".eventDeleteBtn").data("id", id);
+						//$(".eventDeleteBtn").data("id", id);
+						var idString = $("#idInput").val();
+						var id = parseInt(idString);
 						
 							$.ajax({
 								type:"GET",
@@ -340,7 +311,7 @@
 									}
 								},
 								error:function(e){
-									alert(error);
+									alert("error");
 								}
 								
 							});
@@ -350,40 +321,10 @@
 			},
 			<!--/일정 상세 보기 -->
 			
-			<!--일정 목록 : DB에서 가져오기 -->
-			events: [
-				
-				<!--생일정보 : 매년 반복 작업 필요-->
-				<c:forEach var="kid" items="${kidsBirthList}">
-				{
-					title : "♡ ${kid.kidsName} 생일 ♡",
-					start : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
-					end : "<fmt:formatDate value="${kid.kidsBirth}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
-					color : "#63e6be",
-					rrule : {
-						freq : 'weekly',
-						dtstart : "2021-01-01",
-						until : "2025-12-31"
-					}
-				},
-				</c:forEach>
-				<!-- 저장된 이벤트 정보-->
-				<c:forEach var="plan" items="${scheduleList}">
-				{
-					title : "${plan.title}",
-					start : "<fmt:formatDate value="${plan.start}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
-					end : "<fmt:formatDate value="${plan.end}" pattern="YYYY-MM-dd" timeZone = "KST"/>",
-					color : "${plan.color}"
-
-				},
-				</c:forEach>
-				
-				
-			]
-			<!--/일정 목록 : DB에서 가져오기 -->
-		
+			
+			
 			});
-				
+		
 		<!-- 캘린더 랜더링 -->
 			calendar.render();
 		});
