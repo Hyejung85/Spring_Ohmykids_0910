@@ -49,6 +49,12 @@ public class VoteBO {
 		
 		//투표 했는지
 		boolean isVote = voteBO.existVote(userId, vote.getId());
+		
+		//찬성했는지
+		boolean isAgree = voteBO.existAgree(userId, vote.getId());
+		//반대했는지
+		boolean isDisagree = voteBO.existDisagree(userId, vote.getId());
+		
 		//찬성 갯수
 		int agreeCount = voteBO.countAgree(vote.getId());
 		//반대 갯수
@@ -63,6 +69,12 @@ public class VoteBO {
 		voteWithComment.setCommentList(commentList);
 		//투표를 한 상태인지
 		voteWithComment.setVoted(isVote);
+		
+		//찬성한 상태인지
+		voteWithComment.setAgree(isAgree);
+		//반대한 상태인지
+		voteWithComment.setDisagree(isDisagree);
+		
 		//찬성 갯수
 		voteWithComment.setAgreeCount(agreeCount);
 		//반대 갯수
@@ -110,6 +122,28 @@ public class VoteBO {
 		int disagreeCount = voteDAO.selectCountDisagree(userId, voteId);
 		
 		if(agreeCount >= 1 || disagreeCount >= 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	//찬성했는지
+	public boolean existAgree(int userId, int voteId) {
+		int agreeCount = voteDAO.selectCountAgree(userId, voteId);
+		if(agreeCount >= 1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	//반대했는지
+	
+	public boolean existDisagree(int userId, int voteId) {
+
+		int disagreeCount = voteDAO.selectCountDisagree(userId, voteId);
+		if(disagreeCount >= 1) {
 			return true;
 		}else {
 			return false;

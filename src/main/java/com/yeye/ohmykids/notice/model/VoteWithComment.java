@@ -9,6 +9,8 @@ public class VoteWithComment {
 	private Vote vote;
 	private List<Comment> commentList;
 	private boolean isVoted;
+	private boolean isAgree;
+	private boolean isDisagree;
 	private int agreeCount;
 	private int disagreeCount;
 	
@@ -42,6 +44,19 @@ public class VoteWithComment {
 	public void setDisagreeCount(int disagreeCount) {
 		this.disagreeCount = disagreeCount;
 	}
+	public boolean isAgree() {
+		return isAgree;
+	}
+	public void setAgree(boolean isAgree) {
+		this.isAgree = isAgree;
+	}
+	public boolean isDisagree() {
+		return isDisagree;
+	}
+	public void setDisagree(boolean isDisagree) {
+		this.isDisagree = isDisagree;
+	}
+	
 	
 	
 	

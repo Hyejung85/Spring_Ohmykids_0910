@@ -75,6 +75,7 @@
 			            <label for="message-text" class="col-form-label title-text">Description</label>
 			            <textarea class="form-control" id="descriptionInput" name="descriptionInput"></textarea>
 			          </div>
+			          <c:if test="${userType eq '선생님' }">
 			          <div class="form-group">
 			            <label for="edit-color" class="col-form-label title-text">Schedule Color</label>
 			              <select class="inputModal form-control" name="color" id="colorInput" name="colorInput"> 
@@ -88,6 +89,7 @@
 	                          <option value="#4d638c" style="color:#4d638c;">남색</option>
                            </select>
 			          </div>
+			          </c:if>
 			           <div class="form-group d-none">
 			            <label for="recipient-name" class="col-form-label title-text">id</label>
 			            <input type="text" class="form-control" id="idInput"  name="idInput">
